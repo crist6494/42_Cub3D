@@ -6,7 +6,7 @@
 #    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/04/25 19:38:42 by cmorales         ###   ########.fr        #
+#    Updated: 2023/04/25 23:54:06 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,12 +61,16 @@ MLX42_LIB = MLX42/build/libmlx42.a
 
 MLX42 = ./MLX42/
 
-DEPENDENCIES_MAC = MLX42/build/libmlx42.a -framework Cocoa -framework OpenGL -framework IOKit
+DEPENDENCIES_MAC = $(MLX42_LIB) -framework Cocoa -framework OpenGL -framework IOKit
+
+DEPENDENCIES_LINUX = /home/cristian/42/42_Cub3D/MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 
 INC_MLX = $(MLX42)/include
 
 GLFW =  -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
+LINUX = Linux
+MAC = Darwin
 
 #/--------------Actions-----------------/
 all:  lib obj  $(NAME)
@@ -86,6 +90,22 @@ $(MLX42_LIB):
 	make -C $(MLX42)/build -j4
 
 
+ifeq ($(shell uname -s), $(LINUX))
+
+	@echo "$(INFO) FUNCIONAAAA...$(NOC)"
+
+$(OBJ_DIR)%.o:$(SRC_DIR)%.c
+	@$(CC) $(CFLAGS) -I $(INC) -I $(INC_MLX) -I $(LIBFT_INC) -o $@ -c $<
+	@echo "$(INFO) SE COMPILO LO .O$(NOC)"
+
+
+$(NAME): $(OBJS) $(MLX42_LIB)
+	@echo "$(INFO) Building $(NAME)...$(NOC)"
+	@$(CC) $(CFLAGS) $(OBJS) /home/cristian/42/42_Cub3D/MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm $(LIBFT)  -o $(NAME)
+	@echo "$(SUCCESS)$(NAME) built successfully!$(NOC)"
+
+else ifeq ($(shell uname -s), $(MAC))
+
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(MLX42_LIB)
 	@$(CC) $(CFLAGS) -I $(INC) -I $(LIBFT_INC) -I $(INC_MLX) -o $@ -c $<
 
@@ -94,6 +114,8 @@ $(NAME): $(OBJS) $(MLX42_LIB)
 	@echo "$(INFO) Building $(NAME)...$(NOC)"
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(DEPENDENCIES_MAC) $(GLFW) -o $(NAME)
 	@echo "$(SUCCESS)$(NAME) built successfully!$(NOC)"
+
+endif
 
 
 clean:

@@ -6,8 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <MLX42/MLX42.h>
-# include "libft.h"
+#include </home/cristian/42/42_Cub3D/MLX42/include/MLX42/MLX42.h>
 
 #define WIDTH 512
 #define HEIGHT 512
@@ -63,9 +62,9 @@ int32_t main(int32_t argc, const char* argv[])
 	(void)argc;
 	mlx_t* mlx;
 
-	char p[] = "Hola";
+	//char p[] = "Hola";
 
-	printf("%zu\n", ft_strlen(p));
+	//printf("%zu\n", ft_strlen(p));
 	// Gotta error check this stuff
 	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
 	{
