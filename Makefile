@@ -6,7 +6,7 @@
 #    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/04/25 23:54:06 by cmorales         ###   ########.fr        #
+#    Updated: 2023/04/26 17:25:46 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,8 +92,6 @@ $(MLX42_LIB):
 
 ifeq ($(shell uname -s), $(LINUX))
 
-	@echo "$(INFO) FUNCIONAAAA...$(NOC)"
-
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	@$(CC) $(CFLAGS) -I $(INC) -I $(INC_MLX) -I $(LIBFT_INC) -o $@ -c $<
 	@echo "$(INFO) SE COMPILO LO .O$(NOC)"
@@ -135,7 +133,7 @@ fclean: clean
 
 
 re: fclean 
-	make all
+	@make all
 
 test: all
 	./$(NAME)
