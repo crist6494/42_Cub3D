@@ -1,71 +1,98 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
+/*   Updated: 2023/04/27 20:51:31 by cmorales         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <memory.h>
-#include "MLX42/MLX42.h"
-#define WIDTH 256
-#define HEIGHT 256
+#include "map.h"
 
-/* void my_keyhook(mlx_key_data_t keydata, void* param)
-{
-	(void)param;
-	// If we PRESS the 'J' key, print "Hello".
-	if (keydata.key == MLX_KEY_J && keydata.action == MLX_PRESS)
-		puts("Hello ");
-
-	// If we RELEASE the 'K' key, print "World".
-	if (keydata.key == MLX_KEY_K && keydata.action == MLX_RELEASE)
-		puts("World");
-
-	// If we HOLD the 'L' key, print "!".
-	if (keydata.key == MLX_KEY_L && keydata.action == MLX_REPEAT)
-		puts("!");
-}
-
-int32_t	main(void)
-{
-	mlx_t* mlx;
-
-	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
-		return (EXIT_FAILURE);
-
-	mlx_key_hook(mlx, &my_keyhook, NULL);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
-} */
-
-
-// Exit the program as failure.
 static void error(void)
 {
-	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+	printf("%s", mlx_strerror(mlx_errno));
 	exit(EXIT_FAILURE);
 }
 
-int32_t	main(void)
+void line(t_map *map, mlx_image_t *img)
 {
-	// Start mlx
-	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "Test", true);
+    // Variables para definir la dirección y la longitud de la línea
+    int dx = map->x1 - map->x0;
+    int dy = map->y1 - map->y0;
+    int sx = 1;
+    if (dx < 0) {
+        sx = -1;
+        dx = -dx;
+    }
+    int sy = 1;
+    if (dy < 0) {
+        sy = -1;
+        dy = -dy;
+    }
+    int err = dx - dy;
+    
+    // Variables para trazar la línea punto por punto
+    int x = map->x0;
+    int y = map->y0;
+    
+    // Traza la línea punto por punto
+    while (x != map->x1 || y != map->y1)
+    {
+        // Dibuja el punto actual
+        mlx_put_pixel(img, x, y, 0xFF0000FF);
+        
+        // Calcula el error de posición y actualiza la posición del punto
+        int e2 = err * 2;
+        if (e2 > -dy)
+        {
+            err -= dy;
+            x += sx;
+        }
+        if (e2 < dx)
+        {
+            err += dx;
+            y += sy;
+        }
+    }
+}
+
+//void print_direct_lightning()
+
+void hook(mlx_key_data_t keydata, void *param)
+{
+	mlx_t *cast = (mlx_t *)param;
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+	{
+		mlx_close_window(cast);
+		exit(1);
+	}
+} 
+
+int	main()
+{
+	t_map map;
+
+	map.x0 = 10;
+	map.y0 = 10;
+	
+	map.x1 = 110;
+	map.y1 = 210;
+	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!mlx)
         error();
-
-	// Create a new image
-	mlx_image_t* img = mlx_new_image(mlx, 512, 512);
+	mlx_image_t* img = mlx_new_image(mlx, 600, 600);
 	if (!img)
 		error();
-
-	// Set every pixel to white
-	memset(img->pixels, 100, img->width * img->height * sizeof(int32_t));
-
-	// Display an instance of the image
+	line(&map, img);
 	if (mlx_image_to_window(mlx, img, 0, 0) < 0)
         error();
 
+	mlx_key_hook(mlx, &hook, mlx);
 	mlx_loop(mlx);
-
-	// Optional, terminate will clean up any left overs, this is just to demonstrate.
 	mlx_delete_image(mlx, img);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
