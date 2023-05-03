@@ -6,7 +6,7 @@
 #    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/04/26 17:25:46 by cmorales         ###   ########.fr        #
+#    Updated: 2023/05/03 11:30:59 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ OBJ_DIR = ./obj/
 
 INC = ./includes/
 
-SRCS = 	main.c 
+SRCS = 	main.c paint.c
 
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 
