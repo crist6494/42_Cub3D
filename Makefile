@@ -6,7 +6,7 @@
 #    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/05/03 11:30:59 by cmorales         ###   ########.fr        #
+#    Updated: 2023/05/23 18:13:19 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -135,7 +135,7 @@ fclean: clean
 re: fclean 
 	@make all
 
-test: all
+r: all
 	./$(NAME)
 
 val: all

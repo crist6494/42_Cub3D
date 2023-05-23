@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/03 11:35:51 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/05/23 18:13:39 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,21 @@ void hook(mlx_key_data_t keydata, void *param)
 
 int	main()
 {
-	t_map map;
+	t_point p;
 
-	map.x0 = 10;
-	map.y0 = 10;
+	p.x0 = 10;
+	p.y0 = 10;
 	
-	map.x1 = 10;
-	map.y1 = 210;
-    (void)map;
+	p.x1 = 10;
+	p.y1 = 210;
 	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!mlx)
         error();
 	mlx_image_t* img = mlx_new_image(mlx, 600, 600);
 	if (!img)
 		error();
-	//line(&map, img);
-    square_paint(20, 20, img);
+	line(&p, img);
+    square_paint(10, 10, img);
 	if (mlx_image_to_window(mlx, img, 0, 0) < 0)
         error();
 
