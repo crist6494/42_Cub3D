@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/23 18:13:39 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/05/24 21:14:45 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,38 @@ void hook(mlx_key_data_t keydata, void *param)
 int	main()
 {
 	t_point p;
+	t_coord coord;
+	t_map map;
 
-	p.x0 = 10;
+	p.x0 = 0;
 	p.y0 = 10;
 	
 	p.x1 = 10;
-	p.y1 = 210;
+	p.y1 = 10;
+
+	coord.x = 350.0f;
+	coord.y = 350.0f;
+
+	char stage[5][5] = 
+	{
+		{'1', '1', '1', '1', '1'},
+        {'1', '0', '0', '0', '1'},
+        {'1', '0', '0', '0', '1'},
+        {'1', '0', '0', '0', '1'},
+        {'1', '1', '1', '1', '1'}
+	}; 
+	
 	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!mlx)
         error();
 	mlx_image_t* img = mlx_new_image(mlx, 600, 600);
 	if (!img)
 		error();
-	line(&p, img);
-    square_paint(10, 10, img);
+	//line(&p, img);
+    //square_paint(&coord,5, 5, img);
+	char **ptr_stage = (char**)stage;
+	printf("El stage: %c\n", ptr_stage[1][2]);
+	map_print(&map, ptr_stage);
 	if (mlx_image_to_window(mlx, img, 0, 0) < 0)
         error();
 

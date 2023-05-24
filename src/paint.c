@@ -6,66 +6,72 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:30:05 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/23 21:03:29 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:42:25 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
 
-void line(t_point *p, mlx_image_t *img)
+void init_line(t_point *p)
 {
     // Variables para definir la dirección y la longitud de la línea
-    int dx = p->x1 - p->x0;
-    int dy = p->y1 - p->y0;
-    //Variables incremento
-    int sx = 1;
-    int sy = 1; 
-    
-    if (dx < 0) {
-        sx = -1;
-        dx = -dx;
-    }
-    if (dy < 0) {
-        sy = -1;
-        dy = -dy;
-    }
-    int err = dx - dy;
-    
-    // Variables para trazar la línea punto por punto
-    int x = p->x0;
-    int y = p->y0;
-    
-    // Traza la línea punto por punto
-    while (x != p->x1 || y != p->y1)
+    p->dx = p->x1 - p->x0;
+    p->dy = p->y1 - p->y0;
+    if (p->dx < 0) 
     {
-        // Dibuja el punto actual
-        mlx_put_pixel(img, x, y, 0xFF0000FF);
-        
-        // Calcula el error de posición y actualiza la posición del punto
-        int e2 = err * 2;
-        if (e2 > -dy)
+        p->ix = -1;
+        p->dx = -(p->dx);
+    }
+    if (p->dy < 0) {
+        p->iy = -1;
+        p->dy = -(p->dy);
+    }
+    //Variables incremento
+    p->ix = 1;
+    p->iy = 1;
+    //Error de decision
+    p->err = (p->dx - p->dy);
+    // Variables para trazar la línea punto por punto
+    p->x = p->x0;
+    p->y = p->y0;
+}
+
+void line(t_point *p, mlx_image_t *img)
+{
+    init_line(p);
+    while (p->x != p->x1 || p->y != p->y1)
+    {
+        int e2;
+        mlx_put_pixel(img, p->x, p->y, 0xFF0000FF);
+        e2 = p->err * 2;
+        if (e2 > -(p->dy))  
         {
-            err -= dy;
-            x += sx;
+            p->err -= p->dy;
+            p->x += p->ix;
         }
-        if (e2 < dx)
+        if (e2 < p->dx)
         {
-            err += dx;
-            y += sy;
+            p->err += p->dx;
+            p->y += p->iy;
         }
     }
 }
 
-void square_paint(float lim_y, float lim_x, mlx_image_t *img)
+void square_paint(t_coord *coord, float lim_y, float lim_x, mlx_image_t *img)
 {
-	float y = 0;
-
-	while(y <= lim_y)
+    float del_x;
+    float del_y;
+	float y;
+    
+    y = coord->y;
+    del_y = lim_y + coord->y;
+    del_x = lim_x + coord->x;
+	while(y <= del_y)
 	{
-		float x = 0;
-		while(x <= lim_x)
+		float x = coord->x;
+		while(x <= del_x)
 		{
-			mlx_put_pixel(img, x, y, 0xFF0000FF);
+			mlx_put_pixel(img, (int)x, (int)y, 0xFF0000FF);
 			x++;
 		}
 		y++;		
