@@ -6,7 +6,7 @@
 #    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/05/24 21:00:39 by cmorales         ###   ########.fr        #
+#    Updated: 2023/05/25 17:41:09 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,7 @@ $(MLX42_LIB):
 
 ifeq ($(shell uname -s), $(LINUX))
 
-$(OBJ_DIR)%.o:$(SRC_DIR)%.c
+$(OBJ_DIR)%.o:$(SRC_DIR)%.c $(MLX42_LIB)
 	@$(CC) $(CFLAGS) -I $(INC) -I $(INC_MLX) -I $(LIBFT_INC) -o $@ -c $<
 	@echo "$(INFO) SE COMPILO LO .O$(NOC)"
 

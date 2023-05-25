@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:30:05 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/24 20:42:25 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/05/25 19:23:55 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,21 @@ void line(t_point *p, mlx_image_t *img)
     }
 }
 
-void square_paint(t_coord *coord, float lim_y, float lim_x, mlx_image_t *img)
+void square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img)
 {
     float del_x;
     float del_y;
 	float y;
     
+    del_y = lim + coord->y;
+    del_x = lim + coord->x;
     y = coord->y;
-    del_y = lim_y + coord->y;
-    del_x = lim_x + coord->x;
 	while(y <= del_y)
 	{
 		float x = coord->x;
 		while(x <= del_x)
 		{
-			mlx_put_pixel(img, (int)x, (int)y, 0xFF0000FF);
+			mlx_put_pixel(img, (int)x, (int)y, color);
 			x++;
 		}
 		y++;		

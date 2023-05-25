@@ -6,11 +6,12 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/25 00:16:44 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/05/25 20:37:01 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
+
 
 static void error(void)
 {
@@ -45,18 +46,20 @@ int	main()
 	p.x1 = 10;
 	p.y1 = 10;
 
-	coord.x = 350.0f;
-	coord.y = 350.0f;
+	//coord.x = 350.0f;
+	//coord.y = 350.0f;
 
-	char stage[5][5] = 
+	char stage[7][7] = 
 	{
-		{'1', '1', '1', '1', '1'},
-        {'1', '0', '0', '0', '1'},
-        {'1', '0', '0', '0', '1'},
-        {'1', '0', '0', '0', '1'},
-        {'1', '1', '1', '1', '1'}
+		{'1', '0', '0', '1', '0', '0','1'},
+        {'0', '0', '0', '0', '0', '0','0'},
+        {'0', '0', '0', '0', '0', '0','0'},
+        {'0', '0', '0', '0', '0', '0','0'},
+        {'1', '0', '0', '0', '0', '0','1'},
+        {'1', '1', '0', '0', '0', '1','1'},
+        {'1', '1', '1', '0', '1', '1','1'},
 	};  
-	
+	(void)stage;
 	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!mlx)
         error();
@@ -64,13 +67,11 @@ int	main()
 	if (!img)
 		error();
 	//line(&p, img);
-    //square_paint(&coord,5, 5, img);
-	//char **ptr_stage = (char**)stage;
-	//printf("El stage: %c\n", ptr_stage[1][2]);
-	map_print(&map, stage);
+    //square_paint(&coord,5, GREY, img);
+	///map_print(&map, stage);
+	create_map(&map, img, stage, &coord);
 	if (mlx_image_to_window(mlx, img, 0, 0) < 0)
         error();
-
 	mlx_key_hook(mlx, &hook, mlx);
 	mlx_loop(mlx);
 	mlx_delete_image(mlx, img);
