@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:40:43 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/24 20:59:15 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/05/25 00:16:15 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ typedef struct s_map{
 
 void line(t_point *p, mlx_image_t *img);
 void square_paint(t_coord *coord, float lim_y, float lim_x, mlx_image_t *img);
-void map_print(t_map *map, char **stage);
+void map_print(t_map *map, char stage[5][5]);
 
 #endif
