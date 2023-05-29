@@ -6,11 +6,17 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:30:05 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/25 19:23:55 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:50:48 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "cub3D.h"
+
+void insert_coord(t_coord *c, int y, int x)
+{
+    c->y = y;
+    c->x = x;
+}
 
 void init_line(t_point *p)
 {
@@ -28,7 +34,7 @@ void init_line(t_point *p)
     }
     //Variables incremento
     p->ix = 1;
-    p->iy = 1;
+    p->iy = 1; 
     //Error de decision
     p->err = (p->dx - p->dy);
     // Variables para trazar la línea punto por punto
@@ -76,4 +82,10 @@ void square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img)
 		}
 		y++;		
 	}
+}
+
+void paint_player(t_coord *coord, mlx_image_t *img)
+{
+    insert_coord(coord, 355, 352);
+    square_paint(coord, 7, RED, img);
 }

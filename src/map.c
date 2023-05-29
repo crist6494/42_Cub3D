@@ -6,19 +6,19 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/25 20:32:39 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:50:43 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "cub3D.h"
 
-void init_map(t_map *map)
+static void init_map(t_map *map)
 {
 	map->len_x = 7; 
 	map->len_y = 7;
 }
 
-void read_map(t_map *map, char stage[7][7])
+static void read_map(t_map *map, char stage[7][7])
 {
 	int y;
 	
@@ -74,7 +74,7 @@ void create_map(t_map *map, mlx_image_t *img, char stage[7][7], t_coord *coord)
 {
 	read_map(map, stage);
 	int y;
-	int lim = 50;
+	float lim = 100.0f;
 	
 	int map_width = map->len_x * lim;
 	int map_height = map->len_y * lim; 
@@ -89,9 +89,9 @@ void create_map(t_map *map, mlx_image_t *img, char stage[7][7], t_coord *coord)
 		while(x < map->len_x)
 		{
 			if(map->tour[y][x] == '1')
-				square_paint(coord, 50, BLACK, img);
+				square_paint(coord, lim, BLACK, img);
 			else
-				square_paint(coord, 50, GREY, img);
+				square_paint(coord, lim, GREY, img);
 			coord->x += lim;
 			x++;
 		}
@@ -99,4 +99,4 @@ void create_map(t_map *map, mlx_image_t *img, char stage[7][7], t_coord *coord)
 		coord->y +=lim;
 		y++;
 	}
-} 
+}

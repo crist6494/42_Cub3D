@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 18:40:43 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/25 20:31:47 by cmorales         ###   ########.fr       */
+/*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
+/*   Updated: 2023/05/29 20:01:02 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 #include <stdio.h>
 #include <unistd.h>
@@ -19,13 +19,16 @@
 #include <memory.h>
 #include "libft.h"
 #include "MLX42/MLX42.h"
+#include "macros.h"
 
-#define WIDTH 700
-#define HEIGHT 700
+/* ---------------------------------------------------------------------------*
+	-------------------------------STRUCTURES---------------------------------
+*--------------------------------------------------------------------------- */
 
-#define RED 0xFF0000FF
-#define GREY 0x808080FF
-#define BLACK 0x000000FF
+typedef struct s_player
+{
+	mlx_image_t *image;	
+}t_player;
 
 typedef struct s_point{
 	int x0; 
@@ -52,9 +55,29 @@ typedef struct s_map{
 	char **tour;
 }t_map;
 
+typedef struct s_game
+{
+	mlx_t	*mlx;
+	t_player *player;	
+}t_game;
+
+/* ---------------------------------------------------------------------------*
+	-------------------------------FUCTIONS---------------------------------
+*--------------------------------------------------------------------------- */
+
 void line(t_point *p, mlx_image_t *img);
 void square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img);
+
 void map_print(t_map *map, char stage[7][7]);
 void create_map(t_map *map, mlx_image_t *img, char stage[7][7], t_coord *coord);
 
-#endif
+void hook(mlx_key_data_t keydata, void *param);
+
+void paint_player(t_coord *coord, mlx_image_t *img);
+
+
+void move_hook(mlx_key_data_t keydata, void *param);
+
+void error(void);
+
+# endif
