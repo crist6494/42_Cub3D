@@ -6,13 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/29 20:01:51 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:55:30 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void hook(mlx_key_data_t keydata, void *param)
+/* void hook(mlx_key_data_t keydata, void *param)
 {
 	t_game *game; 
 	
@@ -23,8 +23,9 @@ void hook(mlx_key_data_t keydata, void *param)
 		exit(1);
 	}
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
-		game->player->image->instances[0].y -= 5;;
-}
+		printf("Hola\n");
+		//game->player->image->instances[0].y -= 5;;
+} */
 
 /* void move_hook(mlx_key_data_t keydata, void *param)
 {
