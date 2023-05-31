@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/29 20:01:02 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:59:05 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@
 /* ---------------------------------------------------------------------------*
 	-------------------------------STRUCTURES---------------------------------
 *--------------------------------------------------------------------------- */
-
-typedef struct s_player
-{
-	mlx_image_t *image;	
-}t_player;
 
 typedef struct s_point{
 	int x0; 
@@ -49,16 +44,23 @@ typedef struct s_coord{
 	float y;
 }t_coord;
 
+typedef struct s_player
+{
+	mlx_image_t *image;	
+}t_player;
+
 typedef struct s_map{
-	int len_x;
-	int len_y;
+	unsigned int len_x;
+	unsigned int len_y;
 	char **tour;
 }t_map;
 
 typedef struct s_game
 {
-	mlx_t	*mlx;
-	t_player *player;	
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+	t_player	*player;	
+	t_map		*map;
 }t_game;
 
 /* ---------------------------------------------------------------------------*
@@ -79,5 +81,9 @@ void paint_player(t_coord *coord, mlx_image_t *img);
 void move_hook(mlx_key_data_t keydata, void *param);
 
 void error(void);
+
+void	clear_map(t_game *game, char stage[7][7]);
+
+void insert_coord(t_coord *c, float y, float x);
 
 # endif

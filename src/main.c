@@ -6,13 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/30 12:16:56 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:45:49 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "cub3D.h"
+#include "cub3D.h"
 
-/* int	main()
+int	main()
 {
 	t_point p;
 	t_coord coord;
@@ -29,9 +29,6 @@
 	p.x1 = 10;
 	p.y1 = 10;
 
-	//coord.x = 350.0f;
-	//coord.y = 350.0f;
-
 	char stage[7][7] = 
 	{
 		{'1', '1', '1', '1', '1', '1','1'},
@@ -42,26 +39,29 @@
         {'1', '0', '0', '0', '0', '0','1'},
         {'1', '1', '1', '1', '1', '1','1'},
 	};  
-	(void)stage;
-	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
-	if (!mlx)
-        error();
-	mlx_image_t* img = mlx_new_image(mlx, WIDTH, HEIGHT);
-	if (!img)
-		error();
-	game.mlx = mlx;
 	game.player = &player;
-	create_map(&map, img, stage, &coord);
-	paint_player(&coord, img);
-	if (mlx_image_to_window(mlx, img, 0, 0) < 0)
+	game.map = &map;
+	(void)stage;
+	game.mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
+	if (!game.mlx)
         error();
-	mlx_key_hook(mlx, &hook, (void *)(&game));
-	mlx_loop(mlx);
-	mlx_delete_image(mlx, img);
-	mlx_terminate(mlx);
+	game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
+	if (!game.img)
+		error();
+	clear_map(&game, stage);
+	create_map(&map, game.img, stage, &coord);
+	//paint_player(&coord, game.img);
+	if (mlx_image_to_window(game.mlx, game.img, 0, 0) < 0)
+        error();
+	mlx_key_hook(game.mlx, &hook, (void *)(&game));
+	mlx_loop(game.mlx);
+	mlx_delete_image(game.mlx, game.img);
+	mlx_terminate(game.mlx);
 	return (EXIT_SUCCESS);
-} */
+} 
 
+
+/*
 #include "MLX42/MLX42.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -123,7 +123,7 @@ void ft_randomize(void* param)
 	}
 }
 
-int main()
+ int main()
 {
 	mlx_t* mlx = mlx_init(800, 800, "MLX42", true);
 	if (!mlx)
@@ -153,4 +153,4 @@ int main()
 	mlx_delete_image(mlx, img);
 	mlx_terminate(mlx);
 	return (0);
-}
+} */

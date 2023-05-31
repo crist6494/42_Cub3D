@@ -6,13 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:30:05 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/29 19:50:48 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/05/31 18:08:11 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void insert_coord(t_coord *c, int y, int x)
+void insert_coord(t_coord *c, float y, float x)
 {
     c->y = y;
     c->x = x;
