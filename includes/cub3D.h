@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/01 11:33:50 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/01 20:27:36 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct s_game
 	mlx_image_t	*img;
 	t_player	*player;	
 	t_map		*map;
+	t_coord		*coord;
+	char		**n_map;
 }t_game;
 
 /* ---------------------------------------------------------------------------*
@@ -75,9 +77,9 @@ typedef struct s_game
 void line(t_point *p, mlx_image_t *img);
 void square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img);
 
-void map_print(t_map *map, char stage[7][7]);
+void map_print(t_game *game);
 
-void create_map(t_game *game,t_coord *coord,char stage[7][7], float c_y, float c_x);
+void create_map(t_game *game,t_coord *coord,char **stage, float c_y, float c_x);
 
 void hook(mlx_key_data_t keydata, void *param);
 
@@ -88,7 +90,7 @@ void move_hook(mlx_key_data_t keydata, void *param);
 
 void error(void);
 
-void	clear_map(t_game *game, char stage[7][7]);
+void	clear_map(t_game *game, char **stage);
 
 void insert_coord(t_coord *c, float y, float x);
 

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/01 11:48:34 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/01 20:34:15 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void init_map(t_map *map)
 {
 	map->len_x = 7; 
 	map->len_y = 7;
-	map->lim = 50;
+	map->lim = 40;
 	map->map_width = map->len_x * map->lim; 
 	map->map_height = map->len_y * map->lim;
 	map->half_x = (WIDTH - map->map_width) / 2;
 	map->half_y = (HEIGHT - map->map_height) / 2;
 }
 
-static void read_map(t_map *map, char stage[7][7])
+static void read_map(t_map *map, char **stage)
 {
 	unsigned int y;
 	
@@ -48,34 +48,42 @@ static void read_map(t_map *map, char stage[7][7])
 		while(x < map->len_x)
 		{
 			map->tour[y][x] = (stage[y][x]);
-			x++;	
+			x++;
 		}
 		map->tour[y][x] = '\0';
 		y++;
 	}
 }
 
-void map_print(t_map *map, char stage[7][7])
+void map_print(t_game *game)
 {
 	unsigned int y;
-	read_map(map, stage);
+	//read_map(game->map, game->n_map);
 	y = 0;
-	while(y < map->len_y)
+	//printf("%d\n", game->map->len_y);
+	//return ;
+	while(y < 7)
 	{
 		unsigned int x;
 		x = 0;
-		while(x < map->len_x)
+		while(x < 7)
 		{
-			printf("El valor de x es: %c\n", map->tour[y][x]);
+			printf("El valor de x es: %c\n", game->n_map[y][x]);
 			x++;
 		}
-
-		printf("El valor de y es: %s\n", map->tour[y]);
+		printf("El valor de y es: %s\n", game->n_map[y]);
 		y++;
 	}
 }
 
-void create_map(t_game *game,t_coord *coord,char stage[7][7], float c_y, float c_x)
+void print_error(const char *error)
+{
+	printf("Error: %s\n", error);
+	//return(-1);
+}
+
+
+void create_map(t_game *game,t_coord *coord,char **stage, float c_y, float c_x)
 {
 	unsigned int y;
 	float aux_x;
@@ -104,7 +112,7 @@ void create_map(t_game *game,t_coord *coord,char stage[7][7], float c_y, float c
 	}
 }
 
-void	clear_map(t_game *game, char stage[7][7])
+void	clear_map(t_game *game, char **stage)
 {
 	//read_map(game->map, stage);
 	(void)stage;
