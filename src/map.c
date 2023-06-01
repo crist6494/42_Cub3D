@@ -6,23 +6,28 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/31 20:47:13 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/01 11:48:34 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void init_map(t_map *map)
+void init_map(t_map *map)
 {
 	map->len_x = 7; 
 	map->len_y = 7;
+	map->lim = 50;
+	map->map_width = map->len_x * map->lim; 
+	map->map_height = map->len_y * map->lim;
+	map->half_x = (WIDTH - map->map_width) / 2;
+	map->half_y = (HEIGHT - map->map_height) / 2;
 }
 
 static void read_map(t_map *map, char stage[7][7])
 {
 	unsigned int y;
 	
-	init_map(map);
+	//init_map(map);
 	y = 0;
 	map->tour = malloc(sizeof(char *) * map->len_y);
 	if(!map->tour)
@@ -70,43 +75,31 @@ void map_print(t_map *map, char stage[7][7])
 	}
 }
 
-void create_map(t_map *map, mlx_image_t *img, char stage[7][7], t_coord *coord)
+void create_map(t_game *game,t_coord *coord,char stage[7][7], float c_y, float c_x)
 {
-	read_map(map, stage);
 	unsigned int y;
-	float lim = 20;
-	
-	int map_width = map->len_x * lim;
-	int map_height = map->len_y * lim; 
-	//coord->x = (CANVAS_WIDTH - map_width) / 2;
-	//coord->y = (CANVAS_HEIGHT - map_height) / 2; 
-	//float c_y = (CANVAS_HEIGHT - map_height) / 2; 
-	//float c_x = (CANVAS_WIDTH - map_width) / 2;
 	float aux_x;
-	(void)aux_x;
 	
-	printf("El alto mapa es: %d\n", map_height);
-	printf("El ancho mapa es: %d\n", map_width);
-	insert_coord(coord, 1 , 1);
-	aux_x = 1;
-
+	read_map(game->map, stage);
+	insert_coord(coord, c_y, c_x);
+	aux_x = c_x;
 	y = 0;
-	while(y < map->len_y)
+	while(y < game->map->len_y)
 	{
 		unsigned int x;
 		x = 0;
 		coord->x = aux_x;
-		while(x < map->len_x)
+		while(x < game->map->len_x)
 		{
-			if(map->tour[y][x] == '1')
-				square_paint(coord, lim, BLACK, img);
+			if(game->map->tour[y][x] == '1')
+				square_paint(coord, game->map->lim, BLACK, game->img);
 			else
-				square_paint(coord, lim, GREY, img);
-			coord->x += lim;
+				square_paint(coord, game->map->lim, GREY, game->img);
+			coord->x += game->map->lim;
 			x++;
 		}
 		coord->x = 0;
-		coord->y +=lim;
+		coord->y += game->map->lim;
 		y++;
 	}
 }
