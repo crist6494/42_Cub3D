@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:30:05 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/31 18:08:11 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/03 13:04:19 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void insert_coord(t_coord *c, float y, float x)
     c->x = x;
 }
 
-void init_line(t_point *p)
+static void init_line(t_point *p)
 {
     // Variables para definir la dirección y la longitud de la línea
     p->dx = p->x1 - p->x0;

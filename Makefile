@@ -6,7 +6,7 @@
 #    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/05/30 11:10:35 by cmorales         ###   ########.fr        #
+#    Updated: 2023/06/03 18:35:18 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,14 @@ OBJ_DIR = ./obj/
 
 INC = ./includes/
 
-SRCS = 	main.c paint.c map.c buttons.c utils.c
+MAP = map map_utils
+HOOKS = hooks
+PAINT = paint
+
+SRCS = 	$(addsuffix .c, $(addprefix map/, $(MAP))) \
+		$(addsuffix .c, $(addprefix hooks/, $(HOOKS))) \
+		$(addsuffix .c, $(addprefix paint/, $(PAINT))) \
+		main.c \
 
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 
@@ -79,6 +86,9 @@ all:  lib obj  $(NAME)
 obj:
 	@echo "$(INFO) Creating objects folder... $(NOC)"
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/map
+	@mkdir -p $(OBJ_DIR)/hooks
+	@mkdir -p $(OBJ_DIR)/paint
 
 lib:
 	@make -C ./libft

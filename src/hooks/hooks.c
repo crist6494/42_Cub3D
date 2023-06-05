@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   buttons.c                                          :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/05/31 19:04:22 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/03 18:40:52 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ void hook(mlx_key_data_t keydata, void *param)
 	/* if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
 		printf("Hola\n"); */
 		//game->player->image->instances[0].y -= 5;;
+}
+
+void hook_screen(int32_t width, int32_t height, void* param)
+{
+	t_game *game;
+	game =(t_game *) param;
+	(void)height;
+	(void)width;
+
+	//printf("width: %d\n", width);
+	//printf("height: %d\n", height);
+	clear_map(game);
+	//create_map(game, game->coord, (50), ((width - game->map->map_width) - 50));
+	create_map(game, game->coord, (height - game->map->map_width) / 2, (width - game->map->map_width) / 2);
 }
 
 
