@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/03 18:36:00 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/05 20:33:25 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ typedef struct s_coord{
 
 typedef struct s_player
 {
-	mlx_image_t *image;	
+	float p_x;	
+	float p_y;	
 }t_player;
 
 typedef struct s_map{
@@ -57,6 +58,8 @@ typedef struct s_map{
 	float			map_height;
 	float			half_x;
 	float			half_y;
+	float			pos_x;
+	float			pos_y;
 	char			**tour;
 }t_map;
 
@@ -95,5 +98,9 @@ void paint_player(t_coord *coord, mlx_image_t *img);
 void hook(mlx_key_data_t keydata, void *param);
 //void move_hook(mlx_key_data_t keydata, void *param);
 void hook_screen(int32_t width, int32_t height, void* param);
+
+void ft_void();
+
+void paint_player(t_coord *coord, mlx_image_t *img);
 
 # endif

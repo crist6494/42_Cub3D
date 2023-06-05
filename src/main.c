@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/03 18:37:14 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/05 20:34:07 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int	main()
 	t_map map;
 	t_player player;
 	t_game game;
-	(void)p;
-
+	//atexit(ft_void);
 	p.x0 = 0;
 	p.y0 = 10;
 	
@@ -33,11 +32,12 @@ int	main()
 	game.mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!game.mlx)
         error();
-	mlx_set_window_limit(game.mlx, 800, 800, WIDTH, HEIGHT);
+	mlx_set_window_limit(game.mlx, 1000, 1000, WIDTH, HEIGHT);
 	game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
 	if (!game.img)
 		error();
 	paint_map(&game, &map, &coord);
+	paint_player(&coord, game.img);
 	//paint_player(&coord, game.img);
 	if (mlx_image_to_window(game.mlx, game.img, 0, 0) < 0)
         error();

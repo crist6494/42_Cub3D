@@ -6,7 +6,7 @@
 #    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/06/03 18:35:18 by cmorales         ###   ########.fr        #
+#    Updated: 2023/06/05 20:55:41 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,12 +46,15 @@ OBJ_DIR = ./obj/
 INC = ./includes/
 
 MAP = map map_utils
+PLAYER = player
 HOOKS = hooks
 PAINT = paint
 
 SRCS = 	$(addsuffix .c, $(addprefix map/, $(MAP))) \
 		$(addsuffix .c, $(addprefix hooks/, $(HOOKS))) \
 		$(addsuffix .c, $(addprefix paint/, $(PAINT))) \
+		$(addsuffix .c, $(addprefix player/, $(PLAYER))) \
+		utils.c \
 		main.c \
 
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
@@ -89,6 +92,7 @@ obj:
 	@mkdir -p $(OBJ_DIR)/map
 	@mkdir -p $(OBJ_DIR)/hooks
 	@mkdir -p $(OBJ_DIR)/paint
+	@mkdir -p $(OBJ_DIR)/player
 
 lib:
 	@make -C ./libft
