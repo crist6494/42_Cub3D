@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/05 20:56:19 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:03:59 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,18 @@ void hook_screen(int32_t width, int32_t height, void* param)
 	create_map(game, game->coord, (height - game->map->map_width) / 2, (width - game->map->map_width) / 2);
 }
 
-
-/* void move_hook(mlx_key_data_t keydata, void *param)
+void move_hook(void *param)
 {
-	t_player *player;
+	t_game *game;
 
-	player = param;
+	game = param;
 
-	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-		player->image->instances[0].y -= 5;;
-	else if (mlx_is_key_down(game->mlx, MLX_KEY_S))
-		player->image->instances[0].y += 5;
-	else if (mlx_is_key_down(game->mlx, MLX_KEY_A))
-		player->image->instances[0].x -= 5;
-	else if (mlx_is_key_down(game->mlx, MLX_KEY_D))
-		player->image->instances[0].x += 5;} */
+	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
+		player_advance(game, game->player, -1);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+		player_advance(game, game->player, 1);
+/* 	if (mlx_is_key_down(mlx, MLX_KEY_A))
+		image->instances[0].x -= 5;
+	if (mlx_is_key_down(mlx, MLX_KEY_D))
+		image->instances[0].x += 5;  */
+} 

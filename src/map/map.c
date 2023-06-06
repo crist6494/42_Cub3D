@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/05 20:28:36 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:08:53 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void init_map(t_map *map)
 {
 	map->len_x = COL; 
 	map->len_y = ROW;
-	map->lim = 50;
+	map->lim = 100;
 	map->map_width = map->len_x * map->lim; 
 	map->map_height = map->len_y * map->lim;
 	map->half_x = (WIDTH - map->map_width) / 2;

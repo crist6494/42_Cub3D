@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/05 20:34:07 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:09:34 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int	main()
 	if (!game.img)
 		error();
 	paint_map(&game, &map, &coord);
-	paint_player(&coord, game.img);
-	//paint_player(&coord, game.img);
+	paint_player(&game, game.player, 500, 600);
 	if (mlx_image_to_window(game.mlx, game.img, 0, 0) < 0)
         error();
 	mlx_resize_hook(game.mlx, &hook_screen, (void *)(&game));
 	mlx_key_hook(game.mlx, &hook, (void *)(&game));
+	mlx_loop_hook(game.mlx, &move_hook, (void *)(&game));
 	mlx_loop(game.mlx);
 	mlx_delete_image(game.mlx, game.img);
 	mlx_terminate(game.mlx);

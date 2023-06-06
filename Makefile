@@ -6,7 +6,7 @@
 #    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/06/05 20:55:41 by cmorales         ###   ########.fr        #
+#    Updated: 2023/06/06 18:04:00 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ OBJ_DIR = ./obj/
 INC = ./includes/
 
 MAP = map map_utils
-PLAYER = player
+PLAYER = player movement
 HOOKS = hooks
 PAINT = paint
 
