@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:03:44 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/06 20:30:48 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/07 17:15:35 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void player_advance(t_game *game, t_player *player, int direction)
 	{
 		advance_x = (float)direction * cos(angle) * player->vel_move;
 		advance_y = (float)direction * sin(angle) * player->vel_move;
-		player->p_x += advance_x;
-		player->p_y += advance_y;
+		player->position->x += advance_x;
+		player->position->y += advance_y;
 	}
 	clear_map(game);
-	create_map(game, game->coord, game->map->half_y, game->map->half_x);
-	paint_player(game, player, player->p_y, player->p_x);
+	create_map(game, game->map, game->map->half_y, game->map->half_x);
+	//paint_player(game, player);
 }
