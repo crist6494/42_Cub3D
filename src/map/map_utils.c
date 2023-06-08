@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:25:01 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/03 18:30:42 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/07 22:58:58 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void map_print(t_game *game)
 	unsigned int y;
 	read_map(game->map);
 	y = 0;
-	while(y < 7)
+	while(y < game->map->len_y)
 	{
 		unsigned int x;
 		x = 0;
-		while(x < 7)
+		while(x < game->map->len_x)
 		{
 			printf("El valor de x es: %c\n", game->map->tour[y][x]);
 			x++;

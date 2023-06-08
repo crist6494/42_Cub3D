@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/07 20:49:07 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/08 00:06:48 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,19 @@ typedef struct s_coord{
 }t_coord;
 
 typedef struct s_point{
-	float x0; 
-	float y0;
+	float x;
+	float y;
 	float x1;
 	float y1;
-	int ix;
-	int iy;
 	int err;
+	int e2;
 	int dy;
 	int dx;
-	int x;
-	int y;
 }t_point;
-
 
 typedef struct s_player
 {
-	t_coord			*pos_pixel;
+	t_coord			*p_center;
 	t_coord			*pos_map;
 	t_point			*p_line;
 	mlx_image_t		*img;
@@ -121,6 +117,5 @@ void player_advance(t_game *game, t_player *player, int direction);
 void move_hook(void *param);
 
 void init_player(t_player *player, t_game *game);
-void drawLine(t_point *line, mlx_image_t *img) ;
 
 # endif
