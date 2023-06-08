@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/07 17:10:54 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/08 20:20:31 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void hook_screen(int32_t width, int32_t height, void* param)
 	//printf("height: %d\n", height);
 	clear_map(game);
 	//create_map(game, game->coord, (50), ((width - game->map->map_width) - 50));
-	create_map(game, game->map, (height - game->map->map_width) / 2, (width - game->map->map_width) / 2);
+	create_map(game, game->map, (height - game->map->map_width) / 2, (width - game->map->map_height) / 2);
 }
 
 void move_hook(void *param)
@@ -47,12 +47,22 @@ void move_hook(void *param)
 
 	game = param;
 
-	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
+	/*if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 		player_advance(game, game->player, -1);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 		player_advance(game, game->player, 1);
-/* 	if (mlx_is_key_down(mlx, MLX_KEY_A))
+	if (mlx_is_key_down(mlx, MLX_KEY_A))
 		image->instances[0].x -= 5;
 	if (mlx_is_key_down(mlx, MLX_KEY_D))
 		image->instances[0].x += 5;  */
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
+	{
+		rotate(game, game->player, -1);
+		//printf("Gira a la izquierda\n");	
+	}
+	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
+	{
+		rotate(game, game->player, 1);
+		//printf("Gira a la derecha\n");
+	}
 } 

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/07 23:00:07 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/08 18:31:40 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ void read_map(t_map *map)
 	}
 }
 
-void create_map(t_game *game, t_map *map, float c_y, float c_x)
+void create_map(t_game *game, t_map *map, float c_x, float c_y)
 {
 	unsigned int y;
 	float aux_x;
 	   
 	read_map(map);
-	insert_coord(map->m_coord, c_y, c_x);
+	insert_coord(map->m_coord, c_x, c_y);
 	aux_x = c_x;
 	y = 0;
 	while(y < map->len_y)
@@ -89,12 +89,12 @@ void create_map(t_game *game, t_map *map, float c_y, float c_x)
 				square_paint(map->m_coord, map->lim, BLACK, game->img);
 			else
 			{
-				if(map->tour[y][x] == 'N' || map->tour[y][x] == 'S' 
+				/* if(map->tour[y][x] == 'N' || map->tour[y][x] == 'S' 
 					|| map->tour[y][x] == 'E' || map->tour[y][x] == 'W')
 				{
 					game->player->pos_map->x = x * map->lim;
 					game->player->pos_map->y = y * map->lim;
-				} 
+				}  */
 				square_paint(map->m_coord, map->lim, GREY, game->img);
 			}
 			map->m_coord->x += map->lim;
@@ -111,9 +111,9 @@ void paint_map(t_game *game, t_map *map, t_coord *coord)
 	(void)coord;
 	read_map(map);
 	clear_map(game);
-	insert_coord(map->m_coord, map->half_y, map->half_x);
+	insert_coord(map->m_coord, map->half_x, map->half_y);
 	square_paint(map->m_coord, map->lim, RED, game->img);
-	//create_map(game, map, map->half_y, map->half_x);
+	//create_map(game, map, map->half_x, map->half_y);
 	//paint_player(game, game->player);
 	//create_map(game, coord, 50, (WIDTH - map->map_width) - 50);
 }

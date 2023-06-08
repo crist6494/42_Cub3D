@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/08 00:09:05 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/08 20:21:03 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,7 @@ int	main()
 	//atexit(ft_void);
 
 	insert_coord(&p, 545, 545);
-	insert_coord(&p1, 300, 545);
-	
-	printf("%f\n", p.x);
-	printf("%f\n", p.y);
-	printf("%f\n", p1.x);
-	printf("%f\n", p1.y);
+	insert_coord(&p1, 545, 300);
 
 	game.player = &player;
 	game.map = &map;
@@ -47,8 +42,6 @@ int	main()
 	//paint_map(&game, &map, &coord);
 	read_map(&map);
 	paint_player(&game, game.player);
-	//draw_lines(&p, &p1, game.img);
-	//drawLine(&p, game.img);
 	if (mlx_image_to_window(game.mlx, game.img, 0, 0) < 0)
         error();
 	//mlx_resize_hook(game.mlx, &hook_screen, (void *)(&game));

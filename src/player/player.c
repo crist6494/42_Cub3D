@@ -6,43 +6,49 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/08 00:09:32 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/08 20:37:30 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+void init_direction(t_player *player)
+{
+    player->direction = malloc(sizeof(t_coord));
+    player->len_dir = 80;
+    player->dir_x = 0.0;
+    player->dir_y = (player->len_dir * -1); //-1 pq el eje y es para abajo el positivo
+    update_direction(player); //Iniciamos la direcciona de la linea
+}
+
+void update_direction(t_player *player)
+{
+    insert_coord(player->direction, player->p_center->x + player->dir_x, player->p_center->y + player->dir_y);
+}
+
 void init_player(t_player *player, t_game *game)
 {
-    player->pos_map = malloc(sizeof(t_coord));
     player->p_center = malloc(sizeof(t_coord));
+    insert_coord(player->p_center, game->map->half_x, game->map->half_y);//Punto medio
     player->p_line = malloc(sizeof(t_point));
     player->color = WHITE;
     player->tam = 10;
     player->vel_move = 3;
     player->mlx = game->mlx;
     player->img = game->img;
-    player->pos_map->x = 0;
-    player->pos_map->y = 0;
+    init_direction(player);
 }
 
 void paint_player(t_game *game, t_player *player)
 {
-    (void)game;
-    init_player(player, game);
-    insert_coord(player->p_center, game->map->half_y, game->map->half_x);
-    init_points(player->p_line, player->p_center, player->p_center->y - 50, player->p_center->x);
-    insert_coord(player->p_center, game->map->half_y - player->tam / 2, game->map->half_x - player->tam / 2);
-   /*  player->position->y +=30;
-    player->position->x +=30; */
-    //init_player(player, game);
-    //insert_coord(game->coord, y, x);
     clear_map(game);
-    square_paint(player->p_center, player->tam, player->color, player->img);
-    printf("Player: %f\n", player->p_center->y - 50);
-    printf("x0: %f\n", player->p_line->x);
-    printf("x1: %f\n", player->p_line->x1);
-    printf("y0: %f\n", player->p_line->y);
-    printf("y1: %f\n", player->p_line->y1);
+    init_player(player, game);
+    init_points(player->p_line, player->p_center, player->direction->x, player->direction->y);//Iniciar linea
+    //insert_coord(player->p_center, player->p_center->x - player->tam / 2, player->p_center->y - player->tam / 2);//Pintar el cuadrado en medio
+    //square_paint(player->p_center, player->tam, player->color, player->img);
     paint_line(player->p_line, player->img);
+    //printf("x0: %f\n", player->p_line->x);
+    //printf("x1: %f\n", player->p_line->x1);
+    //printf("y0: %f\n", player->p_line->y);
+    //printf("y1: %f\n", player->p_line->y1);
 }

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/08 00:06:48 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/08 18:56:50 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,19 @@ typedef struct s_point{
 typedef struct s_player
 {
 	t_coord			*p_center;
-	t_coord			*pos_map;
+	t_coord			*direction;
 	t_point			*p_line;
 	mlx_image_t		*img;
 	mlx_t			*mlx;
 	int				tam;
 	unsigned int	color;
+	float			dir_x;
+	float			dir_y;
+	int				len_dir;
 	float			move;
-	float			turn;
-	float			angle;
+	float				angle;
 	int				vel_move;
-	float			vel_turn;
+	float			vel_turn; 
 }t_player;
 
 typedef struct s_map{
@@ -88,7 +90,7 @@ typedef struct s_game
 /*-----Map-----*/
 
 void	read_map(t_map *map);
-void create_map(t_game *game, t_map *map, float c_y, float c_x);
+void create_map(t_game *game, t_map *map, float c_x, float c_y);
 void	paint_map(t_game *game, t_map *map, t_coord *coord);
 
 /*-----Map-Utils-----*/
@@ -97,8 +99,8 @@ void	map_print(t_game *game);
 void	clear_map(t_game *game);
 
 /*-----Paint-----*/
-void insert_coord(t_coord *c, float y, float x);
-void init_points(t_point *p, t_coord *c, float c_y1, float c_x1);
+void insert_coord(t_coord *c, float x, float y);
+void init_points(t_point *p, t_coord *c, float c_x1, float c_y1);
 void paint_line(t_point *p, mlx_image_t *img);
 void square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img);
 //void paint_player(t_coord *coord, mlx_image_t *img);
@@ -117,5 +119,10 @@ void player_advance(t_game *game, t_player *player, int direction);
 void move_hook(void *param);
 
 void init_player(t_player *player, t_game *game);
+
+
+void update_direction(t_player *player);
+
+void rotate(t_game *game, t_player *player, int clockwise);
 
 # endif
