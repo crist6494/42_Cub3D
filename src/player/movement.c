@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:03:44 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/08 20:43:28 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:13:53 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ double grades_to_rad(double angle)
 void rotate(t_game *game, t_player *player, int clockwise)
 {
 	double angle;
+	player->angle = 0;
 	//printf("Coord x: %f\n", player->direction->x);
 	//printf("Coord y: %f\n", player->direction->y);
 	if(clockwise == 1)
@@ -57,17 +58,20 @@ void rotate(t_game *game, t_player *player, int clockwise)
 		player->angle -= 3;
 	if (player->angle < 0)
 		player->angle = 360 + player->angle;
-	else if (player->angle > 360)
+	else if (player->angle > 360) 
 		player->angle = (int)player->angle % 360;
 	angle = grades_to_rad((double)player->angle);
+	printf("Angulo%f\n", angle);
 	if(clockwise == 1 || clockwise == -1)
 	{
 		player->dir_x = (float)player->len_dir * cos(angle);
 		player->dir_y = (float)player->len_dir * sin(angle);
+		printf("!%f\n",player->dir_x);
+		printf("!%f\n",player->dir_y);
 		update_direction(player);
 	}
-    init_points(player->p_line, player->p_center, player->direction->x, player->direction->y);//Iniciar linea
 	clear_map(game);
+    init_points(player->p_line, player->p_center, player->direction);//Iniciar linea
 	printf("x:%f - x1:%f - y:%f - y1:%f\n\n", player->p_line->x, player->p_line->x1, player->p_line->y, player->p_line->y1);
     paint_line(player->p_line, player->img);
     ///insert_coord(player->p_center, game->map->half_x - player->tam / 2, game->map->half_y - player->tam / 2);//Pintar el cuadrado en medio

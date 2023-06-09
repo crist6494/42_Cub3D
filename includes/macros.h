@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:40:43 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/07 23:01:54 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:56:15 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	-------------------------------MEASURES---------------------------------
 *--------------------------------------------------------------------------- */
 
-#define WIDTH 1100
+#define WIDTH 1800
 #define HEIGHT 1100
 
 #define COL 10
@@ -28,9 +28,25 @@
 /* ---------------------------------------------------------------------------*
 	-------------------------------COLORS---------------------------------
 *--------------------------------------------------------------------------- */
-#define RED 0xFF0000FF
-#define GREY 0x808080FF
-#define BLACK 0x000000FF
-#define WHITE 0xFFFFFFFF
+#define RED         0xFF0000FF
+#define GREEN       0x00FF00FF
+#define BLUE        0x0000FFFF
+#define YELLOW      0xFFFF00FF
+#define CYAN        0x00FFFFFF
+#define MAGENTA     0xFF00FFFF
+#define ORANGE      0xFFA500FF
+#define PURPLE      0x800080FF
+#define PINK        0xFFC0CBFF
+#define LIME        0x00FF00FF
+#define BROWN       0x8B4513FF
+#define NAVY        0x000080FF
+#define TEAL        0x008080FF
+#define MAROON      0x800000FF
+#define OLIVE       0x808000FF
+#define SILVER      0xC0C0C0FF
+#define GREY        0x808080FF
+#define BLACK       0x000000FF
+#define WHITE       0xFFFFFFFF
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:30:05 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/08 17:32:59 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/09 16:55:48 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void insert_coord(t_coord *c, float x, float y)
     c->y = y;
 }
 
-void init_points(t_point *p, t_coord *c, float c_x1, float c_y1)
+void init_points(t_point *p, t_coord *c, t_coord *c1)
 {
     p->x = c->x;
     p->y = c->y;
-    p->x1 = c_x1;
-    p->y1 = c_y1;
+    p->x1 = c1->x;
+    p->y1 = c1->y;
 }
 
 int	ft_sign(int x, int x1)

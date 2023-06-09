@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/08 20:37:30 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/09 16:56:42 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ void paint_player(t_game *game, t_player *player)
 {
     clear_map(game);
     init_player(player, game);
-    init_points(player->p_line, player->p_center, player->direction->x, player->direction->y);//Iniciar linea
+    init_points(player->p_line, player->p_center, player->direction);//Iniciar linea
+    paint_line(player->p_line, player->img);
+    
     //insert_coord(player->p_center, player->p_center->x - player->tam / 2, player->p_center->y - player->tam / 2);//Pintar el cuadrado en medio
     //square_paint(player->p_center, player->tam, player->color, player->img);
-    paint_line(player->p_line, player->img);
     //printf("x0: %f\n", player->p_line->x);
     //printf("x1: %f\n", player->p_line->x1);
     //printf("y0: %f\n", player->p_line->y);
