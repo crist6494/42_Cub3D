@@ -6,25 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/08 18:31:40 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:58:54 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void init_map(t_map *map)
-{
-	map->len_x = COL; 
-	map->len_y = ROW;
-	map->lim = 1;
-	map->map_width = map->len_x * map->lim; 
-	map->map_height = map->len_y * map->lim;
-	map->half_x = (WIDTH - map->map_width) / 2;
-	map->half_y = (HEIGHT - map->map_height) / 2;
-	map->m_coord = malloc(sizeof(t_coord));
-}
-
-void read_map(t_map *map)
+/* void read_map(t_map *map)
 {
 	char stage[ROW][COL] = 
 	{
@@ -67,14 +55,14 @@ void read_map(t_map *map)
 		map->tour[y][x] = '\0';
 		y++;
 	}
-}
+} */
 
 void create_map(t_game *game, t_map *map, float c_x, float c_y)
 {
 	unsigned int y;
 	float aux_x;
 	   
-	read_map(map);
+	//read_map(map);
 	insert_coord(map->m_coord, c_x, c_y);
 	aux_x = c_x;
 	y = 0;
@@ -87,15 +75,9 @@ void create_map(t_game *game, t_map *map, float c_x, float c_y)
 		{
 			if(map->tour[y][x] == '1')
 				square_paint(map->m_coord, map->lim, BLACK, game->img);
-			else
+			else if(map->tour[y][x] == '0')
 			{
-				/* if(map->tour[y][x] == 'N' || map->tour[y][x] == 'S' 
-					|| map->tour[y][x] == 'E' || map->tour[y][x] == 'W')
-				{
-					game->player->pos_map->x = x * map->lim;
-					game->player->pos_map->y = y * map->lim;
-				}  */
-				square_paint(map->m_coord, map->lim, GREY, game->img);
+				square_paint(map->m_coord, map->lim, TEAL, game->img);
 			}
 			map->m_coord->x += map->lim;
 			x++;
@@ -109,7 +91,7 @@ void create_map(t_game *game, t_map *map, float c_x, float c_y)
 void paint_map(t_game *game, t_map *map, t_coord *coord)
 {
 	(void)coord;
-	read_map(map);
+	//read_map(map);
 	clear_map(game);
 	insert_coord(map->m_coord, map->half_x, map->half_y);
 	square_paint(map->m_coord, map->lim, RED, game->img);
