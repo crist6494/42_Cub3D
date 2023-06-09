@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/09 20:07:05 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/09 20:15:41 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,12 @@ int	main()
 	t_map map;
 	t_player player;
 	t_game game;
-	atexit(ft_void);
+	(void)p;
+	(void)p1;
+	//atexit(ft_void);
+
+	insert_coord(&p, 545, 545);
+	insert_coord(&p1, 545, 300);
 
 	game.player = &player;
 	game.map = &map;
@@ -30,13 +35,8 @@ int	main()
 	game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
 	if (!game.img)
 		error();
-	char *line = "/Users/cmorales/42/Cub3D/assets/maps/map.cub";
-	//init_player(&player, &game);
-	init_map(&map, line);
-	clear_map(&game);
-	create_map(&game, &map, map.half_x, map.half_y);
-	free_map(&map);
-	//map_print(&game);
+	//printf("Hola\n");
+	init_player(&player, &game);
 	//paint_map(&game, &map, &coord);
 	//read_map(&map);
 	//paint_player(&game, game.player);

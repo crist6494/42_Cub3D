@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/09 20:06:51 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/09 20:16:00 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,12 @@ void init_player(t_player *player, t_game *game);
 void update_direction(t_player *player);
 
 void rotate(t_game *game, t_player *player, int clockwise);
+
+void get_map_lens(t_map *map, char *path);
+void save_map(t_map *map, char *path);
+
+int get_len_y(char *path);
+int get_len_x(char *path);
 
 void get_map_lens(t_map *map, char *path);
 void save_map(t_map *map, char *path);
