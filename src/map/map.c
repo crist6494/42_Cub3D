@@ -6,63 +6,42 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/09 20:16:15 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/10 20:32:33 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-/* void read_map(t_map *map)
+static char **get_map(t_map *map, char *path_map);
+
+void init_map(t_map *map, char *path_map)
 {
-	char stage[ROW][COL] = 
-	{
-		{'1', '1', '1', '1', '1', '1','1','1','1','1'},
-        {'1', '0', '0', '0', '0', '0','0','0','0','1'},
-        {'1', 'W', '0', '1', '1', '0','0','0','0','1'},
-        {'1', '0', '0', '1', '1', '1','1','1','0','1'},
-        {'1', '0', '0', '1', '1', '1','1','1','0','1'},
-        {'1', '0', '0', '0', '1', '1','1','1','0','1'},
-        {'1', '0', '0', '0', '1', '1','0','0','0','1'},
-        {'1', '0', '0', '0', '1', '1','0','0','0','1'},
-        {'1', '0', '0', '0', '0', '0','0','0','0','1'},
-        {'1', '1', '1', '1', '1', '1','1','1','1','1'},
-	};
-	unsigned int y;
-	
-	init_map(map);
-	y = 0;
-	map->tour = malloc(sizeof(char *) * map->len_y);
-	if(!map->tour)
-	{
-		printf("Can't asign memory in tour char **\n");
-		return ;
-	}
-	while(y < map->len_y)
-	{
-		unsigned int x;
-		x = 0;
-		map->tour[y] = malloc(sizeof(char) * map->len_x);
-		if(!map->tour[y])
-		{
-			printf("Can't asign memory in tour char\n");
-			return ;
-		}
-		while(x < map->len_x)
-		{
-			map->tour[y][x] = (stage[y][x]);
-			x++;
-		}
-		map->tour[y][x] = '\0';
-		y++;
-	}
-} */
+	map->len_x = get_len_x(path_map);
+	map->len_y = get_len_y(path_map);
+	map->tour = get_map(map, path_map);
+	map->lim = 30;
+	map->width = map->len_x * map->lim;
+	map->height = map->len_y * map->lim;
+	map->mid_map = malloc(sizeof(t_coord));
+	map->mid_map->x = (WIDTH - map->width) / 2;
+	map->mid_map->y = (HEIGHT - map->height) / 2;
+	map->m_coord = malloc(sizeof(t_coord));
+}
+
+static char **get_map(t_map *map, char *path_map)
+{
+	char **tour;
+	tour = alloc_map(map);
+	fill_map(map, tour);
+	fill_values_map(map, tour, path_map);
+	return (tour);
+}
 
 void create_map(t_game *game, t_map *map, float c_x, float c_y)
 {
 	unsigned int y;
 	float aux_x;
 	   
-	//read_map(map);
 	insert_coord(map->m_coord, c_x, c_y);
 	aux_x = c_x;
 	y = 0;
@@ -88,14 +67,12 @@ void create_map(t_game *game, t_map *map, float c_x, float c_y)
 	}
 }
 
-void paint_map(t_game *game, t_map *map, t_coord *coord)
+void paint_map(t_game *game, t_map *map, char *map_path)
 {
-	(void)coord;
-	//read_map(map);
-	clear_map(game);
-	insert_coord(map->m_coord, map->half_x, map->half_y);
-	square_paint(map->m_coord, map->lim, RED, game->img);
-	//create_map(game, map, map->half_x, map->half_y);
-	//paint_player(game, game->player);
+	map->img = game->img;
+	init_map(map, map_path);
+	clear_map(map);
+	create_map(game, map, map->mid_map->x, map->mid_map->y);
+	free_map(map);
 	//create_map(game, coord, 50, (WIDTH - map->map_width) - 50);
 }

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:05:45 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/09 20:08:22 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/10 13:20:18 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void ft_void()
 	system("leaks -q Cub3D");
 }
 
-void free_map(t_map *map)
+int print_error(char *msg)
 {
-	unsigned int y;
-	y = 0;
-	while(y < map->len_y)
-	{
-		free(map->tour[y]);
-		y++;
-	}
-	free(map->tour);
-	free(map->m_coord);
+	printf("%s%s",ERROR_MSG, msg);
+	return (-1);
 }
+
+void error(void)
+{
+	printf("%s", mlx_strerror(mlx_errno));
+	exit(EXIT_FAILURE);
+}
+

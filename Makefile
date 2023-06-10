@@ -6,7 +6,7 @@
 #    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/06/09 17:49:16 by cmorales         ###   ########.fr        #
+#    Updated: 2023/06/10 13:10:20 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -149,7 +149,7 @@ re: fclean
 	@make all
 
 r: all
-	./$(NAME)
+	./$(NAME) assets/maps/map.cub 
 
 val: all
 	valgrind --leak-check=full ./$(NAME)

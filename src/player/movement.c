@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:03:44 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/09 17:13:53 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/10 20:30:15 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ void player_advance(t_game *game, t_player *player, int direction)
 		//player->position->x += advance_x;
 		//player->position->y += advance_y;
 	}
-	clear_map(game);
-	create_map(game, game->map, game->map->half_x, game->map->half_y);
+	clear_map(game->map);
 	//paint_player(game, player);
 }
 
@@ -70,10 +69,10 @@ void rotate(t_game *game, t_player *player, int clockwise)
 		printf("!%f\n",player->dir_y);
 		update_direction(player);
 	}
-	clear_map(game);
+	clear_map(game->map);
     init_points(player->p_line, player->p_center, player->direction);//Iniciar linea
 	printf("x:%f - x1:%f - y:%f - y1:%f\n\n", player->p_line->x, player->p_line->x1, player->p_line->y, player->p_line->y1);
     paint_line(player->p_line, player->img);
-    ///insert_coord(player->p_center, game->map->half_x - player->tam / 2, game->map->half_y - player->tam / 2);//Pintar el cuadrado en medio
+    ///insert_coord_f(player->p_center, game->mid_map->x - player->tam / 2, game->mid_map->y - player->tam / 2);//Pintar el cuadrado en medio
     //square_paint(player->p_center, player->tam, player->color, player->img);
 }

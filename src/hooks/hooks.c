@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/08 20:20:31 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/10 20:16:13 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void hook_screen(int32_t width, int32_t height, void* param)
 
 	//printf("width: %d\n", width);
 	//printf("height: %d\n", height);
-	clear_map(game);
+	clear_map(game->map);
 	//create_map(game, game->coord, (50), ((width - game->map->map_width) - 50));
-	create_map(game, game->map, (height - game->map->map_width) / 2, (width - game->map->map_height) / 2);
+	create_map(game, game->map, (height - game->map->width) / 2, (width - game->map->height) / 2);
 }
 
 void move_hook(void *param)

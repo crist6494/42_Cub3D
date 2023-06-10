@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:49:02 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/09 20:12:55 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/10 20:13:59 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,33 +82,32 @@ char **alloc_map(t_map *map)
 	return (tour);
 }
 
-void fill_map(t_map *map)
+void fill_map(t_map *map, char **tour)
 {
 	unsigned int x;
 	unsigned int y;
 	
 	y = 0;
-	printf("%d\n", map->len_x);
-	printf("%d\n", map->len_y);
 	while(y < map->len_y)
 	{
 		x = 0;
 		while(x < map->len_x)
 		{
-			map->tour[y][x] = ' ';
+			tour[y][x] = ' ';
 			x++;
 		}
 		y++;
 	}
 }
 
-void	fill_values_map(t_map *map, char *path)
+void	fill_values_map(t_map *map, char **tour, char *path)
 {
 	char *line;
 	int x;
 	int y;
 	int fd;
-
+	
+	(void)map;
 	y = 0;
 	fd = open (path, O_RDONLY);
 	if(fd == -1)
@@ -122,7 +121,7 @@ void	fill_values_map(t_map *map, char *path)
 		x = 0;
 		while(line[x] != '\0' && line[x] != '\n')
 		{
-			map->tour[y][x] = line[x];
+			tour[y][x] = line[x];
 			x++;
 		}
 		y++;
@@ -131,24 +130,4 @@ void	fill_values_map(t_map *map, char *path)
 	}
 	close(fd);
 	free(line);
-}
-
-void get_map(t_map *map, char *path_map)
-{
-	map->tour = alloc_map(map);
-	fill_map(map);
-	fill_values_map(map, path_map);
-}
-
-void init_map(t_map *map, char *path_map)
-{
-	map->len_x = get_len_x(path_map);
-	map->len_y = get_len_y(path_map);
-	get_map(map, path_map);
-	map->lim = 40;
-	map->map_width = map->len_x * map->lim; 
-	map->map_height = map->len_y * map->lim;
-	map->half_x = (WIDTH - map->map_width) / 2;
-	map->half_y = (HEIGHT - map->map_height) / 2;
-	map->m_coord = malloc(sizeof(t_coord));
 }
