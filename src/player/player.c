@@ -6,12 +6,12 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/11 13:40:55 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/12 21:03:43 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
+    
 static void init_direction(t_player *player)
 {
     player->direction = malloc(sizeof(t_coord));
@@ -33,7 +33,7 @@ void init_player(t_player *player, t_game *game)
     player->color = WHITE;
     player->tam = 10;
     player->vel_move = 3;
-    player->angle = 90;
+    player->angle = get_player_angle(game->map);
     player->p_center = malloc(sizeof(t_coord));
     insert_coord(player->p_center, WIDTH / 2, HEIGHT / 2);//Punto medio
     player->mid_square = malloc(sizeof(t_coord));
@@ -41,6 +41,10 @@ void init_player(t_player *player, t_game *game)
         player->p_center->y - player->tam / 2);//Pintar el cuadrado en medio
     player->p_line = malloc(sizeof(t_point));
     init_direction(player);
+  /*   player->pos_map = malloc(sizeof(t_coord));
+    player->pos_map = get_player_pos(game->map);
+    printf("Pos x: %f", player->pos_map->x);
+    printf("Pos y: %f", player->pos_map->y); */
 }
 
 void paint_player(t_game *game, t_player *player)

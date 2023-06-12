@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/11 13:35:18 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/12 21:03:34 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_point{
 typedef struct s_player
 {
 	t_coord			*mid_square;
+	t_coord			*pos_map;
 	t_coord			*p_center;
 	t_coord			*direction;
 	t_point			*p_line;
@@ -107,6 +108,11 @@ void	map_print(t_map *map);
 void	clear_map(t_map *map);
 
 
+/*-------Map-Data--------*/
+int		get_player_angle(t_map *map);
+t_coord get_player_pos(t_map *map);
+
+
 
 /*-----Paint-----*/
 void	insert_coord(t_coord *c, float x, float y);
@@ -138,5 +144,7 @@ void	hook_screen(int32_t width, int32_t height, void* param);
 void	ft_void();
 void	error(void);
 int		print_error(char *msg);
+
+void bresenham(float x1, float y1, float x2, float y2, mlx_image_t img);
 
 # endif

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:30:05 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/10 20:31:58 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:29:16 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,11 @@ void	paint_line(t_point *p, mlx_image_t *img)
 	p->dx = fabsf(p->x1 - p->x);
 	p->dy = -fabsf(p->y1 - p->y);
 	p->err = p->dx + p->dy;
+
 	while (1)
 	{
 		mlx_put_pixel(img, p->x, p->y, RED);
-		if (p->x == p->x1 && p->y == p->y1)
+		if ((int)p->x == (int)p->x1 && (int)p->y == (int)p->y1)
 			break ;
 		p->e2 = 2 * p->err;
 		if (p->e2 >= p->dy)
@@ -50,11 +51,13 @@ void	paint_line(t_point *p, mlx_image_t *img)
 			p->err += p->dy;
 			p->x += ft_sign((int)p->x, (int)p->x1);
 		}
-		if (p->e2 <= p->dx)
+		else if(p->e2 <= p->dx)
 		{
 			p->err += p->dx;
 			p->y += ft_sign((int)p->y, (int)p->y1);
 		}
+		//printf("p->x1: %d, p->y1: %d\n", (int)p->x1, (int)p->y1);
+		//printf("p->x: %d, p->y: %d\n", (int)p->x, (int)p->y);
 	}
 }
 
