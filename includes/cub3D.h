@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/10 21:11:49 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/11 13:35:18 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_player
 	float			dir_y;
 	int				len_dir;
 	float			move;
-	float			angle;
+	int				angle;
 	int				vel_move;
 	float			vel_turn; 
 }t_player;

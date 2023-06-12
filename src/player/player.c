@@ -6,13 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/10 20:55:38 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/11 13:40:55 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static init_direction(t_player *player)
+static void init_direction(t_player *player)
 {
     player->direction = malloc(sizeof(t_coord));
     player->len_dir = 50;
@@ -33,6 +33,7 @@ void init_player(t_player *player, t_game *game)
     player->color = WHITE;
     player->tam = 10;
     player->vel_move = 3;
+    player->angle = 90;
     player->p_center = malloc(sizeof(t_coord));
     insert_coord(player->p_center, WIDTH / 2, HEIGHT / 2);//Punto medio
     player->mid_square = malloc(sizeof(t_coord));
