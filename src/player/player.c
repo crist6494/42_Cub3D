@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/12 21:03:43 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/13 20:53:27 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void init_direction(t_player *player)
 {
     player->direction = malloc(sizeof(t_coord));
-    player->len_dir = 50;
+    player->len_dir = 40;
     player->dir_x = 0.0;
     player->dir_y = (player->len_dir * -1); //-1 pq el eje y es para abajo el positivo
     update_direction(player); //Iniciamos la direcciona de la linea
@@ -32,7 +32,7 @@ void init_player(t_player *player, t_game *game)
     player->img = game->img;
     player->color = WHITE;
     player->tam = 10;
-    player->vel_move = 3;
+    player->vel_move = 2;
     player->angle = get_player_angle(game->map);
     player->p_center = malloc(sizeof(t_coord));
     insert_coord(player->p_center, WIDTH / 2, HEIGHT / 2);//Punto medio
@@ -53,5 +53,7 @@ void paint_player(t_game *game, t_player *player)
     init_player(player, game);
     square_paint(player->mid_square, player->tam, player->color, player->img);
     init_points(player->p_line, player->p_center, player->direction);//Iniciar linea
-    paint_line(player->p_line, player->img);
+    //paint_line(player->p_line, player->img);
+    //bresenham(player->p_line->x,player->p_line->y, player->p_line->x1, player->p_line->y1, *game->img);
+    paint_line(player->p_line, player->p_center, player->direction, player->img);
 }

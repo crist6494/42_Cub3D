@@ -6,69 +6,110 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:58:10 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/12 20:27:32 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/13 21:09:56 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/* int sx, sy;
+if (dx >= 0) {
+  sx = 1;
+} else {
+  sx = -1;
+}
 
-void bresenham(float x1, float y1, float x2, float y2, mlx_image_t img)
+if (dy >= 0) {
+  sy = 1;
+} else {
+  sy = -1;
+} */
+
+void loop_paint(t_point *p, mlx_image_t *img, int isSwaped);
+
+int sign(int d)
 {
-    // Find Delta
-    float dx = x2-x1;
-    float dy = y2-y1;
+    int s;
+    
+    if(d >= 0)
+        s = 1;
+    else
+        s = -1;
+    return (s);    
+}
 
-    // Find Signs
-    int sx = (dx>=0) ? 1 : (-1);
-    int sy = (dy>=0) ? 1 : (-1);
 
-    // Get Initial Points
-    float x = x1;
-    float y = y1;
+void swap(float dx, float dy)
+{
+    float aux;
 
-    // Flag to check if swapping happens
-    int isSwaped = 0;
+    aux = dx;
+    dx = dy;
+    dy = aux;
+}
 
-    // Swap if needed
-    if(fabs(dy) > fabs(dx))
+void paint_line(t_point *p, t_coord *c, t_coord *c1, mlx_image_t *img)
+{
+    (void)c;
+    (void)c1;
+    int isSwaped;
+
+    printf("%f\n", p->x);
+    printf("%f\n", p->y);
+    printf("%f\n", p->x1);
+    printf("%f\n", p->y1);
+    
+    p->dx = p->x1 - p->x;
+    p->dy = p->y1 - p->y;
+    p->sx = sign(p->dx);
+    p->sy = sign(p->dy);
+    printf("%f\n", p->dx);
+    printf("%f\n", p->dy);
+    printf("%d\n", p->sx);
+    printf("%d\n", p->sy);
+    isSwaped = 0;
+    if(fabs(p->dy) > fabs(p->dx))
     {
-        // swap dx and dy
-        float tdx = dx;
-        dx =dy;
-        dy = tdx;
-
+        swap(p->dx, p->dy);
         isSwaped = 1;
     }
+    mlx_put_pixel(img, p->x, p->y, RED);
+    loop_paint(p, img, isSwaped);
+} 
 
-    // Decision parameter
-    float p = 2*(fabs(dy)) - fabs(dx);
+void loop_paint(t_point *p, mlx_image_t *img, int isSwaped)
+{
+    float err;
+    int i;
 
-    //Print Initial Point
-    mlx_put_pixel(&img, x, y, RED);
+    float x = p->x;
+    float y = p->y;
 
-    // Loop for dx times
-    for(int i = 0; i<= fabs(dx);i++)
+    i = 0;
+    err = 2 * (fabs(p->dy)) - fabs(p->dx);
+    while(i <= fabs(p->dx))
     {
-        // Depending on decision parameter
-        if(p < 0)
+         if(err < 0)
         {
             if(isSwaped == 0){
-                x = x + sx;
-                mlx_put_pixel(&img, x, y, RED);
+                x += p->sx;
+                mlx_put_pixel(img, x, y, RED);
             }
             else{
-                y = y+sy;
-                mlx_put_pixel(&img, x, y, RED);
+                p->y += p->sy;
+                mlx_put_pixel(img, x, y, RED);
             }
-            p = p + 2*fabs(dy);
+            err += 2 * fabs(p->dy);
         }
         else
         {
-            x = x+sx;
-            y = y+sy;
-            mlx_put_pixel(&img, x, y, RED);
-            p = p + 2*fabs(dy) - 2*fabs(dx);
+            x += p->sx;
+            y += p->sy;
+            mlx_put_pixel(img, x, y, RED);
+            err += 2 * fabs(p->dy) - 2 * fabs(p->dx);
         }
+        i++;
     }
 }
+
+

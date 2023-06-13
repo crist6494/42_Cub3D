@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/12 21:03:34 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/13 21:06:51 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ typedef struct s_point{
 	float	y;
 	float	x1;
 	float	y1;
-	int		err;
-	int		e2;
-	int		dy;
-	int		dx;
+	int		sx;
+	int		sy;
+	float	dy;
+	float	dx;
 }t_point;
 
 typedef struct s_player
@@ -117,7 +117,6 @@ t_coord get_player_pos(t_map *map);
 /*-----Paint-----*/
 void	insert_coord(t_coord *c, float x, float y);
 void	init_points(t_point *p, t_coord *c, t_coord *c1);
-void	paint_line(t_point *p, mlx_image_t *img);
 void	square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img);
 
 
@@ -131,7 +130,7 @@ void	update_direction(t_player *player);
 /*--------Movement--------------*/
 void	player_advance(t_game *game, t_player *player, int direction);
 void	rotate(t_game *game, t_player *player, int clockwise);
-
+void	player_lateral(t_game *game, t_player *player, int direction);
 
 
 /*-----Hooks-----*/
@@ -146,5 +145,7 @@ void	error(void);
 int		print_error(char *msg);
 
 void bresenham(float x1, float y1, float x2, float y2, mlx_image_t img);
+
+void paint_line(t_point *p, t_coord *c, t_coord *c1, mlx_image_t *img);
 
 # endif

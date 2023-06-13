@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/12 20:32:02 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/13 17:56:15 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ void move_hook(void *param)
 
 	game = param;
 
-	/*if (mlx_is_key_down(game->mlx, MLX_KEY_W))
-		player_advance(game, game->player, -1);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 		player_advance(game, game->player, 1);
-	if (mlx_is_key_down(mlx, MLX_KEY_A))
-		image->instances[0].x -= 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_D))
-		image->instances[0].x += 5; */ 
+	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+		player_advance(game, game->player, -1);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+		player_lateral(game, game->player, -1);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+		player_lateral(game, game->player, 1);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 	{
 		rotate(game, game->player, -1);
