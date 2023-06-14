@@ -6,7 +6,7 @@
 #    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/06/12 19:58:31 by cmorales         ###   ########.fr        #
+#    Updated: 2023/06/14 19:53:44 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ OBJ_DIR = ./obj/
 INC = ./includes/
 
 MAP = map map_utils parse_map map_data
-PLAYER = player movement
+PLAYER = player movement player_utils
 HOOKS = hooks
 PAINT = paint line
 
@@ -82,6 +82,9 @@ GLFW =  -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 LINUX = Linux
 MAC = Darwin
 
+MEMORY_LEAKS = ./memory-leaks/memory_leaks.a
+MEMORY_LEAKS_INC = ./memory-leaks/include
+
 #/--------------Actions-----------------/
 all:  lib obj  $(NAME)
 
@@ -103,28 +106,30 @@ $(MLX42_LIB):
 	cmake $(MLX42) -B $(MLX42)/build
 	make -C $(MLX42)/build -j4
 
+$(MEMORY_LEAKS):
+		make -C ./memory-leaks
 
 ifeq ($(shell uname -s), $(LINUX))
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(MLX42_LIB)
-	@$(CC) $(CFLAGS) -I $(INC) -I $(INC_MLX) -I $(LIBFT_INC) -o $@ -c $<
+	@$(CC) $(CFLAGS) -I $(INC) -I $(LIBFT_INC) -I $(INC_MLX) -I $(MEMORY_LEAKS_INC) -o $@ -c $<
 -include $(OBJ_DIR)*.d
 
-$(NAME): $(OBJS) $(MLX42_LIB)
+$(NAME): $(OBJS) $(MLX42_LIB) $(MEMORY_LEAKS)
 	@echo "$(INFO) Building $(NAME)...$(NOC)"
-	@$(CC) $(CFLAGS) $(OBJS) /home/cristian/42/42_Cub3D/MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm $(LIBFT)  -o $(NAME)
+	@$(CC) $(CFLAGS) $(MEMORY_LEAKS) $(OBJS) /home/cristian/42/42_Cub3D/MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm $(LIBFT)  -o $(NAME)
 	@echo "$(SUCCESS)$(NAME) built successfully!$(NOC)"
 
 
 else ifeq ($(shell uname -s), $(MAC))
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(MLX42_LIB)
-	@$(CC) $(CFLAGS) -I $(INC) -I $(LIBFT_INC) -I $(INC_MLX) -o $@ -c $<
+	@$(CC) $(CFLAGS) -I $(INC) -I $(LIBFT_INC) -I $(INC_MLX) -I $(MEMORY_LEAKS_INC) -o $@ -c $<
 -include $(OBJ_DIR)*.d
 
-$(NAME): $(OBJS) $(MLX42_LIB)
+$(NAME): $(OBJS) $(MLX42_LIB) $(MEMORY_LEAKS)
 	@echo "$(INFO) Building $(NAME)...$(NOC)"
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(DEPENDENCIES_MAC) $(GLFW) -o $(NAME)
+	@$(CC) $(CFLAGS) $(MEMORY_LEAKS) $(OBJS) $(LIBFT) $(DEPENDENCIES_MAC) $(GLFW) -o $(NAME)
 	@echo "$(SUCCESS)$(NAME) built successfully!$(NOC)"
 
 endif
@@ -132,6 +137,7 @@ endif
 
 clean:
 	@make clean -C libft/
+	@make -C ./memory-leaks fclean
 	@echo "$(NOC)"
 	@echo "$(TRASH) Deleting .o files...$(NOC)"
 	@rm -rf $(MLX42)/build 

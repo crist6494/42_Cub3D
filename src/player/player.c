@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/14 11:45:10 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/14 20:51:25 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void init_player(t_player *player, t_game *game)
     player->img = game->img;
     player->color = WHITE;
     player->tam = 10;
-    player->vel_move = 2;
+    player->vel_move = 3;
     player->angle = get_player_angle(game->map);
     player->p_center = malloc(sizeof(t_coord));
     insert_coord(player->p_center, WIDTH / 2, HEIGHT / 2);//Punto medio
@@ -70,7 +70,7 @@ void pos_line(t_player *player)
         player->dir_y = (float)player->len_dir * sin(0);
     }
     //angle = grades_to_rad(angle);
-    printf("%d\n", player->angle);
+    //printf("%d\n", player->angle);
     update_direction(player);
 }
 
@@ -82,4 +82,5 @@ void paint_player(t_game *game, t_player *player)
     init_points(player->p_line, player->p_center, player->direction);//Iniciar linea
     paint_line(player->p_line, game->img);
     square_paint(player->mid_square, player->tam, player->color, player->img);
+    //free_player(game->player);
 }

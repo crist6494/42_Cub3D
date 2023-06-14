@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/14 00:13:18 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/14 20:06:00 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,5 @@ void move_hook(void *param)
 		rotate(game, game->player, -1);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		rotate(game, game->player, 1);
+	repaint(game, game->player);
 }

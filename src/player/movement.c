@@ -6,14 +6,24 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:03:44 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/14 00:11:17 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/14 20:50:02 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+void repaint(t_game *game, t_player *player)
+{
+	clear_map(game->map);
+	create_map(game, game->map, game->map->mid_map->x, game->map->mid_map->y);
+	init_points(player->p_line, player->p_center, player->direction);//Iniciar linea
+    paint_line(player->p_line, game->img);
+    square_paint(player->mid_square, player->tam, player->color, player->img);
+}
+
 void player_advance(t_game *game, t_player *player, int direction)
 {
+	(void)game;
 	float	angle;
 	float	advance_x;
 	float	advance_y;
@@ -26,18 +36,15 @@ void player_advance(t_game *game, t_player *player, int direction)
 		player->p_center->x += advance_x;
 		player->p_center->y += advance_y;
 	}
-	clear_map(game->map);
-	create_map(game, game->map, game->map->mid_map->x, game->map->mid_map->y);
 	insert_coord(player->mid_square, player->p_center->x - player->tam / 2, 
         player->p_center->y - player->tam / 2);
 	update_direction(player);
-	init_points(player->p_line, player->p_center, player->direction);//Iniciar linea
-    paint_line(player->p_line, game->img);
-    square_paint(player->mid_square, player->tam, player->color, player->img);
+	//repaint(game, player);
 }
 
 void player_lateral(t_game *game, t_player *player, int direction)
 {
+	(void)game;
 	float	angle;
 	float	advance_x;
 	float	advance_y;
@@ -56,14 +63,11 @@ void player_lateral(t_game *game, t_player *player, int direction)
 		player->p_center->x += advance_x;
 		player->p_center->y += advance_y;
 	}
-	clear_map(game->map);
-	create_map(game, game->map, game->map->mid_map->x, game->map->mid_map->y);
+
 	insert_coord(player->mid_square, player->p_center->x - player->tam / 2, 
         player->p_center->y - player->tam / 2);
 	update_direction(player);
-	init_points(player->p_line, player->p_center, player->direction);//Iniciar linea
-    paint_line(player->p_line, game->img);
-    square_paint(player->mid_square, player->tam, player->color, player->img);
+	//repaint(game, player);
 }
 
 
@@ -81,6 +85,7 @@ float grades_to_rad(double angle)
 
 void rotate(t_game *game, t_player *player, int clockwise)
 {
+	(void)game;
 	float angle;
 	
 	if(clockwise == 1)
@@ -98,9 +103,5 @@ void rotate(t_game *game, t_player *player, int clockwise)
 		player->dir_y = (float)player->len_dir * sin(angle);
 		update_direction(player);
 	}
-	clear_map(game->map);
-	create_map(game, game->map, game->map->mid_map->x, game->map->mid_map->y);
-    init_points(player->p_line, player->p_center, player->direction);//Iniciar linea
-    paint_line(player->p_line, game->img);
-    square_paint(player->mid_square, player->tam, player->color, player->img);
+	//repaint(game, player);
 }

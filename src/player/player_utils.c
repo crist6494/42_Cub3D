@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   player_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 01:09:36 by anmarque          #+#    #+#             */
-/*   Updated: 2023/06/14 19:46:29 by cmorales         ###   ########.fr       */
+/*   Created: 2023/06/14 19:50:11 by cmorales          #+#    #+#             */
+/*   Updated: 2023/06/14 19:55:48 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3D.h"
 
-int	ft_strcmp(char *s1, char *s2)
+void free_player(t_player *player)
 {
-	size_t	i;
-
-	i = 0;
-	while (s1[i] == s2[i])
-	{
-		if (s1[i] == '\0' && s2[i] == '\0')
-			return (0);
-		i++;
-	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	free(player->direction);
+	free(player->p_center);
+	free(player->mid_square);
+	free(player->p_line);
 }

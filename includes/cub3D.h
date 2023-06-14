@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/14 11:25:57 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/14 20:14:37 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,4 +146,7 @@ void	error(void);
 int		print_error(char *msg);
 
 float grades_to_rad(double angle);
+void repaint(t_game *game, t_player *player);
+void free_player(t_player *player);
+
 # endif

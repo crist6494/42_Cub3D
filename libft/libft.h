@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:50:23 by anmarque          #+#    #+#             */
-/*   Updated: 2023/03/21 13:36:17 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/14 19:47:11 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void				*ft_calloc(size_t number, size_t size);
 
 char				*ft_strdup(const char *s);
 
-int					ft_strcmp(const char *s1, const char *s2);
+int					ft_strcmp(char *s1, char *s2);
 
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 
