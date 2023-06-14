@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:03:44 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/13 20:52:57 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/14 00:11:17 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ void player_advance(t_game *game, t_player *player, int direction)
         player->p_center->y - player->tam / 2);
 	update_direction(player);
 	init_points(player->p_line, player->p_center, player->direction);//Iniciar linea
-    paint_line(player->p_line, player->p_center, player->direction, player->img);
-    //bresenham(player->p_line->x,player->p_line->y, player->p_line->x1, player->p_line->y1, *game->img);
+    paint_line(player->p_line, game->img);
     square_paint(player->mid_square, player->tam, player->color, player->img);
 }
 
@@ -63,8 +62,7 @@ void player_lateral(t_game *game, t_player *player, int direction)
         player->p_center->y - player->tam / 2);
 	update_direction(player);
 	init_points(player->p_line, player->p_center, player->direction);//Iniciar linea
-    //bresenham(player->p_line->x,player->p_line->y, player->p_line->x1, player->p_line->y1, *game->img);
-    paint_line(player->p_line, player->p_center, player->direction, player->img);
+    paint_line(player->p_line, game->img);
     square_paint(player->mid_square, player->tam, player->color, player->img);
 }
 
@@ -103,7 +101,6 @@ void rotate(t_game *game, t_player *player, int clockwise)
 	clear_map(game->map);
 	create_map(game, game->map, game->map->mid_map->x, game->map->mid_map->y);
     init_points(player->p_line, player->p_center, player->direction);//Iniciar linea
-    paint_line(player->p_line, player->p_center, player->direction, player->img);
-	//bresenham(player->p_line->x, player->p_line->y, player->p_line->x1, player->p_line->y1, *game->img);
+    paint_line(player->p_line, game->img);
     square_paint(player->mid_square, player->tam, player->color, player->img);
 }

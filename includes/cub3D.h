@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/13 21:06:51 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:25:57 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ t_coord get_player_pos(t_map *map);
 void	insert_coord(t_coord *c, float x, float y);
 void	init_points(t_point *p, t_coord *c, t_coord *c1);
 void	square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img);
+void	paint_line(t_point *p, mlx_image_t *img);
 
 
 
@@ -144,8 +145,5 @@ void	ft_void();
 void	error(void);
 int		print_error(char *msg);
 
-void bresenham(float x1, float y1, float x2, float y2, mlx_image_t img);
-
-void paint_line(t_point *p, t_coord *c, t_coord *c1, mlx_image_t *img);
-
+float grades_to_rad(double angle);
 # endif

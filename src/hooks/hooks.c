@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/13 17:56:15 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/14 00:13:18 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,9 @@ void hook(mlx_key_data_t keydata, void *param)
 		mlx_close_window(game->mlx);
 		exit(1);
 	}
-/* 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
-	{
-		rotate(game, game->player, 1);
-		//printf("Gira a la derecha\n");
-	}
-	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
-	{
-		rotate(game, game->player, -1);
-		//printf("Gira a la izquierda\n");
-	} */
 }
 
-void hook_screen(int32_t width, int32_t height, void* param)
+void hook_screen(int32_t width, int32_t height, void *param)
 {
 	t_game *game;
 	game =(t_game *) param;
@@ -63,13 +53,7 @@ void move_hook(void *param)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 		player_lateral(game, game->player, 1);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-	{
 		rotate(game, game->player, -1);
-		//printf("Gira a la izquierda\n");	
-	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-	{
 		rotate(game, game->player, 1);
-		//printf("Gira a la derecha\n");
-	}
 }

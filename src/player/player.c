@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/13 20:53:27 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:45:10 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,39 @@ void init_player(t_player *player, t_game *game)
     printf("Pos y: %f", player->pos_map->y); */
 }
 
+void pos_line(t_player *player)
+{
+    if(player->angle == N)
+    {
+        player->dir_x = (float)player->len_dir * sin(0);
+        player->dir_y = (float)player->len_dir * -cos(0);
+    }
+    if(player->angle == S)
+    {
+        player->dir_x = (float)player->len_dir * sin(0);
+        player->dir_y = (float)player->len_dir * cos(0);
+    }
+    if(player->angle == W)
+    {
+        player->dir_x = (float)player->len_dir * -cos(0);
+        player->dir_y = (float)player->len_dir * sin(0);
+    }
+    if(player->angle == E)
+    {
+        player->dir_x = (float)player->len_dir * cos(0);
+        player->dir_y = (float)player->len_dir * sin(0);
+    }
+    //angle = grades_to_rad(angle);
+    printf("%d\n", player->angle);
+    update_direction(player);
+}
+
 void paint_player(t_game *game, t_player *player)
 {
     //clear_map(game->map);
     init_player(player, game);
-    square_paint(player->mid_square, player->tam, player->color, player->img);
+    pos_line(player);
     init_points(player->p_line, player->p_center, player->direction);//Iniciar linea
-    //paint_line(player->p_line, player->img);
-    //bresenham(player->p_line->x,player->p_line->y, player->p_line->x1, player->p_line->y1, *game->img);
-    paint_line(player->p_line, player->p_center, player->direction, player->img);
+    paint_line(player->p_line, game->img);
+    square_paint(player->mid_square, player->tam, player->color, player->img);
 }

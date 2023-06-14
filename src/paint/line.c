@@ -6,28 +6,15 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:58:10 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/13 21:09:56 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/14 00:10:32 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-/* int sx, sy;
-if (dx >= 0) {
-  sx = 1;
-} else {
-  sx = -1;
-}
+static void    paint_loop(t_point *p, mlx_image_t *img, int isSwaped);
 
-if (dy >= 0) {
-  sy = 1;
-} else {
-  sy = -1;
-} */
-
-void loop_paint(t_point *p, mlx_image_t *img, int isSwaped);
-
-int sign(int d)
+static int sign(int d)
 {
     int s;
     
@@ -38,74 +25,58 @@ int sign(int d)
     return (s);    
 }
 
-
-void swap(float dx, float dy)
+static void swap(float *dx, float *dy)
 {
     float aux;
 
-    aux = dx;
-    dx = dy;
-    dy = aux;
+    aux = *dx;
+    *dx = *dy;
+    *dy = aux;
 }
 
-void paint_line(t_point *p, t_coord *c, t_coord *c1, mlx_image_t *img)
+void paint_line(t_point *p, mlx_image_t *img)
 {
-    (void)c;
-    (void)c1;
     int isSwaped;
-
-    printf("%f\n", p->x);
-    printf("%f\n", p->y);
-    printf("%f\n", p->x1);
-    printf("%f\n", p->y1);
     
-    p->dx = p->x1 - p->x;
-    p->dy = p->y1 - p->y;
+    p->dx = p->x1-p->x;
+    p->dy = p->y1-p->y;
+    
     p->sx = sign(p->dx);
     p->sy = sign(p->dy);
-    printf("%f\n", p->dx);
-    printf("%f\n", p->dy);
-    printf("%d\n", p->sx);
-    printf("%d\n", p->sy);
+
     isSwaped = 0;
+
     if(fabs(p->dy) > fabs(p->dx))
     {
-        swap(p->dx, p->dy);
+        swap(&p->dx, &p->dy);
         isSwaped = 1;
     }
     mlx_put_pixel(img, p->x, p->y, RED);
-    loop_paint(p, img, isSwaped);
+    paint_loop(p, img, isSwaped);
 } 
 
-void loop_paint(t_point *p, mlx_image_t *img, int isSwaped)
+static void    paint_loop(t_point *p, mlx_image_t *img, int isSwaped)
 {
-    float err;
     int i;
-
-    float x = p->x;
-    float y = p->y;
-
+    float err;
+    err = 2*(fabs(p->dy)) - fabs(p->dx);
     i = 0;
-    err = 2 * (fabs(p->dy)) - fabs(p->dx);
-    while(i <= fabs(p->dx))
+    while(i<= fabs(p->dx))
     {
-         if(err < 0)
+        if(err < 0)
         {
-            if(isSwaped == 0){
-                x += p->sx;
-                mlx_put_pixel(img, x, y, RED);
-            }
-            else{
+            if(isSwaped == 0)
+                p->x += p->sx;
+            else
                 p->y += p->sy;
-                mlx_put_pixel(img, x, y, RED);
-            }
-            err += 2 * fabs(p->dy);
+            mlx_put_pixel(img, p->x, p->y, RED);
+            err +=  2 * fabs(p->dy);
         }
         else
         {
-            x += p->sx;
-            y += p->sy;
-            mlx_put_pixel(img, x, y, RED);
+            p->x += p->sx;
+            p->y += p->sy;
+            mlx_put_pixel(img, p->x, p->y, RED);
             err += 2 * fabs(p->dy) - 2 * fabs(p->dx);
         }
         i++;
@@ -113,3 +84,62 @@ void loop_paint(t_point *p, mlx_image_t *img, int isSwaped)
 }
 
 
+/*void bresenham(float x1, float y1, float x2, float y2, mlx_image_t img)
+{
+    // Find Delta
+    float dx = x2-x1;
+    float dy = y2-y1;
+
+    // Find Signs
+    int sx = (dx>=0) ? 1 : (-1);
+    int sy = (dy>=0) ? 1 : (-1);
+
+    // Get Initial Points
+    float x = x1;
+    float y = y1;
+
+    // Flag to check if swapping happens
+    int isSwaped = 0;
+
+    // Swap if needed
+    if(fabs(dy) > fabs(dx))
+    {
+        // swap dx and dy
+        float tdx = dx;
+        dx =dy;
+        dy = tdx;
+
+        isSwaped = 1;
+    }
+
+    // Decision parameter
+    float p = 2*(fabs(dy)) - fabs(dx);
+
+    //Print Initial Point
+    mlx_put_pixel(&img, x, y, RED);
+
+    // Loop for dx times
+    for(int i = 0; i<= fabs(dx);i++)
+    {
+        // Depending on decision parameter
+        if(p < 0)
+        {
+            if(isSwaped == 0){
+                x = x + sx;
+                mlx_put_pixel(&img, x, y, RED);
+            }
+            else{
+                y = y+sy;
+                mlx_put_pixel(&img, x, y, RED);
+            }
+            p = p + 2*fabs(dy);
+        }
+        else
+        {
+            x = x+sx;
+            y = y+sy;
+            mlx_put_pixel(&img, x, y, RED);
+            p = p + 2*fabs(dy) - 2*fabs(dx);
+        }
+    }
+} */
