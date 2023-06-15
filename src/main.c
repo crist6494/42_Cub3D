@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/15 00:15:38 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/15 20:57:04 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void init_window(t_game *game, char *path)
 {
-	(void)path;
 	game->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	//game->mlx = mlx_init(LINUX_WIDTH, LINUX_HEIGHT, "MLX42", true);
 	if (!game->mlx)
@@ -27,6 +26,7 @@ void init_window(t_game *game, char *path)
 	paint_map(game, game->map, path);
 	//printf("Hola\n");
 	paint_player(game, game->player);
+	//check_collision(game->map, game->player, game->player->square);
 	if (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0)
         error();
 	mlx_key_hook(game->mlx, &hook, (void *)(game));
@@ -46,9 +46,11 @@ int	main(int ac, char **av)
 	t_map map;
 	t_player player;
 	t_game game;
+	t_square square;
 
 	game.player = &player;
 	game.map = &map;
+	game.player->square = &square;
 	if(ac == 3)
 		return(print_error(USAGE_MSG));
 	init_window(&game, av[1]);

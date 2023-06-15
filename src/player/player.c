@@ -6,45 +6,45 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/15 11:36:47 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/15 20:53:33 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-    
-void pos_player_map(t_map *map, t_player *player);
 
 static void init_direction(t_player *player)
 {
     player->direction = malloc(sizeof(t_coord));
-    player->len_dir = 25;
+    player->len_dir = 40;
     player->dir_x = 0.0;
     player->dir_y = (player->len_dir * -1); //-1 pq el eje y es para abajo el positivo
     update_direction(player); //Iniciamos la direcciona de la linea
+    pos_line(player);//Ponemos en que direccion va
 }
 
 void update_direction(t_player *player)
 {
-    insert_coord(player->direction, player->p_center->x + player->dir_x, player->p_center->y + player->dir_y);
+    insert_coord(player->direction, player->square->p_center->x + player->dir_x, player->square->p_center->y + player->dir_y);
 }
 
-void init_player(t_player *player, t_game *game)
+void init_player(t_player *player, t_game *game, t_square *square)
 {
-    player->pos_map = malloc(sizeof(t_coord));
-    *player->pos_map = get_player_pos(game->map);
+   // insert_coord(player->p_center, WIDTH / 2, HEIGHT / 2);//Punto medio
     player->mlx = game->mlx;
     player->img = game->img;
     player->color = YELLOW;
-    player->tam = 7;
-    player->vel_move = 3;
+    player->tam = 8;
+    player->vel_move = 2;
     player->angle = get_player_angle(game->map);
-    player->p_center = malloc(sizeof(t_coord));
-    pos_player_map(game->map, player);
-    printf("Hola\n");
-   // insert_coord(player->p_center, WIDTH / 2, HEIGHT / 2);//Punto medio
-    player->mid_square = malloc(sizeof(t_coord));
-    insert_coord(player->mid_square, player->p_center->x - player->tam / 2, 
-        player->p_center->y - player->tam / 2);//Pintar el cuadrado en medio
+    player->pos_map = malloc(sizeof(t_coord));
+    *player->pos_map = get_player_pos(game->map);
+    square->p_center = malloc(sizeof(t_coord));
+    pos_player_map(game->map, player, square);
+    square->mid_square = malloc(sizeof(t_coord));
+    insert_coord(square->mid_square, player->square->p_center->x - player->tam / 2, 
+        player->square->p_center->y - player->tam / 2);//Pintar el cuadrado en medio
+    square->p_left_down = malloc(sizeof(t_coord));
+    square->p_right_down = malloc(sizeof(t_coord));
     player->p_line = malloc(sizeof(t_point));
     init_direction(player);
 }
@@ -71,12 +71,10 @@ void pos_line(t_player *player)
         player->dir_x = (float)player->len_dir * cos(0);
         player->dir_y = (float)player->len_dir * sin(0);
     }
-    //angle = grades_to_rad(angle);
-    //printf("%d\n", player->angle);
     update_direction(player);
 }
 
-void pos_player_map(t_map *map, t_player *player)
+void pos_player_map(t_map *map, t_player *player, t_square *square)
 {
     float square_x;
     float square_y;
@@ -87,19 +85,8 @@ void pos_player_map(t_map *map, t_player *player)
     square_y = player->pos_map->y * map->lim + map->mid_map->y;
     px = square_x + (map->lim / 2);
     py = square_y + (map->lim / 2);
-    insert_coord(player->p_center, px, py);    
+    insert_coord(square->p_center, px, py);    
     //insert_coord(player->pos_map, px, py);
     //square_paint(player->p_center, 1, RED, player->img);
 }
 
-void paint_player(t_game *game, t_player *player)
-{
-    //clear_map(game->map);
-    init_player(player, game);
-    pos_line(player);
-    init_points(player->p_line, player->p_center, player->direction);//Iniciar linea
-    paint_line(player->p_line, game->img);
-    square_paint(player->mid_square, player->tam, player->color, player->img);
-    //pos_player_map(game->map, game->player);
-    //free_player(game->player);
-}

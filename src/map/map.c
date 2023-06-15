@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/15 11:36:30 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/15 18:10:35 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void init_map(t_map *map, char *path_map)
 	map->len_x = get_len_x(path_map);
 	map->len_y = get_len_y(path_map);
 	map->tour = get_map(map, path_map);
-	map->lim = 30;
+	map->lim = 50;
 	map->width = map->len_x * map->lim;
 	map->height = map->len_y * map->lim;
 	map->mid_map = malloc(sizeof(t_coord));

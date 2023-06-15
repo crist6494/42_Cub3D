@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/14 20:14:37 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/15 20:49:12 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "libft.h"
 #include "MLX42/MLX42.h"
 #include "macros.h"
+//#include "../memory-leaks/include/memory_leaks.h"
 
 /* ---------------------------------------------------------------------------*
 	-------------------------------STRUCTURES---------------------------------
@@ -41,11 +42,17 @@ typedef struct s_point{
 	float	dx;
 }t_point;
 
+typedef struct s_square{
+	t_coord			*p_center;
+	t_coord			*mid_square;
+	t_coord			*p_left_down;
+	t_coord			*p_right_down;	
+}t_square;
+
 typedef struct s_player
 {
-	t_coord			*mid_square;
+	t_square		*square;
 	t_coord			*pos_map;
-	t_coord			*p_center;
 	t_coord			*direction;
 	t_point			*p_line;
 	mlx_image_t		*img;
@@ -55,7 +62,6 @@ typedef struct s_player
 	float			dir_x;
 	float			dir_y;
 	int				len_dir;
-	float			move;
 	int				angle;
 	int				vel_move;
 	float			vel_turn; 
@@ -123,9 +129,19 @@ void	paint_line(t_point *p, mlx_image_t *img);
 
 
 /*------Player---------*/
-void	init_player(t_player *player, t_game *game);
-void	paint_player(t_game *game, t_player *player);
+void init_player(t_player *player, t_game *game, t_square *square);
 void	update_direction(t_player *player);
+void	pos_line(t_player *player);
+void pos_player_map(t_map *map, t_player *player, t_square *square);
+
+
+/*------Player_Paint---------*/
+void	paint_player(t_game *game, t_player *player);
+void	repaint(t_game *game, t_player *player);
+
+/*------Player_Utils---------*/
+float	grades_to_rad(double angle);
+void	free_player(t_player *player);
 
 
 /*--------Movement--------------*/
@@ -134,19 +150,18 @@ void	rotate(t_game *game, t_player *player, int clockwise);
 void	player_lateral(t_game *game, t_player *player, int direction);
 
 
+
 /*-----Hooks-----*/
 void	hook(mlx_key_data_t keydata, void *param);
 void	move_hook(void *param);
 void	hook_screen(int32_t width, int32_t height, void* param);
 
 
+
 /*---------Utils-------------*/
 void	ft_void();
 void	error(void);
 int		print_error(char *msg);
-
-float grades_to_rad(double angle);
-void repaint(t_game *game, t_player *player);
-void free_player(t_player *player);
-
+void	check_collision(t_map *map, t_player *player, t_square *square);
+void	get_square_corner(t_player *player, t_square *square);
 # endif
