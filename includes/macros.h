@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:40:43 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/14 11:40:49 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/15 11:35:32 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 *--------------------------------------------------------------------------- */
 #define RED         0xFF0000FF
 #define GREEN       0x00FF00FF
-#define BLUE        0x0000FFFF
+#define BLUE        0xADD8E6
 #define YELLOW      0xFFFF00FF
 #define CYAN        0x00FFFFFF
 #define MAGENTA     0xFF00FFFF

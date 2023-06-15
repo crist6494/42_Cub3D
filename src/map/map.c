@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/14 20:49:50 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/15 11:36:30 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void create_map(t_game *game, t_map *map, float c_x, float c_y)
 			if(map->tour[y][x] == '1')
 				square_paint(map->m_coord, map->lim, BLACK, game->img);
 			else if(map->tour[y][x] == '0')
-				square_paint(map->m_coord, map->lim, TEAL, game->img);
+				square_paint(map->m_coord, map->lim, GREY, game->img);
 			else if(map->tour[y][x] == 'N' || map->tour[y][x] == 'S' || map->tour[y][x] == 'W' || map->tour[y][x] == 'E')
-				square_paint(map->m_coord, map->lim, TEAL, game->img);
+				square_paint(map->m_coord, map->lim, GREY, game->img);
 			map->m_coord->x += map->lim;
 			x++;
 		} 
