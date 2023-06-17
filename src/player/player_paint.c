@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:24:17 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/15 20:54:16 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:25:53 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ void paint_player(t_game *game, t_player *player)
     paint_line(player->p_line, game->img);
     square_paint(player->square->mid_square, player->tam, player->color, player->img);
 	get_square_corner(player, player->square);
-    //pos_player_map(game->map, game->player);
 }
 
 void repaint(t_game *game, t_player *player)
 {
 	clear_map(game->map);
-	create_map(game, game->map, game->map->mid_map->x, game->map->mid_map->y);
+	create_map(game, game->map, 0, 0);
 	init_points(player->p_line, player->square->p_center, player->direction);//Iniciar linea
     paint_line(player->p_line, game->img);
     square_paint(player->square->mid_square, player->tam, player->color, player->img);

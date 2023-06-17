@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/15 20:49:12 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/16 01:04:15 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,6 @@ void	hook_screen(int32_t width, int32_t height, void* param);
 void	ft_void();
 void	error(void);
 int		print_error(char *msg);
-void	check_collision(t_map *map, t_player *player, t_square *square);
+int check_collision(t_map *map, t_player *player, float advance_x, float advance_y);
 void	get_square_corner(t_player *player, t_square *square);
 # endif

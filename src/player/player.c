@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/15 20:53:33 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:24:45 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void init_direction(t_player *player)
 {
     player->direction = malloc(sizeof(t_coord));
-    player->len_dir = 40;
+    player->len_dir = 30;
     player->dir_x = 0.0;
     player->dir_y = (player->len_dir * -1); //-1 pq el eje y es para abajo el positivo
     update_direction(player); //Iniciamos la direcciona de la linea
@@ -32,7 +32,7 @@ void init_player(t_player *player, t_game *game, t_square *square)
    // insert_coord(player->p_center, WIDTH / 2, HEIGHT / 2);//Punto medio
     player->mlx = game->mlx;
     player->img = game->img;
-    player->color = YELLOW;
+    player->color = WHITE;
     player->tam = 8;
     player->vel_move = 2;
     player->angle = get_player_angle(game->map);
@@ -80,9 +80,8 @@ void pos_player_map(t_map *map, t_player *player, t_square *square)
     float square_y;
     float px;
     float py;
-    
-    square_x = player->pos_map->x * map->lim + map->mid_map->x;
-    square_y = player->pos_map->y * map->lim + map->mid_map->y;
+    square_x = player->pos_map->x * map->lim;
+    square_y = player->pos_map->y * map->lim;
     px = square_x + (map->lim / 2);
     py = square_y + (map->lim / 2);
     insert_coord(square->p_center, px, py);    

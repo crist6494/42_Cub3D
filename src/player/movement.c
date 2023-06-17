@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:03:44 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/15 20:16:03 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:26:43 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,21 @@ void player_advance(t_game *game, t_player *player, int direction)
 	float	advance_x;
 	float	advance_y;
 
+	(void)advance_x;
+	(void)advance_y;
 	angle = ((float)player->angle * M_PI) / 180;
 	if(direction == 1 || direction == -1)
 	{
 		advance_x = (float)direction * cos(angle) * player->vel_move;
 		advance_y = (float)direction * sin(angle) * player->vel_move;
-		player->square->p_center->x += advance_x;
-		player->square->p_center->y += advance_y;
-		update_direction(player);//Actualizamos punto que movemos
+		printf("Avanza_x aqui: %f\n", advance_x);
+		printf("Avanza_y aqui: %f\n", advance_y);
+		if(check_collision(game->map, player, advance_x, advance_y)== 0)
+		{
+			player->square->p_center->x += advance_x;
+			player->square->p_center->y += advance_y;
+			update_direction(player);//Actualizamos punto que movemos
+		}
 	}
 	insert_coord(player->square->mid_square, player->square->p_center->x - player->tam / 2, 
         player->square->p_center->y - player->tam / 2);//Actualizamo el cuadro que pintamos alrededor punto
