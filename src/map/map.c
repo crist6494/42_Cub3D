@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/17 14:16:37 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/17 19:51:05 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void paint_map(t_game *game, t_map *map, char *map_path)
 	(void)game;
 	init_map(map, map_path);
 	clear_map(map);
-	create_map(game, map, 0, 0);
+	create_map(game, map, map->mid_map->x, map->mid_map->y);
 	//create_map(game, map, 50, (WIDTH - map->width) - 50);
 	//free_map(map);
 }

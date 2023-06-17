@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/17 14:24:45 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/17 21:25:21 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void init_player(t_player *player, t_game *game, t_square *square)
         player->square->p_center->y - player->tam / 2);//Pintar el cuadrado en medio
     square->p_left_down = malloc(sizeof(t_coord));
     square->p_right_down = malloc(sizeof(t_coord));
+    square->p_left_up = malloc(sizeof(t_coord));
+    square->p_right_up = malloc(sizeof(t_coord));
     player->p_line = malloc(sizeof(t_point));
     init_direction(player);
 }
@@ -80,6 +82,8 @@ void pos_player_map(t_map *map, t_player *player, t_square *square)
     float square_y;
     float px;
     float py;
+    //square_x = player->pos_map->x * map->lim + map->mid_map->x;
+    //square_y = player->pos_map->y * map->lim + map->mid_map->y;
     square_x = player->pos_map->x * map->lim;
     square_y = player->pos_map->y * map->lim;
     px = square_x + (map->lim / 2);

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/16 01:04:15 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/17 21:27:22 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_square{
 	t_coord			*mid_square;
 	t_coord			*p_left_down;
 	t_coord			*p_right_down;	
+	t_coord			*p_left_up;	
+	t_coord			*p_right_up;	
 }t_square;
 
 typedef struct s_player
@@ -162,6 +164,6 @@ void	hook_screen(int32_t width, int32_t height, void* param);
 void	ft_void();
 void	error(void);
 int		print_error(char *msg);
-int check_collision(t_map *map, t_player *player, float advance_x, float advance_y);
+void		check_collision(t_map *map, t_player *player, float advance_x, float advance_y);
 void	get_square_corner(t_player *player, t_square *square);
 # endif
