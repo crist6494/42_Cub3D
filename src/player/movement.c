@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:03:44 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/17 20:58:39 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/19 20:56:24 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void player_advance(t_game *game, t_player *player, int direction)
 	{
 		advance_x = (float)direction * cos(angle) * player->vel_move;
 		advance_y = (float)direction * sin(angle) * player->vel_move;
+		//player->square->p_center->x += advance_x;
+		//player->square->p_center->y += advance_y;
 		check_collision(game->map, player, advance_x, advance_y);
 	}
 	insert_coord(player->square->mid_square, player->square->p_center->x - player->tam / 2, 
@@ -54,9 +56,10 @@ void player_lateral(t_game *game, t_player *player, int direction)
 		angle = (angle_rotate * M_PI) / 180;
 		advance_x = cos(angle) * (float)player->vel_move;
 		advance_y = sin(angle) * (float)player->vel_move;
+		//player->square->p_center->x += advance_x;
+		//player->square->p_center->y += advance_y;
 		check_collision(game->map, player, advance_x, advance_y);
 	}
-
 	insert_coord(player->square->mid_square, player->square->p_center->x - player->tam / 2, 
         player->square->p_center->y - player->tam / 2);//Actualizamo el cuadro que pintamos alrededor punto
 }

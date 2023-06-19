@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/17 21:25:21 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/19 20:55:50 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void init_player(t_player *player, t_game *game, t_square *square)
     player->img = game->img;
     player->color = WHITE;
     player->tam = 8;
-    player->vel_move = 2;
+    player->vel_move = 1.5;
     player->angle = get_player_angle(game->map);
     player->pos_map = malloc(sizeof(t_coord));
     *player->pos_map = get_player_pos(game->map);

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/17 21:27:22 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/19 20:39:24 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ typedef struct s_player
 	float			dir_y;
 	int				len_dir;
 	int				angle;
-	int				vel_move;
-	float			vel_turn; 
+	float			vel_move;
 }t_player;
 
 typedef struct s_map{
@@ -166,4 +165,16 @@ void	error(void);
 int		print_error(char *msg);
 void		check_collision(t_map *map, t_player *player, float advance_x, float advance_y);
 void	get_square_corner(t_player *player, t_square *square);
+
+
+int check_left_down_p(t_player * player, t_map *map, float advance_x, float advance_y);
+int check_right_down_p(t_player * player, t_map *map, float advance_x, float advance_y);
+int check_left_up_p(t_player * player, t_map *map, float advance_x, float advance_y);
+int check_right_up_p(t_player * player, t_map *map, float advance_x, float advance_y);
+
+float check_up_collision(t_player *player, t_map *map, float advance_x, float advance_y);
+float check_down_collision(t_player *player, t_map *map, float advance_x, float advance_y);
+float check_left_collision(t_player *player, t_map *map, float advance_x, float advance_y);
+float check_right_collision(t_player *player, t_map *map, float advance_x, float advance_y);
+
 # endif

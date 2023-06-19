@@ -6,32 +6,25 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:59:10 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/17 22:59:37 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/19 20:44:36 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int check_collision_vertical(t_map *map, t_player *player, float advance_x, float advance_y);
-int check_collision_horizontal(t_map *map, t_player *player, float advance_x, float advance_y);
+void check_collision_vertical(t_map *map, t_player *player, float advance_x, float advance_y);
+void check_collision_horizontal(t_map *map, t_player *player, float advance_x, float advance_y);
+void check_collision_diagonal(t_map *map, t_player *player, float advance_x, float advance_y);
 
 void check_collision(t_map *map, t_player *player, float advance_x, float advance_y)
 {
-	(void)player;
-	(void)map;
 	if((int)advance_x == 0 && (int)advance_y != 0)
-	{
-		if(check_collision_vertical(map, player, advance_x, advance_y) == -1)
-			return ;
-	}
+		check_collision_vertical(map, player, advance_x, advance_y);
 	else if((int)advance_x != 0 && (int)advance_y == 0)
-	{
-		if(check_collision_horizontal(map, player, advance_x, advance_y) == -1)
-			return ;
-	}
-	player->square->p_center->x += advance_x;
-	player->square->p_center->y += advance_y;
-	update_direction(player);//Actualizamos punto que movemos
+		check_collision_horizontal(map, player, advance_x, advance_y);
+	else if((int)advance_x != 0 && (int)advance_y != 0)
+		check_collision_diagonal(map, player, advance_x, advance_y);
+	//update_direction(player);//Actualizamos punto que movemos
 }
 
 /* 	printf("\n");
@@ -47,116 +40,52 @@ void check_collision(t_map *map, t_player *player, float advance_x, float advanc
 	printf("Pos:%d\n", (int)aux_y / (int)map->lim); */
 
 
-int check_left_down_p(t_player * player, t_map *map, float advance_x, float advance_y)
+void check_collision_vertical(t_map *map, t_player *player, float advance_x, float advance_y)
 {
-	float aux_x;
-	float aux_y;
+	float py;
 
-	aux_x = player->square->p_left_down->x + advance_x;
-	aux_y = player->square->p_left_down->y + advance_y;
-	if(map->tour[(int)aux_y / (int)map->lim][(int)aux_x / (int)map->lim] == '1')
+	py = 0;
+	if(advance_y < 0)
 	{
-		printf("Entra izquierda abajo\n");
-		return (-1);
+		py = check_up_collision(player, map, advance_x, advance_y);
 	}
-	return (0);
-}
-
-int check_right_down_p(t_player * player, t_map *map, float advance_x, float advance_y)
-{
-	float aux_x;
-	float aux_y;
-
-	aux_x = player->square->p_right_down->x + advance_x;
-	aux_y = player->square->p_right_down->y + advance_y;
-	if(map->tour[(int)aux_y / (int)map->lim][(int)aux_x / (int)map->lim] == '1')
-	{
-		printf("Entra derecha abajo\n");
-		return (-1);
-	}
-	return (0);
+	else
+		py = check_down_collision(player, map, advance_x, advance_y);
+	player->square->p_center->y = py;
 }
 
 
-
-
-int check_left_up_p(t_player * player, t_map *map, float advance_x, float advance_y)
+void check_collision_horizontal(t_map *map, t_player *player, float advance_x, float advance_y)
 {
-	float aux_x;
-	float aux_y;
-
-	aux_x = player->square->p_left_up->x + advance_x;
-	aux_y = player->square->p_left_up->y + advance_y;
-	if(map->tour[(int)aux_y / (int)map->lim][(int)aux_x / (int)map->lim] == '1')
-	{
-		printf("Entra izquierda arriba\n");
-		return (-1);
-	}
-	return (0);
+	float px;
+	px = 0;
+	if(advance_x < 0)
+		px = check_left_collision(player, map, advance_x, advance_y);
+	else
+		px = check_right_collision(player, map, advance_x, advance_y);
+	player->square->p_center->x = px;
 }
 
-
-int check_right_up_p(t_player * player, t_map *map, float advance_x, float advance_y)
+void check_collision_diagonal(t_map *map, t_player *player, float advance_x, float advance_y)
 {
-	float aux_x;
-	float aux_y;
-
-	aux_x = player->square->p_right_up->x + advance_x;
-	aux_y = player->square->p_right_up->y + advance_y;
-	if(map->tour[(int)aux_y / (int)map->lim][(int)aux_x / (int)map->lim] == '1')
+	if (advance_x < 0 && advance_y < 0)
 	{
-		printf("Entra derecha arriba\n");
-		return (-1);
+		player->square->p_center->x = check_left_collision(player, map, advance_x, advance_y);
+		player->square->p_center->y = check_up_collision(player, map, advance_x, advance_y);
 	}
-	return (0);
-}
-
-
-int check_collision_vertical(t_map *map, t_player *player, float advance_x, float advance_y)
-{
-	//float aux_x;
-	//float aux_y;
-
-	//aux_x = player->square->p_center->x + advance_x + (player->tam / 2);
-	//aux_y = player->square->p_center->y + advance_y + (player->tam / 2);
-	if(check_right_down_p(player, map, advance_x, advance_y) == -1
-		&&check_left_down_p(player, map, advance_x, advance_y) == -1)
+	else if (advance_x > 0 && advance_y < 0)
 	{
-		printf("Entra aqui\n");
-		return (-1);
+		player->square->p_center->x = check_right_collision(player, map, advance_x, advance_y);
+		player->square->p_center->y = check_up_collision(player, map, advance_x, advance_y);
 	}
-	else if(check_right_up_p(player, map, advance_x, advance_y) == -1
-		&&check_left_up_p(player, map, advance_x, advance_y) == -1)
+	else if (advance_x > 0 && advance_y > 0)
 	{
-		printf("\n");
-		printf("Entra aqui\n");
-		return (-1);
+		player->square->p_center->x = check_right_collision(player, map, advance_x, advance_y);
+		player->square->p_center->y = check_down_collision(player, map, advance_x, advance_y);
 	}
-
-	return (0);
-}
-
-
-int check_collision_horizontal(t_map *map, t_player *player, float advance_x, float advance_y)
-{
-	//float aux_x;
-	//float aux_y;
-
-	//aux_x = player->square->p_center->x + advance_x + (player->tam / 2);
-	//aux_y = player->square->p_center->y + advance_y + (player->tam / 2);
-	if(check_right_up_p(player, map, advance_x, advance_y) == -1
-		&&check_right_down_p(player, map, advance_x, advance_y) == -1)
+	else if (advance_x < 0 && advance_y > 0)
 	{
-		printf("Entra aqui\n");
-		return (-1);
+		player->square->p_center->x = check_left_collision(player, map, advance_x, advance_y);
+		player->square->p_center->y = check_down_collision(player, map, advance_x, advance_y);
 	}
-	else if(check_left_up_p(player, map, advance_x, advance_y) == -1
-		&&check_left_down_p(player, map, advance_x, advance_y) == -1)
-	{
-		printf("\n");
-		printf("Entra aqui\n");
-		return (-1);
-	}
-
-	return (0);
 }

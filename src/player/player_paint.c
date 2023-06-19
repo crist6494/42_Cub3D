@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:24:17 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/17 22:28:13 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/19 20:55:34 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void repaint(t_game *game, t_player *player)
     paint_line(player->p_line, game->img);
     square_paint(player->square->mid_square, player->tam, player->color, player->img);
 	get_square_corner(player, player->square);
+	update_direction(player);//actualizamos
 }
 
 void get_square_corner(t_player *player, t_square *square)
