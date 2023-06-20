@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:59:10 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/19 23:40:02 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:35:20 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void check_collision_diagonal(t_map *map, t_player *player, float advance_x, flo
 
 void check_collision(t_map *map, t_player *player, float advance_x, float advance_y)
 {
-	printf("Avanza x: %f\n", advance_x);
-	printf("Avanza y: %f\n", advance_y);
+	//printf("Avanza x: %f\n", advance_x);
+	//printf("Avanza y: %f\n", advance_y);
 	
 	float tolerance = 0.0001;  // Tolerancia pequeña para saber que de cerca esta del 0 y lo comparamos con el valor absoluto
 	

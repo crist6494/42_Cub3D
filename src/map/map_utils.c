@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:25:01 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/14 20:23:03 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/20 18:58:45 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void map_print(t_map *map)
 {
-	//printf("Hola\n");
 	unsigned int y;
 	y = 0;
 	while(y < map->len_y)

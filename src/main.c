@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/17 14:25:58 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:43:05 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void init_window(t_game *game, char *path)
 {
 	game->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
-	//game->mlx = mlx_init(LINUX_WIDTH, LINUX_HEIGHT, "MLX42", true);
 	if (!game->mlx)
         error();
 	mlx_set_window_limit(game->mlx, 1000, 1000, WIDTH, HEIGHT);
@@ -24,9 +23,7 @@ void init_window(t_game *game, char *path)
 	if (!game->img)
 		error();
 	paint_map(game, game->map, path);
-	//printf("Hola\n");
 	paint_player(game, game->player);
-	//check_collision(game->map, game->player, game->player->square);
 	if (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0)
         error();
 	mlx_key_hook(game->mlx, &hook, (void *)(game));

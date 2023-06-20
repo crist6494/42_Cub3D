@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:03:44 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/19 23:06:00 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/20 19:14:08 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,21 @@
 
 void player_advance(t_game *game, t_player *player, int direction)
 {
-	(void)game;
 	float	angle;
 	float	advance_x;
 	float	advance_y;
 
-	(void)advance_x;
-	(void)advance_y;
 	angle = ((float)player->angle * M_PI) / 180;
 	if(direction == 1 || direction == -1)
 	{
 		advance_x = (float)direction * cos(angle) * player->vel_move;
 		advance_y = (float)direction * sin(angle) * player->vel_move;
-		//player->square->p_center->x += advance_x;
-		//player->square->p_center->y += advance_y;
 		check_collision(game->map, player, advance_x, advance_y);
 	}
-	insert_coord(player->square->mid_square, player->square->p_center->x - player->tam / 2, 
-        player->square->p_center->y - player->tam / 2);//Actualizamo el cuadro que pintamos alrededor punto
 }
 
 void player_lateral(t_game *game, t_player *player, int direction)
 {
-	(void)game;
 	float	angle;
 	float	advance_x;
 	float	advance_y;
@@ -50,18 +42,13 @@ void player_lateral(t_game *game, t_player *player, int direction)
 		angle_rotate = (float)player->angle - 90;
 	if(direction == 1)
 		angle_rotate = (float)player->angle + 90;
-
 	if(direction == 1 || direction == -1)
 	{
 		angle = (angle_rotate * M_PI) / 180;
 		advance_x = cos(angle) * (float)player->vel_move;
 		advance_y = sin(angle) * (float)player->vel_move;
-		//player->square->p_center->x += advance_x;
-		//player->square->p_center->y += advance_y;
 		check_collision(game->map, player, advance_x, advance_y);
 	}
-	insert_coord(player->square->mid_square, player->square->p_center->x - player->tam / 2, 
-        player->square->p_center->y - player->tam / 2);//Actualizamo el cuadro que pintamos alrededor punto
 }
 
 //CLockwise = 1  12-3-6-9-12
@@ -80,6 +67,7 @@ void rotate(t_game *game, t_player *player, int clockwise)
 		player->angle = 360 + player->angle;
 	else if (player->angle > 360)
 		player->angle = player->angle % 360;
+	printf("Angulo: %d\n", player->angle);
 	angle = grades_to_rad((float)player->angle);
 	if(clockwise == 1 || clockwise == -1)
 	{
