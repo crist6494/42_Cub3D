@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:59:10 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/19 20:44:36 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/19 23:40:02 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,26 @@ void check_collision_diagonal(t_map *map, t_player *player, float advance_x, flo
 
 void check_collision(t_map *map, t_player *player, float advance_x, float advance_y)
 {
-	if((int)advance_x == 0 && (int)advance_y != 0)
-		check_collision_vertical(map, player, advance_x, advance_y);
-	else if((int)advance_x != 0 && (int)advance_y == 0)
-		check_collision_horizontal(map, player, advance_x, advance_y);
-	else if((int)advance_x != 0 && (int)advance_y != 0)
+	printf("Avanza x: %f\n", advance_x);
+	printf("Avanza y: %f\n", advance_y);
+	
+	float tolerance = 0.0001;  // Tolerancia pequeña para saber que de cerca esta del 0 y lo comparamos con el valor absoluto
+	
+	if (fabs(advance_x) > tolerance && fabs(advance_y) > tolerance)
+	{
+		printf("Entra diagonal\n");
 		check_collision_diagonal(map, player, advance_x, advance_y);
-	//update_direction(player);//Actualizamos punto que movemos
+	}
+	else if (fabs(advance_x) <= tolerance && fabs(advance_y) > tolerance)
+	{
+		printf("Entra vertical\n");
+		check_collision_vertical(map, player, advance_x, advance_y);
+	}
+	else if (fabs(advance_x) > tolerance && fabs(advance_y) <= tolerance)
+	{
+		printf("Entra horizontal\n");
+		check_collision_horizontal(map, player, advance_x, advance_y);
+	}
 }
 
 /* 	printf("\n");
@@ -46,9 +59,7 @@ void check_collision_vertical(t_map *map, t_player *player, float advance_x, flo
 
 	py = 0;
 	if(advance_y < 0)
-	{
 		py = check_up_collision(player, map, advance_x, advance_y);
-	}
 	else
 		py = check_down_collision(player, map, advance_x, advance_y);
 	player->square->p_center->y = py;

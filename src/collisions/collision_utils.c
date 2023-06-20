@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 17:43:10 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/19 19:32:57 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/19 22:49:00 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int check_left_down_p(t_player * player, t_map *map, float advance_x, float adva
 		printf("Coord y: %f\n", aux_y);
 		printf("Coord x: %d\n", (int)aux_x);
 		printf("Coord y: %d\n", (int)aux_y); */
-		printf("Entra izquierda abajo\n");
+		//printf("Entra izquierda abajo\n");
 		return (-1);
 	}
 	return (0);
@@ -44,7 +44,7 @@ int check_right_down_p(t_player * player, t_map *map, float advance_x, float adv
 		printf("Coord y: %f\n", aux_y);
 		printf("Coord x: %d\n", (int)aux_x);
 		printf("Coord y: %d\n", (int)aux_y); */
-		printf("Entra derecha abajo\n");
+		//printf("Entra derecha abajo\n");
 		return (-1);
 	}
 	return (0);
@@ -64,7 +64,7 @@ int check_left_up_p(t_player * player, t_map *map, float advance_x, float advanc
 		printf("Coord y: %f\n", aux_y);
 		printf("Coord x: %d\n", (int)aux_x);
 		printf("Coord y: %d\n", (int)aux_y); */
-		printf("Entra izquierda arriba\n");
+		//printf("Entra izquierda arriba\n");
 		return (-1);
 	}
 	return (0);
@@ -84,7 +84,7 @@ int check_right_up_p(t_player * player, t_map *map, float advance_x, float advan
 		printf("Coord y: %f\n", aux_y);
 		printf("Coord x: %d\n", (int)aux_x);
 		printf("Coord y: %d\n", (int)aux_y); */
-		printf("Entra derecha arriba\n");
+		//printf("Entra derecha arriba\n");
 		return (-1);
 	}
 	return (0);
