@@ -6,7 +6,7 @@
 #    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/06/19 18:22:54 by cmorales         ###   ########.fr        #
+#    Updated: 2023/06/21 19:02:17 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,12 +50,14 @@ PLAYER = player movement player_utils player_paint
 HOOKS = hooks
 PAINT = paint line
 COLLISIONS = collisions collision_utils collision_sides
+RAYCASTING = raycasting
 
 SRCS = 	$(addsuffix .c, $(addprefix map/, $(MAP))) \
 		$(addsuffix .c, $(addprefix hooks/, $(HOOKS))) \
 		$(addsuffix .c, $(addprefix paint/, $(PAINT))) \
 		$(addsuffix .c, $(addprefix player/, $(PLAYER))) \
 		$(addsuffix .c, $(addprefix collisions/, $(COLLISIONS))) \
+		$(addsuffix .c, $(addprefix raycasting/, $(RAYCASTING))) \
 		utils.c \
 		main.c \
 
@@ -99,6 +101,7 @@ obj:
 	@mkdir -p $(OBJ_DIR)/paint
 	@mkdir -p $(OBJ_DIR)/player
 	@mkdir -p $(OBJ_DIR)/collisions
+	@mkdir -p $(OBJ_DIR)/raycasting
 
 lib:
 	@make -C ./libft

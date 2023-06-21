@@ -6,13 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:58:10 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/15 11:28:06 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/21 21:11:09 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void    paint_loop(t_point *p, mlx_image_t *img, int isSwaped);
+static void    paint_loop(t_point *p, mlx_image_t *img, int isSwaped, uint32_t color);
 
 static int sign(int d)
 {
@@ -34,7 +34,7 @@ static void swap(float *dx, float *dy)
     *dy = aux;
 }
 
-void paint_line(t_point *p, mlx_image_t *img)
+void paint_line(t_point *p, mlx_image_t *img, uint32_t color)
 {
     int isSwaped;
     
@@ -51,11 +51,11 @@ void paint_line(t_point *p, mlx_image_t *img)
         swap(&p->dx, &p->dy);
         isSwaped = 1;
     }
-    mlx_put_pixel(img, p->x, p->y, RED);
-    paint_loop(p, img, isSwaped);
+    mlx_put_pixel(img, p->x, p->y, color);
+    paint_loop(p, img, isSwaped, color);
 } 
 
-static void    paint_loop(t_point *p, mlx_image_t *img, int isSwaped)
+static void paint_loop(t_point *p, mlx_image_t *img, int isSwaped, uint32_t color)
 {
     int i;
     float err;
@@ -69,14 +69,14 @@ static void    paint_loop(t_point *p, mlx_image_t *img, int isSwaped)
                 p->x += p->sx;
             else
                 p->y += p->sy;
-            mlx_put_pixel(img, p->x, p->y, RED);
+            mlx_put_pixel(img, p->x, p->y, color);
             err +=  2 * fabs(p->dy);
         }
         else
         {
             p->x += p->sx;
             p->y += p->sy;
-            mlx_put_pixel(img, p->x, p->y, RED);
+            mlx_put_pixel(img, p->x, p->y, color);
             err += 2 * fabs(p->dy) - 2 * fabs(p->dx);
         }
         i++;

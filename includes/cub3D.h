@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/19 20:39:24 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/21 21:08:44 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,21 @@ typedef struct s_map{
 	char			**tour;
 }t_map;
 
+typedef struct s_ray
+{
+	int				down;
+	int				left;
+	float			rads_angle;
+	t_coord			*wallHitHorizontal;
+}t_ray;
+
 typedef struct s_game
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	t_player	*player;	
 	t_map		*map;
+	t_ray		*ray;
 }t_game;
 
 /* ---------------------------------------------------------------------------*
@@ -125,15 +134,15 @@ t_coord get_player_pos(t_map *map);
 void	insert_coord(t_coord *c, float x, float y);
 void	init_points(t_point *p, t_coord *c, t_coord *c1);
 void	square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img);
-void	paint_line(t_point *p, mlx_image_t *img);
+void paint_line(t_point *p, mlx_image_t *img, uint32_t color);
 
 
 
 /*------Player---------*/
-void init_player(t_player *player, t_game *game, t_square *square);
+void	init_player(t_player *player, t_game *game, t_square *square);
 void	update_direction(t_player *player);
 void	pos_line(t_player *player);
-void pos_player_map(t_map *map, t_player *player, t_square *square);
+void	pos_player_map(t_map *map, t_player *player, t_square *square);
 
 
 /*------Player_Paint---------*/
@@ -141,7 +150,7 @@ void	paint_player(t_game *game, t_player *player);
 void	repaint(t_game *game, t_player *player);
 
 /*------Player_Utils---------*/
-float	grades_to_rad(double angle);
+float	grades_to_rad(float angle);
 void	free_player(t_player *player);
 
 
@@ -163,18 +172,22 @@ void	hook_screen(int32_t width, int32_t height, void* param);
 void	ft_void();
 void	error(void);
 int		print_error(char *msg);
-void		check_collision(t_map *map, t_player *player, float advance_x, float advance_y);
+void	check_collision(t_map *map, t_player *player, float advance_x, float advance_y);
 void	get_square_corner(t_player *player, t_square *square);
 
+/*---------Collisions_sides-------------*/
+int		check_left_down_p(t_player * player, t_map *map, float advance_x, float advance_y);
+int		check_right_down_p(t_player * player, t_map *map, float advance_x, float advance_y);
+int		check_left_up_p(t_player * player, t_map *map, float advance_x, float advance_y);
+int		check_right_up_p(t_player * player, t_map *map, float advance_x, float advance_y);
 
-int check_left_down_p(t_player * player, t_map *map, float advance_x, float advance_y);
-int check_right_down_p(t_player * player, t_map *map, float advance_x, float advance_y);
-int check_left_up_p(t_player * player, t_map *map, float advance_x, float advance_y);
-int check_right_up_p(t_player * player, t_map *map, float advance_x, float advance_y);
 
-float check_up_collision(t_player *player, t_map *map, float advance_x, float advance_y);
-float check_down_collision(t_player *player, t_map *map, float advance_x, float advance_y);
-float check_left_collision(t_player *player, t_map *map, float advance_x, float advance_y);
-float check_right_collision(t_player *player, t_map *map, float advance_x, float advance_y);
+/*---------Collisions_utils-------------*/
+float	check_up_collision(t_player *player, t_map *map, float advance_x, float advance_y);
+float	check_down_collision(t_player *player, t_map *map, float advance_x, float advance_y);
+float	check_left_collision(t_player *player, t_map *map, float advance_x, float advance_y);
+float	check_right_collision(t_player *player, t_map *map, float advance_x, float advance_y);
 
+void	init_ray(t_ray *data, float angle);
+void	raycast(t_game *game, t_player *player, t_ray *ray);
 # endif

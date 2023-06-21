@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/20 17:43:05 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/21 18:55:51 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ int	main(int ac, char **av)
 	t_player player;
 	t_game game;
 	t_square square;
+	t_ray ray;
 
 	game.player = &player;
 	game.map = &map;
 	game.player->square = &square;
+	game.ray = &ray;
 	if(ac == 3)
 		return(print_error(USAGE_MSG));
 	init_window(&game, av[1]);

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:03:44 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/20 19:14:08 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/21 19:30:02 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,11 @@ void rotate(t_game *game, t_player *player, int clockwise)
 		player->angle = 360 + player->angle;
 	else if (player->angle > 360)
 		player->angle = player->angle % 360;
-	printf("Angulo: %d\n", player->angle);
+	//printf("Angulo: %d\n", player->angle);
 	angle = grades_to_rad((float)player->angle);
+	//init_ray(game->ray, (float)player->angle);
+	//printf("Abajo: %d\n", game->ray->down);
+	//printf("Izquierda: %d\n", game->ray->left);
 	if(clockwise == 1 || clockwise == -1)
 	{
 		player->dir_x = (float)player->len_dir * cos(angle);

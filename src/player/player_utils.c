@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 19:50:11 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/15 20:56:37 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/21 19:22:10 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void free_player(t_player *player)
 	free(player->square->p_right_down);
 }
 
-float grades_to_rad(double angle)
+float grades_to_rad(float angle)
 {
 	float res;
 

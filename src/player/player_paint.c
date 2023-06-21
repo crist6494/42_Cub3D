@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:24:17 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/20 18:57:05 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/21 22:50:24 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ void paint_player(t_game *game, t_player *player)
 {
     init_player(player, game, player->square);
     init_points(player->p_line, player->square->p_center, player->direction);//Iniciar linea
-    paint_line(player->p_line, game->img);
+    paint_line(player->p_line, game->img, WHITE);
     square_paint(player->square->mid_square, player->tam, player->color, player->img);
 	get_square_corner(player, player->square);
+	raycast(game, player, game->ray);
 }
 
 void repaint(t_game *game, t_player *player)
@@ -29,7 +30,8 @@ void repaint(t_game *game, t_player *player)
 	create_map(game, game->map, 0, 0);
 	//create_map(game, game->map, game->map->mid_map->x, game->map->mid_map->y);
 	init_points(player->p_line, player->square->p_center, player->direction);//Iniciar linea
-    paint_line(player->p_line, game->img);
+    paint_line(player->p_line, game->img, WHITE);
+	raycast(game, player, game->ray);
 	insert_coord(player->square->mid_square, player->square->p_center->x - player->tam / 2, 
         player->square->p_center->y - player->tam / 2);//Actualizamos cuadrado
     square_paint(player->square->mid_square, player->tam, player->color, player->img);
