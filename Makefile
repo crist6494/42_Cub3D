@@ -6,7 +6,7 @@
 #    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/06/21 19:02:17 by cmorales         ###   ########.fr        #
+#    Updated: 2023/06/22 11:40:09 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ PLAYER = player movement player_utils player_paint
 HOOKS = hooks
 PAINT = paint line
 COLLISIONS = collisions collision_utils collision_sides
-RAYCASTING = raycasting
+RAYCASTING = raycasting raycast_horizontal raycast_vertical
 
 SRCS = 	$(addsuffix .c, $(addprefix map/, $(MAP))) \
 		$(addsuffix .c, $(addprefix hooks/, $(HOOKS))) \
