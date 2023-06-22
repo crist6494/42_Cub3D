@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/22 11:40:25 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:57:27 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,5 +190,7 @@ float	check_right_collision(t_player *player, t_map *map, float advance_x, float
 
 void	init_ray(t_ray *data, float angle);
 void	raycast(t_game *game, t_player *player, t_ray *ray);
-void	raycast_horizonal(t_map *map, t_player *player, t_ray *ray);
+void	raycast_horizonal(t_map *map, t_player *player, t_ray *ray, t_coord *wallHitHorizontal);
+void	raycast_vertical(t_map *map, t_player *player, t_ray *ray, t_coord *wallHitVertical);
+
 # endif

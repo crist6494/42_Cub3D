@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:59:10 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/20 17:35:20 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/22 16:45:24 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ void check_collision(t_map *map, t_player *player, float advance_x, float advanc
 	
 	if (fabs(advance_x) > tolerance && fabs(advance_y) > tolerance)
 	{
-		printf("Entra diagonal\n");
+		//printf("Entra diagonal\n");
 		check_collision_diagonal(map, player, advance_x, advance_y);
 	}
 	else if (fabs(advance_x) <= tolerance && fabs(advance_y) > tolerance)
 	{
-		printf("Entra vertical\n");
+		//printf("Entra vertical\n");
 		check_collision_vertical(map, player, advance_x, advance_y);
 	}
 	else if (fabs(advance_x) > tolerance && fabs(advance_y) <= tolerance)
 	{
-		printf("Entra horizontal\n");
+		//printf("Entra horizontal\n");
 		check_collision_horizontal(map, player, advance_x, advance_y);
 	}
 }
