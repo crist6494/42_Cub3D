@@ -6,11 +6,24 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:56:15 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/22 21:14:34 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/26 11:30:27 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+float	normalize_angle(float angle)
+{
+	//float	new_angle;
+
+	//new_angle = angle;
+	//ºprintf("Entra\n");
+	if (angle < 0)
+		angle = 360 + angle;
+	else if (angle > 360)
+		angle = angle - 360;
+	return (angle);
+}
 
 void init_ray(t_ray *data, float angle)
 {
@@ -32,8 +45,8 @@ float distance(float px0, float py0, float px1, float py1)
 	float distance_y;
 	float distance;
 
-	distance_x = pow(px1 - px0, 2);
-	distance_y = pow(py1 - py0, 2);
+	distance_x = pow(px0 - px1, 2);
+	distance_y = pow(py0 - py1, 2);
 	distance = sqrt(distance_x + distance_y);
 	return (distance);
 }
@@ -44,8 +57,10 @@ void raycast(t_game *game, t_player *player, t_ray *ray)
 	t_coord wallHitVertical;
 	float	distance_horizontal;
 	float	distance_vertical;
+	float angle;
 
-	init_ray(ray, player->angle);
+	angle = normalize_angle(player->angle);
+	init_ray(ray, angle);
 	raycast_horizonal(game->map, player, ray, &wallHitHorizontal);
 	raycast_vertical(game->map, player, ray, &wallHitVertical);
 	distance_horizontal = distance(player->square->p_center->x, player->square->p_center->y, wallHitHorizontal.x, wallHitHorizontal.y);
@@ -59,12 +74,8 @@ void raycast(t_game *game, t_player *player, t_ray *ray)
 		printf("Entra Horizontal\n\n");
 		printf("Angle: %d\n", player->angle);
 		printf("Angle: %f\n", ray->rads_angle);
-		printf("Left: %d\n", ray->left);
-		printf("Down: %d\n", ray->down);
 		printf("wallHitHorizontal_x: %f\n", wallHitHorizontal.x);
 		printf("wallHitHorizontal_y: %f\n", wallHitHorizontal.y);
-		printf("Px: %f\n", player->square->p_center->x);
-		printf("Py: %f\n", player->square->p_center->y);
 		init_points(player->p_line, player->square->p_center, &wallHitHorizontal);//Iniciar linea
 		paint_line(player->p_line, game->img, RED);
 	}
@@ -78,11 +89,7 @@ void raycast(t_game *game, t_player *player, t_ray *ray)
 		printf("Angle: %f\n", ray->rads_angle);
 		printf("wallHitVertical_x: %f\n", wallHitVertical.x);
 		printf("wallHitVertical_y: %f\n", wallHitVertical.y);
-		printf("Px: %f\n", player->square->p_center->x);
-		printf("Py: %f\n", player->square->p_center->y);
-		printf("Left: %d\n", ray->left);
-		printf("Down: %d\n", ray->down);
-		init_points(player->p_line, player->square->p_center, &wallHitVertical);//Iniciar linea
+		init_points(player->p_line, player->square->p_center, player->square->p_center);//Iniciar linea
 		paint_line(player->p_line, game->img, RED);
-	} 
+	}
 }
