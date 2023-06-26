@@ -6,11 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:39:18 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/26 11:37:48 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:08:08 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	horizontal_ray_cast_loop(t_map *map, t_coord *wall_hit_horizontal, t_coord *step, t_ray *data);
 
 void raycast_horizonal(t_map *map, t_player *player, t_ray *ray, t_coord *wallHitHorizontal)
 {
@@ -30,7 +32,45 @@ void raycast_horizonal(t_map *map, t_player *player, t_ray *ray, t_coord *wallHi
 	step.y = map->lim;
 	step.x = map->lim / (float)tan(ray->rads_angle);
 	
-	printf("\n");
+
+	wallHitHorizontal->x = x_intercept;
+	wallHitHorizontal->y = y_intercept;
+	
+	step.x = -step.x;
+	if (ray->down == 0)
+		step.y = -step.y;
+	if (ray->down == 1)
+		step.x = -step.x;
+		
+	horizontal_ray_cast_loop(map, wallHitHorizontal, &step, ray);
+}
+
+void	horizontal_ray_cast_loop(t_map *map, t_coord *wall_hit_horizontal, t_coord *step, t_ray *data)
+{
+	int	horizontal_hit;
+
+	horizontal_hit = 0;
+	printf("%d\n", map->len_x);
+	printf("%d\n", map->len_y);
+	printf("%d\n", map->width);
+	printf("%d\n", map->height);
+	while (horizontal_hit == 0
+		&& wall_hit_horizontal->x < (float)(map->width)
+		&& wall_hit_horizontal->x > 1.0 && wall_hit_horizontal->y > 1.0
+		&& wall_hit_horizontal->y < (float)(map->height))
+	{
+		if (map->tour[(int)wall_hit_horizontal->y / (int)map->lim][(int)wall_hit_horizontal->x / (int)map->lim] == '1' 
+			|| (data->down == 0 && map->tour[(int)(wall_hit_horizontal->y - 1)/ (int)map->lim][((int)wall_hit_horizontal->x) / (int)map->lim] == '1'))
+			horizontal_hit = 1;
+		else
+		{
+			wall_hit_horizontal->x += step->x;
+			wall_hit_horizontal->y += step->y;
+		}
+	}
+}
+
+/* 	printf("\n");
 	printf("P_x: %f\n", player->square->p_center->x);
 	printf("P_y: %f\n", player->square->p_center->y);
 	printf("Tangente: %f\n", (float)tan(ray->rads_angle));
@@ -39,36 +79,4 @@ void raycast_horizonal(t_map *map, t_player *player, t_ray *ray, t_coord *wallHi
 	printf("y_intercept: %f\n", y_intercept);
 	printf("step_x: %f\n", step.x);
 	printf("step_y: %f\n", step.y);
-	printf("\n--------------------------------------\n");
-
-	wallHitHorizontal->x = x_intercept;
-	wallHitHorizontal->y = y_intercept;
-	
-	step.x = -step.x;
-	if(ray->down == 0)
-		step.y = -step.y;
-	if((ray->left == 1 && step.x > 0) || (ray->left == 0 && step.x < 0))
-		step.x = -step.x;	
-		
-	while(horizontal_hit == 0
-		&&wallHitHorizontal->x < (float) map->len_x * map->width
-		&&wallHitHorizontal->x > 1.0
-		&&wallHitHorizontal->y > 1.0
-		&&wallHitHorizontal->y < (float) map->len_y * map->height )
-	{
-		int box_x = (int)wallHitHorizontal->x / (int)map->lim;
-		int box_y = (int)wallHitHorizontal->y / (int)map->lim;
-		int box_x1 = ((int)wallHitHorizontal->x ) / (int)map->lim;
-		int box_y1 = ((int)wallHitHorizontal->y - 1) / (int)map->lim;
-		if((map->tour[box_y][box_x] == '1') || (ray->down == 0 && map->tour[box_y1][box_x1] == '1'))
-		{
-			//printf("Entra_h\n");
-			horizontal_hit = 1;
-		}
-		else
-		{
-			wallHitHorizontal->x += step.x;
-			wallHitHorizontal->y += step.y;
-		}	 
-	}
-}
+	printf("\n--------------------------------------\n"); */

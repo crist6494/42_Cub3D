@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:56:15 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/26 11:30:27 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/26 17:57:56 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ float	normalize_angle(float angle)
 
 void init_ray(t_ray *data, float angle)
 {
-	data->wallHitHorizontal = malloc(sizeof(t_coord));
 	//Sacamos direccion que se mueve el rayo
 	data->down = 0;
 	data->left = 0;
@@ -44,6 +43,12 @@ float distance(float px0, float py0, float px1, float py1)
 	float distance_x;
 	float distance_y;
 	float distance;
+
+	printf("Inicio_x: %f\n", px0);
+	printf("Inicio_y: %f\n", py0);
+	printf("Final_x: %f\n", px1);
+	printf("Final_y: %f\n", py1);
+
 
 	distance_x = pow(px0 - px1, 2);
 	distance_y = pow(py0 - py1, 2);
@@ -71,25 +76,22 @@ void raycast(t_game *game, t_player *player, t_ray *ray)
 	printf("\n");
 	if(distance_horizontal <= distance_vertical)
 	{
-		printf("Entra Horizontal\n\n");
+		/* printf("Entra Horizontal\n\n");
 		printf("Angle: %d\n", player->angle);
 		printf("Angle: %f\n", ray->rads_angle);
 		printf("wallHitHorizontal_x: %f\n", wallHitHorizontal.x);
-		printf("wallHitHorizontal_y: %f\n", wallHitHorizontal.y);
+		printf("wallHitHorizontal_y: %f\n", wallHitHorizontal.y); */
 		init_points(player->p_line, player->square->p_center, &wallHitHorizontal);//Iniciar linea
 		paint_line(player->p_line, game->img, RED);
 	}
-	//printf("%d\n", (int)wallHitVertical.x);
-	//printf("%d\n", (int)wallHitVertical.y);
-	//init_points(player->p_line, player->square->p_center, &wallHitVertical);//Iniciar linea
 	else
 	{
-		printf("Entra Vertical\n");
+		/* printf("Entra Vertical\n");
 		printf("Angle: %d\n", player->angle);
 		printf("Angle: %f\n", ray->rads_angle);
 		printf("wallHitVertical_x: %f\n", wallHitVertical.x);
-		printf("wallHitVertical_y: %f\n", wallHitVertical.y);
-		init_points(player->p_line, player->square->p_center, player->square->p_center);//Iniciar linea
+		printf("wallHitVertical_y: %f\n", wallHitVertical.y); */
+		init_points(player->p_line, player->square->p_center, &wallHitVertical);//Iniciar linea
 		paint_line(player->p_line, game->img, RED);
 	}
 }
