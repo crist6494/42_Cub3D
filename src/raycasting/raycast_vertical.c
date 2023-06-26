@@ -6,29 +6,27 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:39:45 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/26 18:06:20 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:22:01 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	vertical_ray_cast_loop(t_map *map, t_coord *wall_hit_vertical, t_coord *step, t_ray *data);
+static void	vertical_raycast_loop(t_map *map, t_coord *wall_hit_vertical, t_coord *step, t_ray *data);
 
 void raycast_vertical(t_map *map, t_player *player, t_ray *ray, t_coord *wallHitVertical)
 {
-	int		vertical_hit;
 	float	y_intercept;
 	float	x_intercept;
 	t_coord step;
 	
-	vertical_hit = 0;
 	x_intercept = floor(player->square->p_center->x / map->lim) * map->lim;
 	if(ray->left == 0)
 		x_intercept += map->lim;
 	y_intercept = player->square->p_center->y;
 	y_intercept += ((x_intercept - player->square->p_center->x) * tan(ray->rads_angle));
 	step.x = map->lim;
-	step.y = map->lim * (float)tan(ray->rads_angle);
+	step.y = map->lim * tan(ray->rads_angle);
 	wallHitVertical->x = x_intercept;
 	wallHitVertical->y = y_intercept;
 
@@ -37,28 +35,28 @@ void raycast_vertical(t_map *map, t_player *player, t_ray *ray, t_coord *wallHit
 		step.x = -step.x;
 	if (ray->left == 0)
 		step.y = -step.y;
-	vertical_ray_cast_loop(map, wallHitVertical, &step, ray);
+	vertical_raycast_loop(map, wallHitVertical, &step, ray);
 }
 
-void	vertical_ray_cast_loop(t_map *map, t_coord *wall_hit_vertical, t_coord *step, t_ray *data)
+static void	vertical_raycast_loop(t_map *map, t_coord *wallHitVertical, t_coord *step, t_ray *data)
 {
 	int	vertical_hit;
 
 	vertical_hit = 0;
 	while (vertical_hit == 0
-		&& wall_hit_vertical->x < (float)(map->width)
-		&& wall_hit_vertical->x > 1.0 && wall_hit_vertical->y > 1.0
-		&& wall_hit_vertical->y < (float)(map->height))
+		&& wallHitVertical->x < (float)(map->width)
+		&& wallHitVertical->x > 1.0 && wallHitVertical->y > 1.0
+		&& wallHitVertical->y < (float)(map->height))
 	{
-		if (map->tour[(int)wall_hit_vertical->y / (int)map->lim][(int)wall_hit_vertical->x / (int)map->lim] == '1'
-			|| (data->left == 1 && map->tour[((int)wall_hit_vertical->y)
-			/ (int)map->lim][(int)(wall_hit_vertical->x - 1)
+		if (map->tour[(int)wallHitVertical->y / (int)map->lim][(int)wallHitVertical->x / (int)map->lim] == '1'
+			|| (data->left == 1 && map->tour[((int)wallHitVertical->y)
+			/ (int)map->lim][(int)(wallHitVertical->x - 1)
 			/ (int)map->lim] == '1'))
 			vertical_hit = 1;
 		else
 		{
-			wall_hit_vertical->x += step->x;
-			wall_hit_vertical->y += step->y;
+			wallHitVertical->x += step->x;
+			wallHitVertical->y += step->y;
 		}
 	}
 }
@@ -72,109 +70,3 @@ void	vertical_ray_cast_loop(t_map *map, t_coord *wall_hit_vertical, t_coord *ste
 	printf("x_intercept: %f\n", x_intercept);
 	printf("step_x: %f\n", step.x);
 	printf("step_y: %f\n", step.y); */
-
-
-/* static void	raycast_horizontal(t_map *map, t_player *player,
-		t_point_f *wall_hit_horizontal, t_data_raycast *data)
-{
-	float		y_intercept;
-	float		x_intercept;
-	t_point_f	step;
-
-	y_intercept
-		= floor(player->pos_y / (float)map->height) * (float)map->height;
-	if (data->abajo == 1)
-		y_intercept += (float)map->height;
-	x_intercept = player->pos_x;
-	x_intercept += (y_intercept - player->pos_y) / tan(data->rads);
-	step.y = map->height;
-	step.x = ((float)((float)map->height) / tan(data->rads));
-	wall_hit_horizontal->x = x_intercept;
-	wall_hit_horizontal->y = y_intercept;
-	step.x = -step.x;
-	if (data->abajo == 0)
-		step.y = -step.y;
-	if (data->abajo == 1)
-		step.x = -step.x;
-	horizontal_ray_cast_loop(map, wall_hit_horizontal, data, &step);
-}
-void	horizontal_ray_cast_loop(t_map *map, t_point_f *wall_hit_horizontal,
-		t_data_raycast *data, t_point_f *step)
-{
-	int	horizontal_hit;
-
-	horizontal_hit = 0;
-	while (horizontal_hit == 0
-		&& wall_hit_horizontal->x < (float)(map->width * map->columns) && wall_hit_horizontal->x > 1.0 && wall_hit_horizontal->y > 1.0
-		&& wall_hit_horizontal->y < (float)(map->rows * map->height))
-	{
-		if (map->map[(int)wall_hit_horizontal->y / map->height][(int)wall_hit_horizontal->x
-			/ map->width] == '1' || (data->abajo == 0
-			&& map->map[(int)(wall_hit_horizontal->y - 1)
-			/ map->height][((int)wall_hit_horizontal->x) / map->width] == '1'))
-			horizontal_hit = 1;
-		else
-		{
-			wall_hit_horizontal->x += step->x;
-			wall_hit_horizontal->y += step->y;
-		}
-	}
-}
-
-
-
-static void	raycast_vertical(t_map *map, t_player *player,
-		t_point_f *wall_hit_vertical, t_data_raycast *data)
-{
-	float		y_intercept;
-	float		x_intercept;
-	t_point_f	step;
-	printf("%d\n", map->width);
-	x_intercept = floor(player->pos_x / (float)map->width) * (float)map->width;
-	if (data->izquierda == 0)
-		x_intercept += map->width;
-		
-	y_intercept = player->pos_y;
-	y_intercept += ((float)(x_intercept - player->pos_x) * tan(data->rads));
-	
-	step.x = (float)map->width;
-	step.y = ((float)((float)map->height) *tan(data->rads));
-	
-	wall_hit_vertical->y = y_intercept;
-	wall_hit_vertical->x = x_intercept;
-	
-	step.y = -step.y;
-	if (data->izquierda == 1)
-		step.x = -step.x;
-	if (data->izquierda == 0)
-		step.y = -step.y;
-	vertical_ray_cast_loop(map, wall_hit_vertical, data, &step);
-}
-void	vertical_ray_cast_loop(t_map *map, t_point_f *wall_hit_vertical,
-		t_data_raycast *data, t_point_f *step)
-{
-	int	vertical_hit;
-	printf("Row: %d\n", map->rows);
-	printf("Colum: %d\n", map->columns);
-	printf("Widht: %d\n", map->width);
-	printf("Height: %d\n", map->height);
-	vertical_hit = 0;
-	while (vertical_hit == 0
-		&& wall_hit_vertical->x < (float)(map->width * map->columns)
-		&& wall_hit_vertical->x > 1.0 && wall_hit_vertical->y > 1.0
-		&& wall_hit_vertical->y < (float)(map->rows * map->height))
-	{
-		if (map->map[(int)wall_hit_vertical->y
-				/ map->height][(int)wall_hit_vertical->x / map->width] == '1'
-			|| (data->izquierda == 1 && map->map[((int)wall_hit_vertical->y)
-			/ map->height][(int)(wall_hit_vertical->x - 1)
-			/ map->width] == '1'))
-			vertical_hit = 1;
-		else
-		{
-			wall_hit_vertical->x += step->x;
-			wall_hit_vertical->y += step->y;
-		}
-	}
-}
- */

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/25 12:40:38 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/26 20:17:35 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ typedef struct s_ray
 	int				down;
 	int				left;
 	float			rads_angle;
-	t_coord			*wallHitHorizontal;
+	t_coord			*coordHitHorizontal;
+	t_coord			*coordHitVertical;
 }t_ray;
 
 typedef struct s_game
@@ -189,8 +190,9 @@ float	check_left_collision(t_player *player, t_map *map, float advance_x, float 
 float	check_right_collision(t_player *player, t_map *map, float advance_x, float advance_y);
 
 void	init_ray(t_ray *data, float angle);
-void	raycast(t_game *game, t_player *player, t_ray *ray);
+void	raycast(t_game *game, t_player *player, t_ray *ray, float angle);
 void	raycast_horizonal(t_map *map, t_player *player, t_ray *ray, t_coord *wallHitHorizontal);
 void	raycast_vertical(t_map *map, t_player *player, t_ray *ray, t_coord *wallHitVertical);
 
+void range_ray(t_game *game, t_player *player, t_ray *ray);
 # endif
