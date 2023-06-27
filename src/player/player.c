@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/20 17:35:59 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/27 20:09:29 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void init_direction(t_player *player)
 {
     player->direction = malloc(sizeof(t_coord));
-    player->len_dir = 30;
+    player->len_dir = 20;
     player->dir_x = 0.0;
     player->dir_y = (player->len_dir * -1); //-1 pq el eje y es para abajo el positivo
     update_direction(player); //Iniciamos la direcciona de la linea
@@ -33,8 +33,11 @@ void init_player(t_player *player, t_game *game, t_square *square)
     player->mlx = game->mlx;
     player->img = game->img;
     player->color = WHITE;
-    player->tam = 8;
-    player->vel_move = 2;
+    player->tam = 4;
+    player->vel_move = 0.7;
+    player->fov = FOV;
+    player->screen_x = WIDTH;
+    player->screen_y = HEIGHT;
     player->angle = get_player_angle(game->map);
     player->pos_map = malloc(sizeof(t_coord));
     *player->pos_map = get_player_pos(game->map);

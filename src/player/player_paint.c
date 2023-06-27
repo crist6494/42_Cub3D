@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:24:17 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/26 20:34:01 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/27 21:01:51 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void paint_player(t_game *game, t_player *player)
 void repaint(t_game *game, t_player *player)
 {
 	clear_map(game->map);
+	paint_ceil_floor(player);
 	create_map(game, game->map, 0, 0);
 	//create_map(game, game->map, game->map->mid_map->x, game->map->mid_map->y);
-	//raycast(game, player, game->ray);
 	range_ray(game, player, game->ray);
 	init_points(player->p_line, player->square->p_center, player->direction);//Iniciar linea
     paint_line(player->p_line, game->img, WHITE);
@@ -54,8 +54,8 @@ void get_square_corner(t_player *player, t_square *square)
 	square->p_right_up->x = square->p_center->x + player->tam / 2;
 	square->p_right_up->y = square->p_center->y - player->tam / 2;
 
-	square_paint(player->square->p_left_down, 0.1, CYAN, player->img);
+/* 	square_paint(player->square->p_left_down, 0.1, CYAN, player->img);
 	square_paint(player->square->p_right_down, 0.1, CYAN, player->img);
 	square_paint(player->square->p_left_up, 0.1, CYAN, player->img);
-	square_paint(player->square->p_right_up, 0.1, CYAN, player->img);
+	square_paint(player->square->p_right_up, 0.1, CYAN, player->img); */
 }

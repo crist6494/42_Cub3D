@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/26 20:17:35 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/27 20:48:35 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,18 @@ typedef struct s_coord{
 	float	x;
 	float	y;
 }t_coord;
+
+typedef struct s_paint_p{
+	int		x;
+	int		y;
+}t_paint_p;
+
+typedef struct s_4square{
+	t_paint_p p0;
+	t_paint_p p1;
+	t_paint_p p2;
+	t_paint_p p3;
+}t_4square;
 
 typedef struct s_point{
 	float	x;
@@ -64,6 +76,9 @@ typedef struct s_player
 	float			dir_x;
 	float			dir_y;
 	int				len_dir;
+	int				screen_x;
+	int				screen_y;
+	int				fov;
 	int				angle;
 	float			vel_move;
 }t_player;
@@ -190,9 +205,10 @@ float	check_left_collision(t_player *player, t_map *map, float advance_x, float 
 float	check_right_collision(t_player *player, t_map *map, float advance_x, float advance_y);
 
 void	init_ray(t_ray *data, float angle);
-void	raycast(t_game *game, t_player *player, t_ray *ray, float angle);
+float	raycast(t_game *game, t_player *player, t_ray *ray, float angle);
 void	raycast_horizonal(t_map *map, t_player *player, t_ray *ray, t_coord *wallHitHorizontal);
 void	raycast_vertical(t_map *map, t_player *player, t_ray *ray, t_coord *wallHitVertical);
 
 void range_ray(t_game *game, t_player *player, t_ray *ray);
+void paint_ceil_floor(t_player *player);
 # endif

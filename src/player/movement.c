@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:03:44 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/21 19:30:02 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/27 19:43:46 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void player_advance(t_game *game, t_player *player, int direction)
 	float	angle;
 	float	advance_x;
 	float	advance_y;
-
 	angle = ((float)player->angle * M_PI) / 180;
 	if(direction == 1 || direction == -1)
 	{
@@ -60,9 +59,9 @@ void rotate(t_game *game, t_player *player, int clockwise)
 	float angle;
 	
 	if(clockwise == 1)
-		player->angle += 3;
+		player->angle += 2;
 	if(clockwise == -1)
-		player->angle -= 3;
+		player->angle -= 2;
 	if (player->angle < 0)
 		player->angle = 360 + player->angle;
 	else if (player->angle > 360)
