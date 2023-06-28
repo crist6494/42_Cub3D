@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:03:44 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/27 19:43:46 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/28 11:46:21 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void player_lateral(t_game *game, t_player *player, int direction)
 		angle_rotate = (float)player->angle + 90;
 	if(direction == 1 || direction == -1)
 	{
-		angle = (angle_rotate * M_PI) / 180;
+		angle = grades_to_rad(angle_rotate);
 		advance_x = cos(angle) * (float)player->vel_move;
 		advance_y = sin(angle) * (float)player->vel_move;
 		check_collision(game->map, player, advance_x, advance_y);
@@ -59,18 +59,14 @@ void rotate(t_game *game, t_player *player, int clockwise)
 	float angle;
 	
 	if(clockwise == 1)
-		player->angle += 2;
+		player->angle += 3;
 	if(clockwise == -1)
-		player->angle -= 2;
+		player->angle -= 3;
 	if (player->angle < 0)
 		player->angle = 360 + player->angle;
 	else if (player->angle > 360)
 		player->angle = player->angle % 360;
-	//printf("Angulo: %d\n", player->angle);
 	angle = grades_to_rad((float)player->angle);
-	//init_ray(game->ray, (float)player->angle);
-	//printf("Abajo: %d\n", game->ray->down);
-	//printf("Izquierda: %d\n", game->ray->left);
 	if(clockwise == 1 || clockwise == -1)
 	{
 		player->dir_x = (float)player->len_dir * cos(angle);
