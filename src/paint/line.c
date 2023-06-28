@@ -6,13 +6,26 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:58:10 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/21 21:11:09 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/28 19:21:00 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 static void    paint_loop(t_point *p, mlx_image_t *img, int isSwaped, uint32_t color);
+
+void insert_coord(t_coord *c, float x, float y)
+{
+    c->x = x;
+    c->y = y;
+}
+void init_points(t_point *p, t_coord *c, t_coord *c1)
+{
+    p->x = c->x;
+    p->y = c->y;
+    p->x1 = c1->x;
+    p->y1 = c1->y;
+}
 
 static int sign(int d)
 {

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/27 20:48:35 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/28 19:46:39 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_point{
 
 typedef struct s_square{
 	t_coord			*p_center;
-	t_coord			*mid_square;
+	t_coord			*p_square;
 	t_coord			*p_left_down;
 	t_coord			*p_right_down;	
 	t_coord			*p_left_up;	
@@ -209,6 +209,8 @@ float	raycast(t_game *game, t_player *player, t_ray *ray, float angle);
 void	raycast_horizonal(t_map *map, t_player *player, t_ray *ray, t_coord *wallHitHorizontal);
 void	raycast_vertical(t_map *map, t_player *player, t_ray *ray, t_coord *wallHitVertical);
 
-void range_ray(t_game *game, t_player *player, t_ray *ray);
-void paint_ceil_floor(t_player *player);
+void	cast(t_game *game, t_player *player, t_ray *ray);
+void	paint_ceil_floor(t_player *player);
+float	normalize_angle(float angle);
+float	raycast(t_game *game, t_player *player, t_ray *ray, float angle);
 # endif

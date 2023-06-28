@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/21 18:55:51 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/28 19:48:15 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void init_window(t_game *game, char *path)
 	game->map->img = game->img;
 	if (!game->img)
 		error();
-	paint_map(game, game->map, path);
-	paint_player(game, game->player);
+	init_map(game->map, path);
+	init_player(game->player, game, game->player->square);
 	if (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0)
         error();
 	mlx_key_hook(game->mlx, &hook, (void *)(game));

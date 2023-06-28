@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:39:18 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/26 19:24:22 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/28 19:40:07 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,17 @@ void raycast_horizonal(t_map *map, t_player *player, t_ray *ray, t_coord *wallHi
 	y_intercept = floor(player->square->p_center->y / map->lim) * map->lim;
 	if(ray->down == 1)
 		y_intercept += map->lim;
-		
 	x_intercept = player->square->p_center->x;
 	x_intercept += (y_intercept - player->square->p_center->y) / tan(ray->rads_angle);
-
 	step.y = map->lim;
 	step.x = map->lim / tan(ray->rads_angle);
-	
 	wallHitHorizontal->x = x_intercept;
 	wallHitHorizontal->y = y_intercept;
-	
 	step.x = -step.x;
 	if (ray->down == 0)
 		step.y = -step.y;
 	if (ray->down == 1)
 		step.x = -step.x;
-		
 	horizontal_raycast_loop(map, wallHitHorizontal, &step, ray);
 }
 
