@@ -6,30 +6,16 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:30:05 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/28 11:39:23 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/28 19:20:50 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void insert_coord(t_coord *c, float x, float y)
-{
-    c->x = x;
-    c->y = y;
-}
-
 void insert_paint_p(t_paint_p *c, int x, int y)
 {
     c->x = x;
     c->y = y;
-}
-
-void init_points(t_point *p, t_coord *c, t_coord *c1)
-{
-    p->x = c->x;
-    p->y = c->y;
-    p->x1 = c1->x;
-    p->y1 = c1->y;
 }
 
 void square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img)
@@ -54,7 +40,7 @@ void square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img)
 	}
 
 }
-void draw_background(t_4square *background, mlx_image_t * img, int color);
+static void draw_background(t_4square *background, mlx_image_t * img, int color);
 
 void paint_ceil_floor(t_player *player)
 {
@@ -79,7 +65,7 @@ void paint_ceil_floor(t_player *player)
     draw_background(&floor, player->img, GREEN);
 }
 
-void draw_background(t_4square *background, mlx_image_t *img, int color)
+static void draw_background(t_4square *background, mlx_image_t *img, int color)
 {
     t_paint_p top;
     t_paint_p bottom;
