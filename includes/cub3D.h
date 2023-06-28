@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/28 19:46:39 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/28 20:04:16 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,17 @@ typedef struct s_ray
 	t_coord			*coordHitVertical;
 }t_ray;
 
+typedef struct s_comp
+{
+	char	*no_path;
+	char	*so_path;
+	char	*we_path;
+	char	*ea_path;
+	char	*f_rgb;
+	char	*c_rgb;
+	char	*map;
+}t_comp;
+
 typedef struct s_game
 {
 	mlx_t		*mlx;
@@ -113,6 +124,7 @@ typedef struct s_game
 	t_player	*player;	
 	t_map		*map;
 	t_ray		*ray;
+	t_comp		*componets;
 }t_game;
 
 /* ---------------------------------------------------------------------------*
@@ -133,6 +145,9 @@ char	**alloc_map(t_map *map);
 void	fill_map(t_map *map, char **tour);
 void	fill_values_map(t_map *map, char **tour, char *path);
 
+
+/*-----Parse-----*/
+int	ft_extension_check(char *str, char *ex);
 
 /*-----Map-Utils-----*/
 void	free_map(t_map *map);

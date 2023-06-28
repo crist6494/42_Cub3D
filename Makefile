@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
+#    By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/06/28 19:45:53 by cmorales         ###   ########.fr        #
+#    Updated: 2023/06/28 20:03:27 by manujime         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ HOOKS = hooks
 PAINT = paint line repaint
 COLLISIONS = collisions collision_utils collision_sides
 RAYCASTING = raycast raycast_horizontal raycast_vertical cast
+PARSE = argv_check comp
 
 SRCS = 	$(addsuffix .c, $(addprefix map/, $(MAP))) \
 		$(addsuffix .c, $(addprefix hooks/, $(HOOKS))) \
@@ -58,6 +59,7 @@ SRCS = 	$(addsuffix .c, $(addprefix map/, $(MAP))) \
 		$(addsuffix .c, $(addprefix player/, $(PLAYER))) \
 		$(addsuffix .c, $(addprefix collisions/, $(COLLISIONS))) \
 		$(addsuffix .c, $(addprefix raycasting/, $(RAYCASTING))) \
+		$(addsuffix .c, $(addprefix parse/, $(PARSE))) \
 		utils.c \
 		main.c \
 
@@ -102,6 +104,7 @@ obj:
 	@mkdir -p $(OBJ_DIR)/player
 	@mkdir -p $(OBJ_DIR)/collisions
 	@mkdir -p $(OBJ_DIR)/raycasting
+	@mkdir -p $(OBJ_DIR)/parse
 
 lib:
 	@make -C ./libft

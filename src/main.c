@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/28 19:48:15 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/28 20:06:56 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int ac, char **av)
 	game.map = &map;
 	game.player->square = &square;
 	game.ray = &ray;
-	if(ac == 3)
+	if (ac > 2 || ac < 2 || !ft_extension_check(av[1], ".cub"))
 		return(print_error(USAGE_MSG));
 	init_window(&game, av[1]);
 	return (EXIT_SUCCESS);
