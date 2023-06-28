@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/28 19:46:39 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/28 20:41:49 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,10 +178,10 @@ void	player_lateral(t_game *game, t_player *player, int direction);
 
 
 /*-----Hooks-----*/
-void	hook(mlx_key_data_t keydata, void *param);
+void	escape_hook(mlx_key_data_t keydata, void *param);
 void	move_hook(void *param);
 void	hook_screen(int32_t width, int32_t height, void* param);
-
+void	cursor_hook(double xpos, double ypos, void* param);
 
 
 /*---------Utils-------------*/
