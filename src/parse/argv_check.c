@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 18:02:00 by manujime          #+#    #+#             */
-/*   Updated: 2023/06/28 20:18:16 by manujime         ###   ########.fr       */
+/*   Updated: 2023/06/29 11:52:05 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,48 +30,38 @@ int	ft_extension_check(char *str, char *ex)
 		return (0);
 }
 
-//check if the file exists
-int	ft_file_check(char *str)
+int	ft_is_dir(char *str)
 {
 	int	fd;
 
-	fd = open(str, O_RDONLY);
+	fd = open(str, O_DIRECTORY);
 	if (fd < 0)
-	{
-		ft_putstr_fd("Error\nFile does not exist\n", 2);
 		return (0);
-	}
 	close(fd);
 	return (1);
 }
 
-//checks if the component name and content are in the same line
-//if they are, it saves the content in the components struct
-//and returns 1, else it returns 0
-int	ft_check_line(char *line, char *comp, t_comp *components)
+//check if the file exists and has the correct extension
+int	ft_file_check(char *str)
 {
-	while (line && *line == ' ')
-		line++;
-	if (ft_strnstr(comp, line, ft_strlen(comp)) != 0)
+	int	fd;
+
+	if (ft_is_dir(str) == 1)
 	{
-		return
+		ft_putstr_fd("File is a directory\n", 2);
+		return (0);
 	}
-}
-
-//checks if the file has all the necessary components
-//and saves them in the components struct
-int	ft_is_valid_file(char *str, t_comp *components)
-{
-	int		fd;
-	char	*line;
-
 	fd = open(str, O_RDONLY);
-	line = get_next_line(fd);
-	while (line)
+	if (fd < 0)
 	{
-		if (ft_strnstr("NO SO WE EA FL C", line, 2) != 0)
-
-		free(line);
-		line = get_next_line(fd);
+		ft_putstr_fd("File does not exist\n", 2);
+		return (0);
 	}
+	close(fd);
+	if (!ft_extension_check(str, ".cub"))
+	{
+		ft_putstr_fd("Wrong file extension\n", 2);
+		return (0);
+	}
+	return (1);
 }
