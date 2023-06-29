@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:31:26 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/28 19:46:50 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/06/29 11:48:30 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void repaint(t_game *game, t_player *player)
 	clear_map(game->map);
 	paint_ceil_floor(player);
 	cast(game, player, game->ray);
+	paint_minimap(game);
 	create_map(game, game->map, 0, 0);
 	init_points(player->p_line, player->square->p_center, player->direction);//Iniciar linea
     paint_line(player->p_line, game->img, WHITE);
