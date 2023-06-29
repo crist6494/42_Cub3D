@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:17:43 by manujime          #+#    #+#             */
-/*   Updated: 2023/06/29 16:13:24 by manujime         ###   ########.fr       */
+/*   Updated: 2023/06/29 19:33:42 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,26 @@ int	ft_check_n_str(char **file, char *name)
 		}
 		i++;
 	}
-	if (instances > 1 || instances == 0)
-		return (1);
-	return (0);
+	printf("%s instances: %d\n", name, instances);
+	return (instances);
 }
 
-//searches the file for the paths to the textures and saves them
-//it checks if the paths are valid and that there are no duplicates
-void	ft_get_paths(t_game *game)
+//searches the file for the paths to the textures and saves them even if
+//the name and the path can be separated by any number of spaces
+//or in different lines
+void	ft_get_paths(t_comp *comp, char *name)
 {
-	int	i;
+	int		i;
+	char	*aux;
 
 	i = 0;
-	while (game->comp->file[i])
+	while (comp->file[i])
 	{
-
+		if (ft_strnstr(comp->file[i], name, ft_strlen(comp->file[i])))
+		{
+			aux = ft_strnstr(comp->file[i], name, ft_strlen(comp->file[i]));
+			break ;
+		}
 		i++;
 	}
 }
@@ -63,13 +68,15 @@ void	ft_parse(t_game *game, char *av)
 	ft_init_comp(game);
 	ft_get_file(game->comp, av);
 	file = game->comp->file;
-	//ft_print_char_matrix(game->comp->file);
-	if (ft_check_n_str(file, "NO") || ft_check_n_str(file, "SO")
-		|| ft_check_n_str(file, "WE") || ft_check_n_str(file, "EA"))
+	ft_print_char_matrix(game->comp->file);
+	if (ft_check_n_str(file, "NO ") != 1 || ft_check_n_str(file, "SO ") != 1
+		|| ft_check_n_str(file, "WE ") != 1 || ft_check_n_str(file, "EA ") != 1
+		|| ft_check_n_str(file, "F ") != 1 || ft_check_n_str(file, "C ") != 1)
 	{
-		ft_putstr_fd("Error\nBad cardinal texture paths\n", 2);
+		ft_putstr_fd("Error\nBad components in file\n", 2);
 		exit(0);
 	}
-	ft_get_paths(game);
+	ft_print_char_matrix(game->comp->file);
+	ft_get_paths(game->comp, "NO ");
 	exit(0);
 }
