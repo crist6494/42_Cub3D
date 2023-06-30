@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/29 13:46:10 by manujime         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:35:28 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,8 +155,10 @@ int		ft_file_check(char *str);
 
 /*-----Get-Comp*/
 void	ft_get_file(t_comp *comp, char *file);
+char	*ft_get_comp_line(t_comp *comp, char *name);
 
 /*-----Parse-Utils-----*/
+void	ft_free_char_matrix(char **arr);
 void	ft_print_char_matrix(char **matrix);
 void	ft_init_comp(t_game *game);
 

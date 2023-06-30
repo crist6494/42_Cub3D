@@ -6,11 +6,27 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 11:39:52 by manujime          #+#    #+#             */
-/*   Updated: 2023/06/29 11:57:32 by manujime         ###   ########.fr       */
+/*   Updated: 2023/06/30 10:45:16 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+//frees a char **
+void	ft_free_char_matrix(char **arr)
+{
+	char	**current;
+
+	if (arr == NULL)
+		return ;
+	current = arr;
+	while (*current)
+	{
+		free(*current);
+		current++;
+	}
+	free(arr);
+}
 
 //prints a char **
 void	ft_print_char_matrix(char **matrix)

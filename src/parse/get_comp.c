@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:11:26 by manujime          #+#    #+#             */
-/*   Updated: 2023/06/29 13:50:46 by manujime         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:36:24 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,31 @@ void	ft_get_file(t_comp *comp, char *file)
 	}
 	comp->file[i] = NULL;
 	close(fd);
+}
+
+//returns the value of the component passed as a string
+char	*ft_get_comp_line(t_comp *comp, char *name)
+{
+	int		i;
+	char	*line;
+	char	**tmp;
+
+	i = 0;
+	while (comp->file[i])
+	{
+		if (ft_strnstr(comp->file[i], name, ft_strlen(comp->file[i])))
+		{
+			line = ft_strdup(comp->file[i]);
+			tmp = ft_split(line, ' ');
+			free(line);
+			line = ft_strdup(tmp[1]);
+			ft_free_char_matrix(tmp);
+			i = ft_strlen(line);
+			if (i > 0 && line[i - 1] == '\n')
+				line[i - 1] = '\0';
+			return (line);
+		}
+		i++;
+	}
+	return (NULL);
 }
