@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:47:02 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/03 18:02:04 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/03 23:45:31 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,11 @@
 int	ft_str_charset(char *str, char *charset)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (str[i])
 	{
-		while (charset[j])
-		{
-			if (str[i] == charset[j])
-				break ;
-			j++;
-		}
-		if (charset[j] == '\0')
+		if (!ft_strchr(charset, str[i]))
 			return (0);
 		i++;
 	}
@@ -42,6 +34,7 @@ int	ft_map_check(t_comp *comp)
 	int	count;
 
 	i = 0;
+	count = 0;
 	while (comp->file[i])
 	{
 		if (ft_strnstr(comp->file[i], "NO ", ft_strlen(comp->file[i]))
@@ -50,8 +43,8 @@ int	ft_map_check(t_comp *comp)
 			|| ft_strnstr(comp->file[i], "EA ", ft_strlen(comp->file[i]))
 			|| ft_strnstr(comp->file[i], "F ", ft_strlen(comp->file[i]))
 			|| ft_strnstr(comp->file[i], "C ", ft_strlen(comp->file[i])))
-			count++;
-		if (ft_str_charset(comp->file[i], "01NSEW "))
+				count++;
+		if (ft_strnstr(comp->file[i], "111", ft_strlen(comp->file[i])))
 			break ;
 		i++;
 	}

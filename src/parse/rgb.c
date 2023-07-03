@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:11:23 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/03 15:36:24 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/03 22:52:15 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,18 @@ int	ft_rgb_check(char *str)
 	return (1);
 }
 
+char	*ft_is_long(char *tmp)
+{
+	char	*padded_tmp;
+
+	padded_tmp = malloc(3);
+	padded_tmp[0] = '0';
+	strcpy(padded_tmp + 1, tmp);
+	free(tmp);
+	tmp = padded_tmp;
+	return (tmp);
+}
+
 //converts a string in rgb format to a hex value like "0xFFFFFF"
 unsigned int	ft_rgb_to_hex(char *str)
 {
@@ -77,14 +89,14 @@ unsigned int	ft_rgb_to_hex(char *str)
 
 	i = 0;
 	rgb = ft_split(str, ',');
-	tmp = NULL;
-	hex = ft_strdup("0x");
+	hex = ft_strdup("");
 	while (rgb[i])
 	{
 		aux = ft_atoi(rgb[i]);
-		tmp = ft_strjoin(hex, ft_itoa_base(aux, 16));
-		free(hex);
-		hex = ft_strdup(tmp);
+		tmp = ft_itoa_base(aux, 16);
+		if (strlen(tmp) < 2)
+			tmp = ft_is_long(tmp);
+		hex = ft_strjoin(hex, tmp);
 		free(tmp);
 		i++;
 	}

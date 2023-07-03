@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/03 18:06:24 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/03 21:43:08 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ int		ft_map_check(t_comp *comp);
 
 /*-----rgb-------*/
 int		ft_rgb_check(char *str);
+unsigned int	ft_rgb_to_hex(char *str);
 
 /*-----Parse-Utils-----*/
 void	ft_free_char_matrix(char **arr);
