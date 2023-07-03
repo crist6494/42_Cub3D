@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:17:43 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/03 13:04:14 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:04:47 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ void	ft_get_comps(t_comp *comp)
 	}
 	if (!ft_rgb_check(comp->f_rgb) || !ft_rgb_check(comp->c_rgb))
 		exit(0);
+	comp->f_hex = ft_rgb_to_hex(comp->f_rgb);
+	comp->c_hex = ft_rgb_to_hex(comp->c_rgb);
+	if (!ft_map_check(comp))
+		exit(0);
+	comp->map = ft_get_map(comp);
 }
 
 //stores the file in the comp struct, and processes the contents
@@ -71,5 +76,7 @@ void	ft_parse(t_game *game, char *av)
 		exit(0);
 	}
 	ft_get_comps(game->comp);
+	if (!ft_map_check(game->comp))
+		exit(0);
 	exit(0);
 }

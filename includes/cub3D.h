@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/03 15:33:30 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:06:24 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,10 @@ int		ft_file_check(char *str);
 /*-----Get-Comp*/
 void	ft_get_file(t_comp *comp, char *file);
 char	*ft_get_comp_line(t_comp *comp, char *name);
+
+/*----Map-Check-----*/
+int		ft_str_charset(char *str, char *charset);
+int		ft_map_check(t_comp *comp);
 
 /*-----rgb-------*/
 int		ft_rgb_check(char *str);
