@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:17:43 by manujime          #+#    #+#             */
-/*   Updated: 2023/06/30 14:42:46 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/03 13:04:14 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	ft_get_comps(t_comp *comp)
 		ft_putstr_fd("Error\nBad texture file\n", 2);
 		exit(0);
 	}
+	if (!ft_rgb_check(comp->f_rgb) || !ft_rgb_check(comp->c_rgb))
+		exit(0);
 }
 
 //stores the file in the comp struct, and processes the contents

@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/30 12:35:28 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:33:30 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ typedef struct s_comp
 	char	*ea_path;
 	char	*f_rgb;
 	char	*c_rgb;
+	int		f_hex;
+	int		c_hex;
 	char	**map;
 }t_comp;
 
@@ -157,10 +159,15 @@ int		ft_file_check(char *str);
 void	ft_get_file(t_comp *comp, char *file);
 char	*ft_get_comp_line(t_comp *comp, char *name);
 
+/*-----rgb-------*/
+int		ft_rgb_check(char *str);
+
 /*-----Parse-Utils-----*/
 void	ft_free_char_matrix(char **arr);
 void	ft_print_char_matrix(char **matrix);
 void	ft_init_comp(t_game *game);
+char	*ft_itoa_base(int n, int base);
+int		ft_atoi_base(char *str, int base);
 
 /*-----Map-Utils-----*/
 void	free_map(t_map *map);

@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 18:02:00 by manujime          #+#    #+#             */
-/*   Updated: 2023/06/30 15:28:22 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/03 11:11:45 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,6 @@ int	ft_is_dir(char *str)
 	if (fd < 0)
 		return (0);
 	close(fd);
-	return (1);
-}
-
-//checks if a string has a valid rgb format linke "255,255,255"
-int	ft_rgb_check(char *str)
-{
-	int	i;
-	int	comma;
-
-	i = 0;
-	comma = 0;
-	while (str[i])
-	{
-		if (str[i] == ',')
-			comma++;
-		if (comma > 2)
-			return (0);
-		if (!ft_isdigit(str[i]) && str[i] != ',')
-			return (0);
-		i++;
-	}
 	return (1);
 }
 
