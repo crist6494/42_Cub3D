@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:17:43 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/03 23:34:56 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/03 23:50:00 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	ft_get_comps(t_comp *comp)
 	comp->c_hex = ft_rgb_to_hex(comp->c_rgb);
 	if (!ft_map_check(comp))
 		exit(0);
-	//comp->map = ft_get_map(comp);
 }
 
 //stores the file in the comp struct, and processes the contents

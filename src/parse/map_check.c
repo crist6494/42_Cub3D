@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:47:02 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/03 23:45:31 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/04 02:31:31 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,30 @@ int	ft_str_charset(char *str, char *charset)
 		i++;
 	}
 	return (1);
+}
+
+//gets the map from the file into a matrix of strings
+//starts at the index of the map in the file
+char	**ft_get_map(t_comp *comp, int i)
+{
+	int		j;
+	int		k;
+	char	**map;
+
+	j = 0;
+	k = 0;
+	while (comp->file[i + j])
+		j++;
+	map = malloc(sizeof(char *) * (j + 1));
+	if (!map)
+		return (NULL);
+	while (k < j)
+	{
+		map[k] = ft_strdup(comp->file[i + k]);
+		k++;
+	}
+	map[k] = NULL;
+	return (map);
 }
 
 //checks that all other components are before the map
@@ -53,5 +77,6 @@ int	ft_map_check(t_comp *comp)
 		ft_putstr_fd("Error\nmap not at end of file\n", 2);
 		return (0);
 	}
+	comp->map = ft_get_map(comp, i);
 	return (1);
 }
