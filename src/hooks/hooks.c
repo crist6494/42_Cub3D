@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/28 20:41:41 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:40:09 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,23 @@ void hook_screen(int32_t width, int32_t height, void *param)
 	//create_map(game, game->coord, (50), ((width - game->map->map_width) - 50));
 	create_map(game, game->map, (height - game->map->width) / 2, (width - game->map->height) / 2);
 }
-void cursor_hook(double xpos, double ypos, void* param)
+void cursor_hook(double xpos, double ypos, void *param)
 {
 	t_game *game;
+	
 	game = (t_game *)param;
-	printf("%f\n", xpos);
-	printf("%f\n", ypos);
-	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
-	if(xpos - (WIDTH / 2) > 0)
-		rotate(game, game->player, 1);
+	(void)ypos;
+	if(mlx_is_mouse_down(game->mlx, MLX_MOUSE_BUTTON_LEFT))
+	{
+		mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
+		mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
+		if(xpos - (WIDTH / 2) > 0)
+			rotate(game, game->player, 1);
+		else
+			rotate(game, game->player, -1);
+	}
 	else
-		rotate(game, game->player, -1);
+		mlx_set_cursor_mode(game->mlx, MLX_MOUSE_NORMAL);
 }
 
 void move_hook(void *param)
