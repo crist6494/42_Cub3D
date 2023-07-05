@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 11:39:52 by manujime          #+#    #+#             */
-/*   Updated: 2023/06/30 10:45:16 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:11:14 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,19 @@ void	ft_init_comp(t_game *game)
 	game->comp->f_rgb = NULL;
 	game->comp->c_rgb = NULL;
 	game->comp->map = NULL;
+	game->comp->no = NULL;
+	game->comp->so = NULL;
+	game->comp->we = NULL;
+	game->comp->ea = NULL;
+}
+
+//gets the number of lines in a char **
+int	ft_matrix_len(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+		i++;
+	return (i);
 }

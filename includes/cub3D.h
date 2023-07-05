@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/03 21:43:08 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:23:35 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,20 @@ typedef struct s_ray
 
 typedef struct s_comp
 {
-	char	**file;
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
-	char	*f_rgb;
-	char	*c_rgb;
-	int		f_hex;
-	int		c_hex;
-	char	**map;
+	char			**file;
+	char			*no_path;
+	char			*so_path;
+	char			*we_path;
+	char			*ea_path;
+	char			*f_rgb;
+	char			*c_rgb;
+	int				f_hex;
+	int				c_hex;
+	mlx_texture_t	*no;
+	mlx_texture_t	*so;
+	mlx_texture_t	*we;
+	mlx_texture_t	*ea;
+	char			**map;
 }t_comp;
 
 typedef struct s_game
@@ -158,6 +162,7 @@ int		ft_file_check(char *str);
 /*-----Get-Comp*/
 void	ft_get_file(t_comp *comp, char *file);
 char	*ft_get_comp_line(t_comp *comp, char *name);
+void	ft_get_textures(t_game *game);
 
 /*----Map-Check-----*/
 int		ft_str_charset(char *str, char *charset);
@@ -171,8 +176,13 @@ unsigned int	ft_rgb_to_hex(char *str);
 void	ft_free_char_matrix(char **arr);
 void	ft_print_char_matrix(char **matrix);
 void	ft_init_comp(t_game *game);
+int		ft_matrix_len(char **matrix);
+
 char	*ft_itoa_base(int n, int base);
 int		ft_atoi_base(char *str, int base);
+
+/*----walls----*/
+int		ft_top_wall(char **map);
 
 /*-----Map-Utils-----*/
 void	free_map(t_map *map);

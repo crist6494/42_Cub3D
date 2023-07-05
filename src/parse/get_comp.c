@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:11:26 by manujime          #+#    #+#             */
-/*   Updated: 2023/06/30 12:36:24 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/05 12:35:16 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,30 @@ char	*ft_get_comp_line(t_comp *comp, char *name)
 		i++;
 	}
 	return (NULL);
+}
+
+//gets the textures from the paths in the comp struct
+void	ft_get_textures(t_game *game)
+{
+	bool	loaded;
+
+	loaded = true;
+	game->comp->no = mlx_load_png(game->comp->no_path);
+	if (game->comp->no == NULL)
+		loaded = false;
+	game->comp->so = mlx_load_png(game->comp->so_path);
+	if (game->comp->so == NULL)
+		loaded = false;
+	game->comp->we = mlx_load_png(game->comp->we_path);
+	if (game->comp->we == NULL)
+		loaded = false;
+	game->comp->ea = mlx_load_png(game->comp->ea_path);
+	if (game->comp->ea == NULL)
+		loaded = false;
+	if (!loaded)
+	{
+		ft_putstr_fd("Error\n", 1);
+		ft_putstr_fd("bad texture file\n", 1);
+		exit(0);
+	}
 }

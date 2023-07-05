@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:17:43 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/03 23:50:00 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/05 12:34:50 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	ft_get_comps(t_comp *comp)
 	comp->ea_path = ft_get_comp_line(comp, "EA ");
 	comp->f_rgb = ft_get_comp_line(comp, "F ");
 	comp->c_rgb = ft_get_comp_line(comp, "C ");
-	if (!ft_extension_check(comp->no_path, ".xpm")
-		|| !ft_extension_check(comp->so_path, ".xpm")
-		|| !ft_extension_check(comp->we_path, ".xpm")
-		|| !ft_extension_check(comp->ea_path, ".xpm"))
+	if (!ft_extension_check(comp->no_path, ".png")
+		|| !ft_extension_check(comp->so_path, ".png")
+		|| !ft_extension_check(comp->we_path, ".png")
+		|| !ft_extension_check(comp->ea_path, ".png"))
 	{
 		ft_putstr_fd("Error\nBad texture file\n", 2);
 		exit(0);
@@ -75,6 +75,7 @@ void	ft_parse(t_game *game, char *av)
 		exit(0);
 	}
 	ft_get_comps(game->comp);
+	ft_get_textures(game);
 	if (!ft_map_check(game->comp))
 		exit(0);
 	exit(0);
