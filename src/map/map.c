@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/28 19:17:09 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:19:18 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static char **get_map(t_map *map, char *path_map);
+//static char **get_map(t_map *map, char *path_map);
 
-void init_map(t_map *map, char *path_map)
+void init_map(t_game *game, t_map *map, char *path_map)
 {
 	map->len_x = get_len_x(path_map);
 	map->len_y = get_len_y(path_map);
-	map->tour = get_map(map, path_map);
+	map->tour = game->comp->map;
 	map->lim = 20;
 	map->width = map->len_x * map->lim;
 	map->height = map->len_y * map->lim;
@@ -28,14 +28,14 @@ void init_map(t_map *map, char *path_map)
 	map->m_coord = malloc(sizeof(t_coord));
 }
 
-static char **get_map(t_map *map, char *path_map)
-{
-	char **tour;
-	tour = alloc_map(map);
-	fill_map(map, tour);
-	fill_values_map(map, tour, path_map);
-	return (tour);
-}
+// static char **get_map(t_map *map, char *path_map)
+// {
+// 	char **tour;
+// 	tour = alloc_map(map);
+// 	fill_map(map, tour);
+// 	fill_values_map(map, tour, path_map);
+// 	return (tour);
+// }
 
 void create_map(t_game *game, t_map *map, float c_x, float c_y)
 {

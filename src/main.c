@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/06 18:53:23 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:20:17 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void init_window(t_game *game, char *path)
 	if (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0)
         error();
 	init_minimap(game, WIDTH, 30);
-	init_map(game->map, path);
+	init_map(game, game->map, path);
 	init_player(game->player, game, game->player->square);
 	repaint(game, game->player);
 	mlx_key_hook(game->mlx, &escape_hook, (void *)(game));

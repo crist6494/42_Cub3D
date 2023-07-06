@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:47:02 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 19:08:15 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:21:08 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,19 @@ char	**ft_get_map(t_comp *comp, int i)
 		k++;
 	}
 	map[k] = NULL;
+	j = 0;
+	k = 0;
+	while (map[j])
+	{
+		k = 0;
+		while (map[j][k])
+		{
+			if (map[j][k] == '\n')
+				map[j][k] = '\0';
+			k++;
+		}
+		j++;
+	}
 	return (map);
 }
 

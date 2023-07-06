@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:17:43 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 19:10:50 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:15:21 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,4 @@ void	ft_parse(t_game *game, char *av)
 	}
 	ft_get_comps(game->comp);
 	ft_get_textures(game);
-	exit(0);
 }

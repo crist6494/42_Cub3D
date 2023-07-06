@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/06 19:32:46 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:19:53 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ typedef struct s_game
 
 
 /*-----Map-----*/
-void	init_map(t_map *map, char *path_map);
+void	init_map(t_game *game, t_map *map, char *path_map);
 void	create_map(t_game *game, t_map *map, float c_x, float c_y);
 void	paint_map(t_game *game, t_map *map, char *map_path);
 
