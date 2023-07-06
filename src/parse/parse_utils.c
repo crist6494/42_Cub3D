@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 11:39:52 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 16:47:33 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:20:21 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void	ft_init_comp(t_game *game)
 	game->comp->ea_path = NULL;
 	game->comp->f_rgb = NULL;
 	game->comp->c_rgb = NULL;
-	game->comp->map = NULL;
 	game->comp->no = NULL;
 	game->comp->so = NULL;
 	game->comp->we = NULL;
 	game->comp->ea = NULL;
+	game->comp->map = NULL;
 }
 
 //gets the number of lines in a char **

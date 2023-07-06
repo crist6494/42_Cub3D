@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/06 16:45:28 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:02:58 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,9 @@ int		ft_atoi_base(char *str, int base);
 
 /*----walls----*/
 int		ft_walls(char **map);
+
+/*----clean-up----*/
+void	ft_exit_parse_error(t_comp *comp);
 
 /*-----Map-Utils-----*/
 void	free_map(t_map *map);

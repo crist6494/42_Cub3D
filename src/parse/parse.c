@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:17:43 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 16:52:56 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:10:50 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,18 @@ void	ft_get_comps(t_comp *comp)
 		|| !ft_extension_check(comp->ea_path, ".png"))
 	{
 		ft_putstr_fd("Error\nNot png textures\n", 2);
-		exit(0);
+		ft_exit_parse_error(comp);
 	}
 	if (!ft_rgb_check(comp->f_rgb) || !ft_rgb_check(comp->c_rgb))
-		exit(0);
+		ft_exit_parse_error(comp);
 	comp->f_hex = ft_rgb_to_hex(comp->f_rgb);
 	comp->c_hex = ft_rgb_to_hex(comp->c_rgb);
 	if (!ft_map_check(comp))
-		exit(0);
+		ft_exit_parse_error(comp);
 	if (comp->map == NULL)
 	{
 		ft_putstr_fd("Error\nbad map\n", 1);
-		exit(0);
+		ft_exit_parse_error(comp);
 	}
 }
 
@@ -77,7 +77,7 @@ void	ft_parse(t_game *game, char *av)
 		|| ft_check_n_str(file, "F ") != 1 || ft_check_n_str(file, "C ") != 1)
 	{
 		ft_putstr_fd("Error\nBad components in file\n", 2);
-		exit(0);
+		ft_exit_parse_error(game->comp);
 	}
 	ft_get_comps(game->comp);
 	ft_get_textures(game);

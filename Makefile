@@ -6,7 +6,7 @@
 #    By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/07/05 14:36:01 by manujime         ###   ########.fr        #
+#    Updated: 2023/07/06 19:03:35 by manujime         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ HOOKS = hooks
 PAINT = paint line repaint
 COLLISIONS = collisions collision_utils collision_sides
 RAYCASTING = raycast raycast_horizontal raycast_vertical cast
-PARSE = argv_check get_comp parse_utils parse rgb atoi_base itoa_base map_check walls
+PARSE = argv_check get_comp parse_utils parse rgb atoi_base itoa_base map_check walls clean_up
 
 SRCS = 	$(addsuffix .c, $(addprefix map/, $(MAP))) \
 		$(addsuffix .c, $(addprefix hooks/, $(HOOKS))) \

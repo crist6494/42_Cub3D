@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:11:26 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 16:52:22 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:08:52 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ void	ft_get_textures(t_game *game)
 	{
 		ft_putstr_fd("Error\n", 1);
 		ft_putstr_fd("bad texture file\n", 1);
-		exit(0);
+		ft_exit_parse_error(game->comp);
 	}
 }

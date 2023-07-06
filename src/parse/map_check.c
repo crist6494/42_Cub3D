@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:47:02 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 16:34:55 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:08:15 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_map_loader(t_comp *comp, int i)
 	if (!ft_walls_re(comp->map))
 	{
 		ft_putstr_fd("Error\ninvalid map\n", 2);
-		exit(0);
+		ft_exit_parse_error(comp);
 	}
 	comp->map = ft_get_map(comp, i);
 }
