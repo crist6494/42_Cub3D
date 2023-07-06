@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
 /*   Updated: 2023/07/06 18:53:23 by cmorales         ###   ########.fr       */
@@ -53,8 +53,9 @@ int	main(int ac, char **av)
 	game.map = &map;
 	game.player->square = &square;
 	game.ray = &ray;
-	if(ac == 3)
-		return(print_error(USAGE_MSG));
+	if (ac != 2 || !ft_file_check(av[1]))
+		return (print_error(USAGE_MSG));
+	ft_parse(&game, av[1]);
 	init_window(&game, av[1]);
 	return (EXIT_SUCCESS);
-} 
+}

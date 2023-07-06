@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
+#    By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
 #    Updated: 2023/06/29 11:24:37 by cmorales         ###   ########.fr        #
@@ -51,6 +51,7 @@ HOOKS = hooks
 PAINT = paint line repaint
 COLLISIONS = collisions collision_utils collision_sides
 RAYCASTING = raycast raycast_horizontal raycast_vertical cast
+PARSE = argv_check get_comp parse_utils parse rgb atoi_base itoa_base map_check walls clean_up
 
 SRCS = 	$(addsuffix .c, $(addprefix map/, $(MAP))) \
 		$(addsuffix .c, $(addprefix hooks/, $(HOOKS))) \
@@ -58,6 +59,7 @@ SRCS = 	$(addsuffix .c, $(addprefix map/, $(MAP))) \
 		$(addsuffix .c, $(addprefix player/, $(PLAYER))) \
 		$(addsuffix .c, $(addprefix collisions/, $(COLLISIONS))) \
 		$(addsuffix .c, $(addprefix raycasting/, $(RAYCASTING))) \
+		$(addsuffix .c, $(addprefix parse/, $(PARSE))) \
 		utils.c \
 		main.c \
 
@@ -77,7 +79,7 @@ MLX42 = ./MLX42/
 
 DEPENDENCIES_MAC = $(MLX42_LIB) -framework Cocoa -framework OpenGL -framework IOKit
 
-DEPENDENCIES_LINUX = /home/cristian/42/42_Cub3D/MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
+DEPENDENCIES_LINUX = /home/ganeos/repos/42/4/cub3d/MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 
 INC_MLX = $(MLX42)/include
 
@@ -102,6 +104,7 @@ obj:
 	@mkdir -p $(OBJ_DIR)/player
 	@mkdir -p $(OBJ_DIR)/collisions
 	@mkdir -p $(OBJ_DIR)/raycasting
+	@mkdir -p $(OBJ_DIR)/parse
 
 lib:
 	@make -C ./libft
@@ -123,7 +126,7 @@ $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(MLX42_LIB)
 
 $(NAME): $(OBJS) $(MLX42_LIB) $(MEMORY_LEAKS)
 	@echo "$(INFO) Building $(NAME)...$(NOC)"
-	@$(CC) $(CFLAGS) $(MEMORY_LEAKS) $(OBJS) /home/cristian/42/42_Cub3D/MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm $(LIBFT)  -o $(NAME)
+	@$(CC) $(CFLAGS) $(MEMORY_LEAKS) $(OBJS) /home/ganeos/repos/42/4/cub3d/MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm $(LIBFT)  -o $(NAME)
 	@echo "$(SUCCESS)$(NAME) built successfully!$(NOC)"
 
 

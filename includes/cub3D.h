@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
 /*   Updated: 2023/07/06 19:32:46 by cmorales         ###   ########.fr       */
@@ -106,6 +106,24 @@ typedef struct s_ray
 	t_coord			*coordHitVertical;
 }t_ray;
 
+typedef struct s_comp
+{
+	char			**file;
+	char			*no_path;
+	char			*so_path;
+	char			*we_path;
+	char			*ea_path;
+	char			*f_rgb;
+	char			*c_rgb;
+	int				f_hex;
+	int				c_hex;
+	mlx_texture_t	*no;
+	mlx_texture_t	*so;
+	mlx_texture_t	*we;
+	mlx_texture_t	*ea;
+	char			**map;
+}t_comp;
+
 typedef struct s_game
 {
 	mlx_t		*mlx;
@@ -114,6 +132,7 @@ typedef struct s_game
 	t_player	*player;	
 	t_map		*map;
 	t_ray		*ray;
+	t_comp		*comp;
 }t_game;
 
 /* ---------------------------------------------------------------------------*
@@ -134,6 +153,42 @@ char	**alloc_map(t_map *map);
 void	fill_map(t_map *map, char **tour);
 void	fill_values_map(t_map *map, char **tour, char *path);
 
+/*----Parse------*/
+void	ft_parse(t_game *game, char *av);
+
+/*-----Argv-Check-----*/
+int		ft_extension_check(char *str, char *ex);
+int		ft_file_check(char *str);
+
+/*-----Get-Comp*/
+void	ft_get_file(t_comp *comp, char *file);
+char	*ft_get_comp_line(t_comp *comp, char *name);
+void	ft_get_textures(t_game *game);
+
+/*----Map-Check-----*/
+int		ft_str_charset(char *str, char *charset);
+int		ft_walls(char **map);
+int		ft_map_check(t_comp *comp);
+
+/*-----rgb-------*/
+int		ft_rgb_check(char *str);
+unsigned int	ft_rgb_to_hex(char *str);
+
+/*-----Parse-Utils-----*/
+void	ft_free_char_matrix(char **arr);
+void	ft_print_char_matrix(char **matrix);
+void	ft_init_comp(t_game *game);
+int		ft_matrix_len(char **matrix);
+int		ft_map_tiles(char **map, char *tiles);
+
+char	*ft_itoa_base(int n, int base);
+int		ft_atoi_base(char *str, int base);
+
+/*----walls----*/
+int		ft_walls(char **map);
+
+/*----clean-up----*/
+void	ft_exit_parse_error(t_comp *comp);
 
 /*-----Map-Utils-----*/
 void	free_map(t_map *map);
