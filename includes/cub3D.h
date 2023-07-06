@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/05 15:23:35 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 03:13:59 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ void	ft_get_textures(t_game *game);
 
 /*----Map-Check-----*/
 int		ft_str_charset(char *str, char *charset);
+int		ft_walls(char **map);
 int		ft_map_check(t_comp *comp);
 
 /*-----rgb-------*/
@@ -182,7 +183,7 @@ char	*ft_itoa_base(int n, int base);
 int		ft_atoi_base(char *str, int base);
 
 /*----walls----*/
-int		ft_top_wall(char **map);
+int		ft_walls(char **map);
 
 /*-----Map-Utils-----*/
 void	free_map(t_map *map);

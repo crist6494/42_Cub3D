@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:17:43 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/05 12:34:50 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 02:41:13 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ void	ft_get_comps(t_comp *comp)
 	comp->c_hex = ft_rgb_to_hex(comp->c_rgb);
 	if (!ft_map_check(comp))
 		exit(0);
+	if (comp->map == NULL)
+	{
+		ft_putstr_fd("Error\nbad map\n", 1);
+		exit(0);
+	}
 }
 
 //stores the file in the comp struct, and processes the contents
@@ -76,7 +81,5 @@ void	ft_parse(t_game *game, char *av)
 	}
 	ft_get_comps(game->comp);
 	ft_get_textures(game);
-	if (!ft_map_check(game->comp))
-		exit(0);
 	exit(0);
 }

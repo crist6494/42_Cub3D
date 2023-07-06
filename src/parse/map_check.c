@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:47:02 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/05 15:22:20 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 05:17:21 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@
 11000001110101011111011110N0111
 11110111 1110101 101111010001
 11111111 1111111 111111111111*/
-int	ft_walls(char **map)
+int	ft_walls_re(char **map)
 {
-	if (!ft_top_wall(map))
+	if (!ft_walls(map))
+	{
+		ft_free_char_matrix(map);
+		map = NULL;
 		return (0);
-	// if (!ft_bottom_wall(map))
-	// 	return (0);
-	// if (!ft_left_wall(map))
-	// 	return (0);
-	// if (!ft_right_wall(map))
-	// 	return (0);
+	}
+	ft_free_char_matrix(map);
+	map = NULL;
 	return (1);
 }
 
@@ -80,6 +80,17 @@ char	**ft_get_map(t_comp *comp, int i)
 	return (map);
 }
 
+void	ft_map_loader(t_comp *comp, int i)
+{
+	comp->map = ft_get_map(comp, i);
+	if (!ft_walls_re(comp->map))
+	{
+		ft_putstr_fd("Error\ninvalid map\n", 2);
+		exit(0);
+	}
+	comp->map = ft_get_map(comp, i);
+}
+
 //checks that all other components are before the map
 int	ft_map_check(t_comp *comp)
 {
@@ -106,6 +117,6 @@ int	ft_map_check(t_comp *comp)
 		ft_putstr_fd("Error\nmap not at end of file\n", 2);
 		return (0);
 	}
-	comp->map = ft_get_map(comp, i);
+	ft_map_loader(comp, i);
 	return (1);
 }
