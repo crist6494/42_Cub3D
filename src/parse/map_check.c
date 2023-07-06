@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:47:02 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 05:17:21 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:27:32 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	ft_walls_re(char **map)
 	{
 		ft_free_char_matrix(map);
 		map = NULL;
+		ft_putstr_fd("Error\ninvalid map\n", 2);
 		return (0);
 	}
 	ft_free_char_matrix(map);
