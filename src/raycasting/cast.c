@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:56:15 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/28 19:48:04 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:42:32 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void cast(t_game *game, t_player *player, t_ray *ray)
 	float aux;
 
 	i = 0;
-	increment_angle = (float)player->fov / WIDTH;
+	increment_angle = (float)player->fov / WIDTH;//Saber distancia entre cada grado
 	init_angle = player->angle - (float)(player->fov / 2);
 	init_angle = normalize_angle(init_angle);
 	while(i < WIDTH)

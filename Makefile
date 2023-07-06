@@ -6,7 +6,7 @@
 #    By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/07/06 19:03:35 by manujime         ###   ########.fr        #
+#    Updated: 2023/06/29 11:24:37 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ OBJ_DIR = ./obj/
 
 INC = ./includes/
 
-MAP = map map_utils parse_map map_data
+MAP = map map_utils parse_map map_data minimap
 PLAYER = player movement player_utils
 HOOKS = hooks
 PAINT = paint line repaint
