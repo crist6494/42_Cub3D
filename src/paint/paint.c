@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:30:05 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/28 19:20:50 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:09:38 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img)
     float del_x;
     float del_y;
 	float y;
+	float x;
     
     del_y = lim + coord->y;
     del_x = lim + coord->x;
     y = coord->y;
 	while(y <= del_y)
 	{
-		float x;
         x = coord->x;
 		while(x <= del_x)
 		{

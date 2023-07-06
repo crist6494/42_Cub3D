@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/05 17:54:15 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:53:23 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ void init_window(t_game *game, char *path)
 		error();
 	if (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0)
         error();
-	init_minimap(game);
+	init_minimap(game, WIDTH, 30);
 	init_map(game->map, path);
 	init_player(game->player, game, game->player->square);
 	repaint(game, game->player);
 	mlx_key_hook(game->mlx, &escape_hook, (void *)(game));
 	mlx_loop_hook(game->mlx, &move_hook, (void *)(game));
 	mlx_cursor_hook(game->mlx, &cursor_hook, (void *)(game));
+	mlx_resize_hook(game->mlx, &hook_screen, (void *)(game));
 	mlx_loop(game->mlx);
-	//mlx_resize_hook(game->mlx, &hook_screen, (void *)(game));
 	//mlx_delete_image(game->mlx, game->img);
 	free_map(game->map);
 	free_player(game->player);

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:42:38 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/28 19:47:31 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:36:04 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ float	raycast(t_game *game, t_player *player, t_ray *ray, float angle)
 	{
 		//insert_coord(ray->coordHitHorizontal, wallHitHorizontal.x, wallHitHorizontal.y);
 		init_points(player->p_line, player->square->p_center, &wallHitHorizontal);//Iniciar linea
-		//paint_line(player->p_line, game->img, RED);
+		paint_line(player->p_line, game->img, RED);
 		return (distance_horizontal);
 	}
 	else
 	{
 		//insert_coord(ray->coordHitVertical, wallHitVertical.x, wallHitVertical.y);
 		init_points(player->p_line, player->square->p_center, &wallHitVertical);//Iniciar linea
-		//paint_line(player->p_line, game->img, RED);
+		paint_line(player->p_line, game->img, RED);
 		return (distance_vertical);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/04 18:40:09 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:54:12 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,24 @@ void hook_screen(int32_t width, int32_t height, void *param)
 	(void)width;
 
 	printf("width: %d\n", width);
+	printf("width: %d\n", width);
 	printf("height: %d\n", height);
-	clear_map(game->map);
-	//create_map(game, game->coord, (50), ((width - game->map->map_width) - 50));
-	create_map(game, game->map, (height - game->map->width) / 2, (width - game->map->height) / 2);
+	mlx_delete_image(game->mlx, game->minimap);
+	game->minimap = mlx_new_image(game->mlx, 331, 331);
+	if(!game->minimap)
+		error();
+	if (mlx_image_to_window(game->mlx, game->minimap, (width - 360),  30) < 0)
+    	error();
+	paint_minimap(game);
 }
+
 void cursor_hook(double xpos, double ypos, void *param)
 {
 	t_game *game;
 	
 	game = (t_game *)param;
 	(void)ypos;
-	if(mlx_is_mouse_down(game->mlx, MLX_MOUSE_BUTTON_LEFT))
+	if(mlx_is_mouse_down(game->mlx, MLX_MOUSE_BUTTON_MIDDLE))
 	{
 		mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 		mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);

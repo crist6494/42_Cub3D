@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/05 17:10:17 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:06:57 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void init_player(t_player *player, t_game *game, t_square *square)
     player->img = game->img;
     player->color = WHITE;
     player->tam = 4;
-    player->vel_move = 1.2;
+    player->vel_move = 0.5;
     player->fov = FOV;
     player->screen_x = WIDTH;
     player->screen_y = HEIGHT;
