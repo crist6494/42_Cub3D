@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/06 18:06:57 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:43:48 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void init_player(t_player *player, t_game *game, t_square *square)
     player->fov = FOV;
     player->screen_x = WIDTH;
     player->screen_y = HEIGHT;
-    player->angle = get_player_angle(game->map);
+    player->angle = ft_get_angle_yx(game->map->tour);
     player->pos_map = malloc(sizeof(t_coord));
-    *player->pos_map = get_player_pos(game->map);
+    *player->pos_map = ft_get_player_yx(game->map->tour);
     player->p_line = malloc(sizeof(t_point));
     init_square(game, square, player);
     init_direction(player);

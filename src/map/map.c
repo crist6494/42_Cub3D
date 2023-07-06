@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/06 20:19:18 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:45:56 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,27 @@
 
 //static char **get_map(t_map *map, char *path_map);
 
+int	ft_longest_x(char **map)
+{
+	int	i;
+	int	longest;
+
+	i = 0;
+	longest = 0;
+	while (map[i])
+	{
+		if (ft_strlen(map[i]) > (size_t)longest)
+			longest = ft_strlen(map[i]);
+		i++;
+	}
+	return (longest);
+}
+
 void init_map(t_game *game, t_map *map, char *path_map)
 {
-	map->len_x = get_len_x(path_map);
-	map->len_y = get_len_y(path_map);
+	(void)path_map;
+	map->len_x = ft_longest_x(game->comp->map);
+	map->len_y = ft_matrix_len(game->comp->map);
 	map->tour = game->comp->map;
 	map->lim = 20;
 	map->width = map->len_x * map->lim;

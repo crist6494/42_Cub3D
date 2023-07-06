@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:25:46 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/12 20:22:05 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:44:30 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,34 @@ int get_player_angle(t_map *map)
 	}
 	return (-1);
 }
+
+int ft_get_angle_yx(char **map)
+{
+	int			y;
+	int			x;
+
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{	
+			if(map[y][x] == 'N')
+				return (270);
+			if(map[y][x] == 'S')
+				return (90);
+			if(map[y][x] == 'W')
+				return (180);
+			if(map[y][x] == 'E')
+				return (0);
+			x++;
+		}
+		y++;
+	}
+	return (-1);
+}
+
+
 
 t_coord get_player_pos(t_map *map)
 {

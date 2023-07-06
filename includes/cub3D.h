@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/06 20:19:53 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:43:22 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,5 +271,6 @@ float	normalize_angle(float angle);
 float	raycast(t_game *game, t_player *player, t_ray *ray, float angle);
 void init_minimap(t_game *game, int width, int height);
 void paint_minimap(t_game * game);
-
+t_coord	ft_get_player_yx(char **map);
+int ft_get_angle_yx(char **map);
 # endif

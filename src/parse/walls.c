@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:36:39 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 16:55:15 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:38:34 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	ft_count_char(char **map, char c)
 	return (count);
 }
 
-t_paint_p	ft_get_player_yx(char **map)
+t_coord	ft_get_player_yx(char **map)
 {
-	t_paint_p	begin;
+	t_coord	begin;
 	int			y;
 	int			x;
 
@@ -107,7 +107,7 @@ void	ft_space_map(char **map)
 
 int	ft_walls(char **map)
 {
-	t_paint_p	begin;
+	t_coord	begin;
 	int			valid;
 	int			y;
 	int			x;
