@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/06 03:13:59 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:45:28 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ void	ft_free_char_matrix(char **arr);
 void	ft_print_char_matrix(char **matrix);
 void	ft_init_comp(t_game *game);
 int		ft_matrix_len(char **matrix);
+int		ft_map_tiles(char **map, char *tiles);
 
 char	*ft_itoa_base(int n, int base);
 int		ft_atoi_base(char *str, int base);

@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:11:26 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/05 12:35:16 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:52:22 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,16 @@ void	ft_get_textures(t_game *game)
 
 	loaded = true;
 	game->comp->no = mlx_load_png(game->comp->no_path);
-	if (game->comp->no == NULL)
+	if (!game->comp->no)
 		loaded = false;
 	game->comp->so = mlx_load_png(game->comp->so_path);
-	if (game->comp->so == NULL)
+	if (!game->comp->so)
 		loaded = false;
 	game->comp->we = mlx_load_png(game->comp->we_path);
-	if (game->comp->we == NULL)
+	if (!game->comp->we)
 		loaded = false;
 	game->comp->ea = mlx_load_png(game->comp->ea_path);
-	if (game->comp->ea == NULL)
+	if (!game->comp->ea)
 		loaded = false;
 	if (!loaded)
 	{

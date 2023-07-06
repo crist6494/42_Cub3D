@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 11:39:52 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 13:45:42 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:47:33 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,19 @@ int	ft_matrix_len(char **matrix)
 	while (matrix[i])
 		i++;
 	return (i);
+}
+
+//checks that all chars in the map matrix are in the tiles string
+int	ft_map_tiles(char **map, char *tiles)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		if (!ft_str_charset(map[i], tiles))
+			return (0);
+		i++;
+	}
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:17:43 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 02:41:13 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:52:56 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_get_comps(t_comp *comp)
 		|| !ft_extension_check(comp->we_path, ".png")
 		|| !ft_extension_check(comp->ea_path, ".png"))
 	{
-		ft_putstr_fd("Error\nBad texture file\n", 2);
+		ft_putstr_fd("Error\nNot png textures\n", 2);
 		exit(0);
 	}
 	if (!ft_rgb_check(comp->f_rgb) || !ft_rgb_check(comp->c_rgb))

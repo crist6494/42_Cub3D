@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:36:39 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 16:28:01 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:55:15 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ void	ft_flood_fill(char **map, int begin_y, int begin_x)
 		|| (unsigned int)begin_x > ft_strlen(map[begin_y]))
 		return ;
 	map[begin_y][begin_x] = 'F';
-	printf("begin.x: %d\n", begin_x);
-	printf("begin.y: %d\n", begin_y);
 	ft_flood_fill(map, begin_y - 1, begin_x);
 	ft_flood_fill(map, begin_y + 1, begin_x);
 	ft_flood_fill(map, begin_y, begin_x - 1);
@@ -114,17 +112,16 @@ int	ft_walls(char **map)
 	int			y;
 	int			x;
 
-	if (ft_count_char(map, 'E') + ft_count_char(map, 'W')
-		+ ft_count_char(map, 'N') + ft_count_char(map, 'S') != 1)
+	if ((ft_count_char(map, 'E') + ft_count_char(map, 'W')
+			+ ft_count_char(map, 'N') + ft_count_char(map, 'S') != 1)
+		|| !ft_map_tiles(map, " 01NSEW\n"))
 		return (0);
 	ft_space_map(map);
 	valid = ft_count_char(map, ' ');
 	begin = ft_get_player_yx(map);
 	y = begin.y;
 	x = begin.x;
-	ft_print_char_matrix(map);
 	ft_flood_fill(map, y, x);
-	ft_print_char_matrix(map);
 	if (valid != ft_count_char(map, ' ') || !ft_str_charset(map[0], "1 \n")
 		|| !ft_str_charset(map[ft_matrix_len(map) - 1], "1 \n")
 		|| ft_count_char(map, '0'))
