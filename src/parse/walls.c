@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:36:39 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 05:07:11 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:47:32 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,8 @@ int	ft_walls(char **map)
 	ft_flood_fill(map, y, x);
 	ft_print_char_matrix(map);
 	if (valid != ft_count_char(map, ' ') || !ft_str_charset(map[0], "1 \n")
-		|| !ft_str_charset(map[ft_matrix_len(map) - 1], "1 \n"))
+		|| !ft_str_charset(map[ft_matrix_len(map) - 1], "1 \n")
+		|| ft_count_char(map, '0'))
 	{
 		ft_putstr_fd("Error\nMap is not surrounded by walls\n", 2);
 		return (0);
