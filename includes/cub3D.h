@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/28 20:41:49 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:32:46 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_game
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
+	mlx_image_t	*minimap;
 	t_player	*player;	
 	t_map		*map;
 	t_ray		*ray;
@@ -213,4 +214,7 @@ void	cast(t_game *game, t_player *player, t_ray *ray);
 void	paint_ceil_floor(t_player *player);
 float	normalize_angle(float angle);
 float	raycast(t_game *game, t_player *player, t_ray *ray, float angle);
+void init_minimap(t_game *game, int width, int height);
+void paint_minimap(t_game * game);
+
 # endif
