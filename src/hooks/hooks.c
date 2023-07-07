@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/06 18:54:12 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/07 20:15:50 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void hook_screen(int32_t width, int32_t height, void *param)
 	printf("width: %d\n", width);
 	printf("width: %d\n", width);
 	printf("height: %d\n", height);
-	mlx_delete_image(game->mlx, game->minimap);
-	game->minimap = mlx_new_image(game->mlx, 331, 331);
-	if(!game->minimap)
+	mlx_delete_image(game->mlx, game->minimap->img);
+	game->minimap->img = mlx_new_image(game->mlx, 331, 331);
+	if(!game->minimap->img)
 		error();
-	if (mlx_image_to_window(game->mlx, game->minimap, (width - 360),  30) < 0)
+	if (mlx_image_to_window(game->mlx, game->minimap->img, (width - 360),  30) < 0)
     	error();
-	paint_minimap(game);
+	paint_minimap(game, game->minimap);
 }
 
 void cursor_hook(double xpos, double ypos, void *param)

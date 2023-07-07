@@ -6,36 +6,18 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/06 20:45:56 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/07 20:22:27 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-//static char **get_map(t_map *map, char *path_map);
-
-int	ft_longest_x(char **map)
-{
-	int	i;
-	int	longest;
-
-	i = 0;
-	longest = 0;
-	while (map[i])
-	{
-		if (ft_strlen(map[i]) > (size_t)longest)
-			longest = ft_strlen(map[i]);
-		i++;
-	}
-	return (longest);
-}
-
 void init_map(t_game *game, t_map *map, char *path_map)
 {
 	(void)path_map;
-	map->len_x = ft_longest_x(game->comp->map);
-	map->len_y = ft_matrix_len(game->comp->map);
 	map->tour = game->comp->map;
+	map->len_x = ft_get_len_x(game->comp->map);
+	map->len_y = ft_get_len_y(game->comp->map);
 	map->lim = 20;
 	map->width = map->len_x * map->lim;
 	map->height = map->len_y * map->lim;
@@ -45,21 +27,12 @@ void init_map(t_game *game, t_map *map, char *path_map)
 	map->m_coord = malloc(sizeof(t_coord));
 }
 
-// static char **get_map(t_map *map, char *path_map)
-// {
-// 	char **tour;
-// 	tour = alloc_map(map);
-// 	fill_map(map, tour);
-// 	fill_values_map(map, tour, path_map);
-// 	return (tour);
-// }
-
 void create_map(t_game *game, t_map *map, float c_x, float c_y)
 {
 	unsigned int y;
 	unsigned int x;
 	float aux_x;
-	   
+	
 	insert_coord(map->m_coord, c_x, c_y);
 	aux_x = c_x;
 	y = 0;
@@ -82,13 +55,3 @@ void create_map(t_game *game, t_map *map, float c_x, float c_y)
 		y++;
 	}
 }
-
-/* void paint_map(t_game *game, t_map *map, char *map_path)
-{
-	(void)game;
-	init_map(map, map_path);
-	clear_map(map);
-	create_map(game, map, map->mid_map->x, map->mid_map->y);
-	//create_map(game, map, 50, (WIDTH - map->width) - 50);
-	//free_map(map);
-} */

@@ -6,39 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:25:46 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/06 20:44:30 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:29:28 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int get_player_angle(t_map *map)
-{
-	unsigned int y;
-	unsigned int x;
-
-	y = 0;
-	while(y < map->len_y)
-	{
-		x = 0;
-		while(x < map->len_x)
-		{
-			if(map->tour[y][x] == 'N')
-				return (270);
-			if(map->tour[y][x] == 'S')
-				return (90);
-			if(map->tour[y][x] == 'W')
-				return (180);
-			if(map->tour[y][x] == 'E')
-				return (0);
-			x++;
-		}
-		y++;
-	}
-	return (-1);
-}
-
-int ft_get_angle_yx(char **map)
+int ft_get_player_angle(char **map)
 {
 	int			y;
 	int			x;
@@ -63,34 +37,54 @@ int ft_get_angle_yx(char **map)
 	}
 	return (-1);
 }
-
-
-
-t_coord get_player_pos(t_map *map)
+int	ft_get_len_x(char **map)
 {
-	unsigned int y;
-	unsigned int x;
-	t_coord pos;
+	int	i;
+	int	longest;
+
+	i = 0;
+	longest = 0;
+	while (map[i])
+	{
+		if (ft_strlen(map[i]) > (size_t)longest)
+			longest = ft_strlen(map[i]);
+		i++;
+	}
+	return (longest);
+}
+
+//gets the number of lines in a char **
+int	ft_get_len_y(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
+t_coord	ft_get_player_pos(char **map)
+{
+	t_coord	begin;
+	int			y;
+	int			x;
 
 	y = 0;
-	while(y < map->len_y)
+	while (map[y])
 	{
 		x = 0;
-		while(x < map->len_x)
+		while (map[y][x])
 		{
-			if(map->tour[y][x] == 'N' || 
-				map->tour[y][x] == 'S' || 
-				map->tour[y][x] == 'W' ||
-				map->tour[y][x] == 'E')
+			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E'
+				|| map[y][x] == 'W')
 			{
-				pos.x = x;
-				pos.y = y;
-				return (pos);
+				begin.x = x;
+				begin.y = y;
 			}
 			x++;
 		}
 		y++;
 	}
-	printf("ERROR: not player in the map");
-	exit(0);
+	return (begin);
 }

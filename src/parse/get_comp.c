@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_comp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:11:26 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 19:08:52 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:40:43 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 //gets the number of lines in the file
-int	ft_file_len(char *file)
+static int	ft_file_len(char *file)
 {
 	int		fd;
 	char	*line;

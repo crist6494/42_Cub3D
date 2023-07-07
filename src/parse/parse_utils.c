@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 11:39:52 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 19:20:21 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:29:05 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,6 @@ void	ft_init_comp(t_game *game)
 	game->comp->map = NULL;
 }
 
-//gets the number of lines in a char **
-int	ft_matrix_len(char **matrix)
-{
-	int	i;
-
-	i = 0;
-	while (matrix[i])
-		i++;
-	return (i);
-}
 
 //checks that all chars in the map matrix are in the tiles string
 int	ft_map_tiles(char **map, char *tiles)

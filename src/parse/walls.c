@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:36:39 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 20:38:34 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:32:31 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,37 +34,12 @@ int	ft_count_char(char **map, char c)
 	return (count);
 }
 
-t_coord	ft_get_player_yx(char **map)
-{
-	t_coord	begin;
-	int			y;
-	int			x;
-
-	y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E'
-				|| map[y][x] == 'W')
-			{
-				begin.x = x;
-				begin.y = y;
-			}
-			x++;
-		}
-		y++;
-	}
-	return (begin);
-}
-
 void	ft_flood_fill(char **map, int begin_y, int begin_x)
 {
 	if (map[begin_y][begin_x] == '1' || map[begin_y][begin_x] == 'F'
 		|| map[begin_y][begin_x] == '\0')
 		return ;
-	if (begin_y <= 0 || begin_x < 0 || begin_y >= ft_matrix_len(map) -1
+	if (begin_y <= 0 || begin_x < 0 || begin_y >= ft_get_len_y(map) -1
 		|| (unsigned int)begin_x > ft_strlen(map[begin_y]))
 		return ;
 	map[begin_y][begin_x] = 'F';
@@ -118,12 +93,12 @@ int	ft_walls(char **map)
 		return (0);
 	ft_space_map(map);
 	valid = ft_count_char(map, ' ');
-	begin = ft_get_player_yx(map);
+	begin = ft_get_player_pos(map);
 	y = begin.y;
 	x = begin.x;
 	ft_flood_fill(map, y, x);
 	if (valid != ft_count_char(map, ' ') || !ft_str_charset(map[0], "1 \n")
-		|| !ft_str_charset(map[ft_matrix_len(map) - 1], "1 \n")
+		|| !ft_str_charset(map[ft_get_len_y(map) - 1], "1 \n")
 		|| ft_count_char(map, '0'))
 		return (0);
 	return (1);

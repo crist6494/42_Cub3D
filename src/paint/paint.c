@@ -6,17 +6,11 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:30:05 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/06 18:09:38 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/07 20:48:27 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void insert_paint_p(t_paint_p *c, int x, int y)
-{
-    c->x = x;
-    c->y = y;
-}
 
 void square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img)
 {

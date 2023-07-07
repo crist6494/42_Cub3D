@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/06 20:43:22 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/07 20:51:08 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,107 +124,110 @@ typedef struct s_comp
 	char			**map;
 }t_comp;
 
+typedef struct s_minimap
+{
+	mlx_image_t	*img;
+	int			len_x;
+	int			len_y;
+	int			cas_x;
+	int			cas_y;
+}t_minimap;
+
 typedef struct s_game
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-	mlx_image_t	*minimap;
 	t_player	*player;	
 	t_map		*map;
+	t_minimap	*minimap;
 	t_ray		*ray;
 	t_comp		*comp;
 }t_game;
+
 
 /* ---------------------------------------------------------------------------*
 	-------------------------------FUCTIONS---------------------------------
 *--------------------------------------------------------------------------- */
 
-
-/*-----Map-----*/
-void	init_map(t_game *game, t_map *map, char *path_map);
-void	create_map(t_game *game, t_map *map, float c_x, float c_y);
-void	paint_map(t_game *game, t_map *map, char *map_path);
-
-
-/*-----Parse-Map-----*/
-int		get_len_y(char *path);
-int		get_len_x(char *path);
-char	**alloc_map(t_map *map);
-void	fill_map(t_map *map, char **tour);
-void	fill_values_map(t_map *map, char **tour, char *path);
-
-/*----Parse------*/
+/* ------------------------------*
+	-----------PARSE-----------
+*--------------------------------*/
 void	ft_parse(t_game *game, char *av);
 
 /*-----Argv-Check-----*/
 int		ft_extension_check(char *str, char *ex);
 int		ft_file_check(char *str);
 
-/*-----Get-Comp*/
+/*-----Get-Comp------*/
 void	ft_get_file(t_comp *comp, char *file);
 char	*ft_get_comp_line(t_comp *comp, char *name);
 void	ft_get_textures(t_game *game);
 
 /*----Map-Check-----*/
 int		ft_str_charset(char *str, char *charset);
-int		ft_walls(char **map);
 int		ft_map_check(t_comp *comp);
 
 /*-----rgb-------*/
-int		ft_rgb_check(char *str);
+int				ft_rgb_check(char *str);
 unsigned int	ft_rgb_to_hex(char *str);
 
 /*-----Parse-Utils-----*/
 void	ft_free_char_matrix(char **arr);
 void	ft_print_char_matrix(char **matrix);
 void	ft_init_comp(t_game *game);
-int		ft_matrix_len(char **matrix);
 int		ft_map_tiles(char **map, char *tiles);
 
-char	*ft_itoa_base(int n, int base);
-int		ft_atoi_base(char *str, int base);
-
 /*----walls----*/
+int		ft_count_char(char **map, char c);
+void	ft_flood_fill(char **map, int begin_y, int begin_x);
 int		ft_walls(char **map);
+
+/*-----itoa_base-----*/
+char	*ft_itoa_base(int n, int base);
+
+/*-----atoi_base-----*/
+int		ft_atoi_base(char *str, int base);
 
 /*----clean-up----*/
 void	ft_exit_parse_error(t_comp *comp);
+
+
+
+/* ------------------------------*
+	-----------MAP-----------
+*--------------------------------*/
+void	init_map(t_game *game, t_map *map, char *path_map);
+void	create_map(t_game *game, t_map *map, float c_x, float c_y);
+
+/*-------Map-Data--------*/
+int		ft_get_player_angle(char **map);
+t_coord	ft_get_player_pos(char **map);
+int		ft_get_len_x(char **map);
+int		ft_get_len_y(char **map);
 
 /*-----Map-Utils-----*/
 void	free_map(t_map *map);
 void	map_print(t_map *map);
 void	clear_map(t_map *map);
 
-
-/*-------Map-Data--------*/
-int		get_player_angle(t_map *map);
-t_coord get_player_pos(t_map *map);
-
-
-
-/*-----Paint-----*/
-void	insert_coord(t_coord *c, float x, float y);
-void	init_points(t_point *p, t_coord *c, t_coord *c1);
-void	square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img);
-void paint_line(t_point *p, mlx_image_t *img, uint32_t color);
+/*-----Minimap-----*/
+void 	init_minimap(t_game *game, t_minimap *minimap, int width, int height);
+void	paint_minimap_background(t_game *game);
+void	paint_minimap(t_game *game, t_minimap *mp);
 
 
-
-/*------Player---------*/
+/* ------------------------------*
+	-----------PLAYER-----------
+*--------------------------------*/
 void	init_player(t_player *player, t_game *game, t_square *square);
 void	update_direction(t_player *player);
 void	pos_line(t_player *player);
 void	pos_player_map(t_map *map, t_player *player, t_square *square);
 
-
-/*------Player_Paint---------*/
-void	paint_player(t_game *game, t_player *player);
-void	repaint(t_game *game, t_player *player);
-
 /*------Player_Utils---------*/
 float	grades_to_rad(float angle);
 void	free_player(t_player *player);
-
+void	get_square_corner(t_player *player, t_square *square);
 
 /*--------Movement--------------*/
 void	player_advance(t_game *game, t_player *player, int direction);
@@ -233,19 +236,37 @@ void	player_lateral(t_game *game, t_player *player, int direction);
 
 
 
-/*-----Hooks-----*/
+/* ------------------------------*
+	-----------PAINT-----------
+*--------------------------------*/
+void	square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img);
+void	paint_line(t_point *p, mlx_image_t *img, uint32_t color);
+void	paint_ceil_floor(t_player *player);
+
+/*------Coord_paint_p---------*/
+void	insert_coord(t_coord *c, float x, float y);
+void	init_points(t_point *p, t_coord *c, t_coord *c1);
+void	insert_paint_p(t_paint_p *c, int x, int y);
+
+/*------Repaint---------*/
+void	repaint(t_game *game, t_player *player);
+
+
+
+/* ------------------------------*
+	-----------HOOKS-----------
+*--------------------------------*/
 void	escape_hook(mlx_key_data_t keydata, void *param);
-void	move_hook(void *param);
 void	hook_screen(int32_t width, int32_t height, void* param);
 void	cursor_hook(double xpos, double ypos, void* param);
+void	move_hook(void *param);
 
 
-/*---------Utils-------------*/
-void	ft_void();
-void	error(void);
-int		print_error(char *msg);
-void	check_collision(t_map *map, t_player *player, float advance_x, float advance_y);
-void	get_square_corner(t_player *player, t_square *square);
+
+/* ------------------------------*
+	---------COLLISIONS---------
+*--------------------------------*/
+void 	check_collision(t_map *map, t_player *player, float advance_x, float advance_y);
 
 /*---------Collisions_sides-------------*/
 int		check_left_down_p(t_player * player, t_map *map, float advance_x, float advance_y);
@@ -260,17 +281,31 @@ float	check_down_collision(t_player *player, t_map *map, float advance_x, float 
 float	check_left_collision(t_player *player, t_map *map, float advance_x, float advance_y);
 float	check_right_collision(t_player *player, t_map *map, float advance_x, float advance_y);
 
+
+
+/* ------------------------------*
+	--------RAYCASTING--------
+*--------------------------------*/
+void	cast(t_game *game, t_player *player, t_ray *ray);
+
+/*---------Raycast-------------*/
 void	init_ray(t_ray *data, float angle);
 float	raycast(t_game *game, t_player *player, t_ray *ray, float angle);
+
+/*---------Raycast_Horizontal-------------*/
 void	raycast_horizonal(t_map *map, t_player *player, t_ray *ray, t_coord *wallHitHorizontal);
+
+/*---------Raycast_Vertical-------------*/
 void	raycast_vertical(t_map *map, t_player *player, t_ray *ray, t_coord *wallHitVertical);
 
-void	cast(t_game *game, t_player *player, t_ray *ray);
-void	paint_ceil_floor(t_player *player);
+
+
+/* ------------------------------*
+	--------UTILS--------
+*--------------------------------*/
+void	ft_void();
+void	error(void);
+int		print_error(char *msg);
 float	normalize_angle(float angle);
-float	raycast(t_game *game, t_player *player, t_ray *ray, float angle);
-void init_minimap(t_game *game, int width, int height);
-void paint_minimap(t_game * game);
-t_coord	ft_get_player_yx(char **map);
-int ft_get_angle_yx(char **map);
+
 # endif

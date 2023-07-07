@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:17:43 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 20:15:21 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:37:48 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 //checks if there is more than one instance of the name string in the file
-int	ft_check_n_str(char **file, char *name)
+static int	ft_check_n_str(char **file, char *name)
 {
 	int		instances;
 	int		i;
@@ -35,7 +35,7 @@ int	ft_check_n_str(char **file, char *name)
 }
 
 //gets all the components from the file
-void	ft_get_comps(t_comp *comp)
+static void	ft_get_comps(t_comp *comp)
 {
 	comp->no_path = ft_get_comp_line(comp, "NO ");
 	comp->so_path = ft_get_comp_line(comp, "SO ");

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   itoa_base.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:13:41 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/03 15:22:48 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:39:41 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	ft_numlen(int n, int base)
+static int	ft_numlen(int n, int base)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ int	ft_numlen(int n, int base)
 	return (i);
 }
 
-char	*ft_strrev(char *str)
+static char	*ft_strrev(char *str)
 {
 	int		i;
 	int		j;
@@ -44,7 +44,7 @@ char	*ft_strrev(char *str)
 	return (str);
 }
 
-char	ft_base(int n)
+static char	ft_base(int n)
 {
 	if (n < 10)
 		return (n + '0');

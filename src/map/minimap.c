@@ -6,117 +6,92 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 11:24:20 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/06 18:51:44 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/07 20:55:43 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void paint_minimap_black(t_game *game);
+static void loop_paint_minimap(t_game *game, t_minimap *mp, t_coord *p, int lim);
 
-void init_minimap(t_game *game, int width, int height)
+void init_minimap(t_game *game, t_minimap *minimap, int width, int height)
 {
 	(void)game;
-	game->minimap = mlx_new_image(game->mlx, 331, 331);
-	if(!game->minimap)
+	minimap->img = mlx_new_image(game->mlx, 331, 331);
+	if(!minimap->img)
 		error();
-	if (mlx_image_to_window(game->mlx, game->minimap, (width - 360), height) < 0)
+	if (mlx_image_to_window(game->mlx, minimap->img, (width - 360), height) < 0)
     	error();
-
-	//paint_minimap_black(game);
 } 
 
-void paint_minimap_black(t_game *game)
+void paint_minimap_background(t_game *game)
 {
 	int x;
 	int y;
 
-	//printf("Hola\n");
 	y = 0;
 	while(y < 331)
 	{
 		x = 0;
 		while(x < 331)
 		{
-			mlx_put_pixel(game->minimap, x, y, WHITE);
+			mlx_put_pixel(game->minimap->img, x, y, WHITE);
 			x++;	
 		}
 		y++;
 	}
 }
 
-void paint_square(t_paint_p *coord, int lim, uint32_t color, mlx_image_t *img)
+static int ft_get_map_color(t_map * map, int x, int y)
 {
-    int del_x;
-    int del_y;
-	int y;
-	int x;
-   
-    del_y = lim + coord->y;
-    del_x = lim + coord->x;
-    y = coord->y;
-	x = coord->x;
-	while(y <= del_y)
-	{
-        x = coord->x;
-		while(x <= del_x)
-		{
-			mlx_put_pixel(img, x, y, color);
-			x++;
-		}
-		y++;		
-	}
+	int color;
 
+	if (map->tour[y][x] == '1')
+		color = RED;
+	else if (map->tour[y][x] == ' ')
+		color = WHITE;
+	else
+		color = BLACK;
+	return (color);
 }
 
-void paint_minimap(t_game * game)
+void paint_minimap(t_game *game, t_minimap *mp)
 {
-	t_paint_p p;
-	t_paint_p c;
+	t_coord p;
+	t_coord c;
+	int lim;
 
-	p.x = 0;
-	p.y = 0;
-	paint_minimap_black(game);
-	//paint_square(game, RED, &p, 20);
-	int	x;
-	int	y;
-	int	len_x;
+	paint_minimap_background(game);
+	insert_coord(&p, 0, 0);
+	insert_coord(&c, 150, 150);
+	lim = 30;
+	mp->cas_x = (int)(game->player->square->p_center->x / (int)game->map->lim) - 5;
+	mp->cas_y = (int)(game->player->square->p_center->y / (int)game->map->lim) - 5;
+	mp->len_x = mp->cas_x + 11;
+	mp->len_y = mp->cas_y + 11;
+	loop_paint_minimap(game, mp, &p, lim);
+	square_paint(&c, 28, GREY, mp->img);
+}
+
+static void loop_paint_minimap(t_game *game, t_minimap *mp, t_coord *p, int lim)
+{
 	int aux;
-	int	len_y;
-	int  lim = 30;
-	x = (int)(game->player->square->p_center->x / (int)game->map->lim) - 5;
-	y = (int)(game->player->square->p_center->y / (int)game->map->lim) - 5;
-	aux = p.x;
-	len_x = x + 11;
-	len_y = y + 11;
-	c.x = 150;
-	c.y = 150;
 
-	while (y < len_y /* && (y >= 0  && y <= (int)game->map->len_y) */)
+	aux = p->x;
+	while (mp->cas_y < mp->len_y)
 	{
-		x = (int)game->player->square->p_center->x / (int)game->map->lim - 5;
-		p.x = aux;
-		while (x < len_x /* &&( x >= 0 && x <= (int)game->map->len_x) */)
+		mp->cas_x = (int)game->player->square->p_center->x / (int)game->map->lim - 5;
+		p->x = aux;
+		while (mp->cas_x < mp->len_x)
 		{
-			if(!(y >= 0  && y <= (int)game->map->len_y - 1) || !(x >= 0 && x <= (int)game->map->len_x - 1))
-			{
-				//printf("Sale mapa\n");
-				paint_square(&p, lim, WHITE, game->minimap);
-			}
+			if(!(mp->cas_y >= 0  && mp->cas_y <= (int)game->map->len_y - 1) || !(mp->cas_x >= 0 && mp->cas_x <= (int)game->map->len_x - 1))
+				square_paint(p, lim, WHITE, mp->img);
 			else
-			{
-				if (game->map->tour[y][x] == '1')
-					paint_square(&p, lim, RED, game->minimap);
-				else if (game->map->tour[y][x] == ' ')
-					paint_square(&p, lim, WHITE, game->minimap);
-				else
-					paint_square(&p, lim, BLACK, game->minimap);
-			}
-			p.x += lim;
-			x++;
+				square_paint(p, lim, ft_get_map_color(game->map, mp->cas_x, mp->cas_y), mp->img);
+			p->x += lim;
+			mp->cas_x++;
 		}
-		y++;
-		p.y += lim;
-		paint_square(&c, 28, GREY, game->minimap);
+		mp->cas_y++;
+		p->y += lim;
 	}
 }

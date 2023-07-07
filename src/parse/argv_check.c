@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   argv_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 18:02:00 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/03 11:11:45 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:38:25 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_extension_check(char *str, char *ex)
 		return (0);
 }
 
-int	ft_is_dir(char *str)
+static int	ft_is_dir(char *str)
 {
 	int	fd;
 

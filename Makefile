@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+         #
+#    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/06/29 11:24:37 by cmorales         ###   ########.fr        #
+#    Updated: 2023/07/07 20:49:32 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,10 +45,10 @@ OBJ_DIR = ./obj/
 
 INC = ./includes/
 
-MAP = map map_utils parse_map map_data minimap
+MAP = map map_utils map_data minimap
 PLAYER = player movement player_utils
 HOOKS = hooks
-PAINT = paint line repaint
+PAINT = paint line repaint coord_paint_p
 COLLISIONS = collisions collision_utils collision_sides
 RAYCASTING = raycast raycast_horizontal raycast_vertical cast
 PARSE = argv_check get_comp parse_utils parse rgb atoi_base itoa_base map_check walls clean_up
@@ -165,7 +165,7 @@ re: fclean
 	@make all
 
 r: all
-	./$(NAME) assets/maps/map.cub 
+	./$(NAME) assets/maps/01.cub  
 
 val: all
 	valgrind --leak-check=full ./$(NAME)

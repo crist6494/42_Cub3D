@@ -6,13 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:56:15 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/06 19:42:32 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:53:29 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void render_wall(t_player *player, float distance, unsigned int x)
+static void render_wall(t_player *player, float distance, unsigned int x)
 {
 	float	distance_proyection;
 	int		proyected_height;

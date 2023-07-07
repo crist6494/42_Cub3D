@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:47:02 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 20:21:08 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/07 19:25:21 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	**ft_get_map(t_comp *comp, int i)
 	return (map);
 }
 
-void	ft_map_loader(t_comp *comp, int i)
+static void	ft_map_loader(t_comp *comp, int i)
 {
 	comp->map = ft_get_map(comp, i);
 	if (!ft_walls_re(comp->map))
