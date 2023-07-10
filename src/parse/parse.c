@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:17:43 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/07 18:37:48 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:32:59 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,24 @@ void	ft_parse(t_game *game, char *av)
 	}
 	ft_get_comps(game->comp);
 	ft_get_textures(game);
+}
+
+void	ft_remove_new_lines(char **map)
+{
+	int	j;
+	int	k;
+
+	j = 0;
+	k = 0;
+	while (map[j])
+	{
+		k = 0;
+		while (map[j][k])
+		{
+			if (map[j][k] == '\n')
+				map[j][k] = '\0';
+			k++;
+		}
+		j++;
+	}
 }

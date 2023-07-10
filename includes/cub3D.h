@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/07 20:51:08 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:31:32 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ typedef struct s_game
 	-----------PARSE-----------
 *--------------------------------*/
 void	ft_parse(t_game *game, char *av);
+void	ft_remove_new_lines(char **map);
 
 /*-----Argv-Check-----*/
 int		ft_extension_check(char *str, char *ex);

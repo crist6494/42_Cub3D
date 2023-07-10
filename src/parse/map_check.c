@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:47:02 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/07 19:25:21 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:32:17 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,19 +78,6 @@ char	**ft_get_map(t_comp *comp, int i)
 		k++;
 	}
 	map[k] = NULL;
-	j = 0;
-	k = 0;
-	while (map[j])
-	{
-		k = 0;
-		while (map[j][k])
-		{
-			if (map[j][k] == '\n')
-				map[j][k] = '\0';
-			k++;
-		}
-		j++;
-	}
 	return (map);
 }
 
@@ -103,6 +90,7 @@ static void	ft_map_loader(t_comp *comp, int i)
 		ft_exit_parse_error(comp);
 	}
 	comp->map = ft_get_map(comp, i);
+	ft_remove_new_lines(comp->map);
 }
 
 //checks that all other components are before the map
