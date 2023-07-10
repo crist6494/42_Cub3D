@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:11:23 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/03 22:52:15 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:43:52 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,28 @@ int	ft_rgb_check(char *str)
 	return (1);
 }
 
+char	*ft_strcpy(char *dest, const char *src)
+{
+	char	*original_dest;
+
+	original_dest = dest;
+	while (*src != '\0')
+	{
+		*dest = *src;
+		dest++;
+		src++;
+	}
+	*dest = '\0';
+	return (original_dest);
+}
+
 char	*ft_is_long(char *tmp)
 {
 	char	*padded_tmp;
 
 	padded_tmp = malloc(3);
 	padded_tmp[0] = '0';
-	strcpy(padded_tmp + 1, tmp);
+	ft_strcpy(padded_tmp + 1, tmp);
 	free(tmp);
 	tmp = padded_tmp;
 	return (tmp);
