@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:47:02 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/11 11:50:55 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:29:06 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	ft_map_check(t_comp *comp)
 	}
 	if (count != 6)
 	{
-		ft_putstr_fd("Error\nmap not at end of file\n", 2);
+		ft_putstr_fd("Error\nBad input file\n", 2);
 		return (0);
 	}
 	ft_map_loader(comp, i);
