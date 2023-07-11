@@ -1,7 +1,7 @@
-NO /Users/cmorales/42/Cub3D/assets/textures/Brickwall3_Texture.png
-SO /Users/cmorales/42/Cub3D/assets/textures/Brickwall2_Texture.png
-WE /Users/cmorales/42/Cub3D/assets/textures/Brickwall4_Texture.png
-EA /Users/cmorales/42/Cub3D/assets/textures/Stonewall_Texture.png
+NO /home/cristian/42/42_Cub3D/assets/textures/Wooden_Floor_Vertical.png
+SO /home/cristian/42/42_Cub3D/assets/textures/Wooden_Floor_Vertical.png
+WE /home/cristian/42/42_Cub3D/assets/textures/Brickwall4_Texture.png
+EA /home/cristian/42/42_Cub3D/assets/textures/Stonewall_Texture.png
 F 220,100,0
 C 225,30,0
 1111111111111111111111111    1111111

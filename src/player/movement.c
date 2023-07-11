@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:03:44 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/28 18:20:56 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/12 00:28:19 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void rotate(t_game *game, t_player *player, int clockwise)
 	float angle;
 	
 	if(clockwise == 1)
-		player->angle += 2;
+		player->angle += 3;
 	if(clockwise == -1)
-		player->angle -= 2;
+		player->angle -= 3;
 	if (player->angle < 0)
 		player->angle = 360 + player->angle;
 	else if (player->angle > 360)

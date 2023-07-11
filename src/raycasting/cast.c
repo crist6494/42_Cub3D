@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:56:15 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/11 20:34:38 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/12 00:34:16 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,37 +37,34 @@ static void render_wall(t_player *player, t_txt_draw *txt,float distance, unsign
 	int		proyected_height;
 	float	height_wall;
 	int color;
+	int half_screen;
 	proyected_height = 700;
 	distance_proyection = (float)(player->screen_x / 2) / (player->fov / 2);
-	
 	height_wall = ((float)proyected_height / distance) * distance_proyection;
-	//txt->acc = 0;
-	txt->step = txt->texture->height / height_wall;
-	txt->y0 = (player->screen_y / 2) - (height_wall / 2);
-	/* if(y0 < 0)
+	half_screen = player->screen_y / 2;
+	txt->acc = 0;
+	txt->step = (float)txt->texture->height / height_wall;
+	txt->y0 = half_screen - (int)(height_wall / 2);
+	if (txt->y0 < 0)
 	{
-		txt->acc = (-txt->y0 + 1) * txt->step;
+		txt->acc = (-(txt->y0) + 1) * txt->step;
 		txt->y0 = 0;
-	} */
+	}
 	txt->y1 = txt->y0 + height_wall;
-	if(txt->y1 > player->screen_y - 1)
+	if (txt->y1 > (int)(player->screen_y - 1))
 		txt->y1 = player->screen_y - 1;
-	while(txt->y0 < txt->y1)
+	while (txt->y0 < txt->y1)
 	{
-		color = txt->texture->pixels[txt->coord_x_txt + ((txt->y0 * (int)txt->step) * txt->texture->width)];
-		if(txt->y0 > 0 && txt->y0 < player->screen_y - 1)
-			mlx_put_pixel(player->img, x, txt->y0, (color));
+		color = txt->texture->pixels[(txt->coord_x_txt + (((int)txt->acc) * txt->texture->width)) * txt->texture->bytes_per_pixel] << 24;
+		color |= txt->texture->pixels[(txt->coord_x_txt + (((int)txt->acc) * txt->texture->width)) * txt->texture->bytes_per_pixel + 1] << 16;
+		color |= txt->texture->pixels[(txt->coord_x_txt + (((int)txt->acc) * txt->texture->width)) * txt->texture->bytes_per_pixel + 2] << 8;
+		color |= txt->texture->pixels[(txt->coord_x_txt + (((int)txt->acc) * txt->texture->width))* txt->texture->bytes_per_pixel + 3];
+		if (txt->y0 > 0 && txt->y0 <= (int)(player->screen_y - 1))
+			mlx_put_pixel(player->img, x, txt->y0, color);
+		if ((float)(txt->acc + txt->step) < (float)txt->texture->height)
+			txt->acc += txt->step;
 		txt->y0++;
 	}
-	/* int y0;
-	int y1;
-	int x0;
-	
-	//y0 = (player->screen_y / 2) - (height_wall / 2);
-	if(y0 < 0)
-		y0  = 0;
-	y1 = y0 + height_wall;
-	x0 = x; */
 }
 void cast(t_game *game, t_player *player, t_ray *ray)
 {
