@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 11:39:52 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/07 18:29:05 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:49:52 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,18 @@ int	ft_map_tiles(char **map, char *tiles)
 		i++;
 	}
 	return (1);
+}
+
+void	ft_fill_to_max_len(char **map, int max_len)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		if (ft_strlen(map[i]) < (size_t)max_len)
+			map[i] = ft_strjoin(map[i], " ");
+		if (ft_strlen(map[i]) >= (size_t)max_len)
+			i++;
+	}
 }
