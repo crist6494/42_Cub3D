@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 17:30:25 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/11 17:55:29 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:38:31 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_getb(int color)
 
 int	ft_rgbtoi(int r, int g, int b)
 {
-	return ((r << 16) + (g << 8) + b);
+	return ((r << 16) | (g << 8) | b);
 }
 
 int	ft_get_hex_color(char *rgb)
@@ -43,5 +43,6 @@ int	ft_get_hex_color(char *rgb)
 	r = ft_atoi(rgb_split[0]);
 	g = ft_atoi(rgb_split[1]);
 	b = ft_atoi(rgb_split[2]);
+	ft_free_char_matrix(rgb_split);
 	return (ft_rgbtoi(r, g, b) & 0x00FFFFFF);
 }
