@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/07 18:30:46 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:58:13 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void update_direction(t_player *player)
     insert_coord(player->direction, player->square->p_center->x + player->dir_x, player->square->p_center->y + player->dir_y);
 }
 
+
 void init_player(t_player *player, t_game *game, t_square *square)
 {
    // insert_coord(player->p_center, WIDTH / 2, HEIGHT / 2);//Punto medio
@@ -56,6 +57,9 @@ void init_player(t_player *player, t_game *game, t_square *square)
     player->p_line = malloc(sizeof(t_point));
     init_square(game, square, player);
     init_direction(player);
+    player->txt = malloc(sizeof(t_txt_draw));
+    player->txt->WallHit = malloc(sizeof(t_coord));
 }
+
 
 

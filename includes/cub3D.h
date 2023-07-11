@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/11 11:46:44 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/11 19:28:10 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,25 +63,6 @@ typedef struct s_square{
 	t_coord			*p_right_up;	
 }t_square;
 
-typedef struct s_player
-{
-	t_square		*square;
-	t_coord			*pos_map;
-	t_coord			*direction;
-	t_point			*p_line;
-	mlx_image_t		*img;
-	mlx_t			*mlx;
-	int				tam;
-	unsigned int	color;
-	float			dir_x;
-	float			dir_y;
-	int				len_dir;
-	int				screen_x;
-	int				screen_y;
-	int				fov;
-	int				angle;
-	float			vel_move;
-}t_player;
 
 typedef struct s_map{
 	mlx_image_t		*img;
@@ -96,15 +77,6 @@ typedef struct s_map{
 	float			pos_y;
 	char			**tour;
 }t_map;
-
-typedef struct s_ray
-{
-	int				down;
-	int				left;
-	float			rads_angle;
-	t_coord			*coordHitHorizontal;
-	t_coord			*coordHitVertical;
-}t_ray;
 
 typedef struct s_comp
 {
@@ -124,6 +96,25 @@ typedef struct s_comp
 	char			**map;
 }t_comp;
 
+typedef struct s_ray
+{
+	int				down;
+	int				left;
+	float			rads_angle;
+}t_ray;
+
+typedef struct s_txt_draw
+{
+	mlx_texture_t	*texture;
+	int				coord_x_txt;
+	t_coord			*WallHit;
+	int				y0;
+	int				y1;
+	float			acc;
+	float			step;
+}t_txt_draw;
+
+
 typedef struct s_minimap
 {
 	mlx_image_t	*img;
@@ -132,6 +123,27 @@ typedef struct s_minimap
 	int			cas_x;
 	int			cas_y;
 }t_minimap;
+
+typedef struct s_player
+{
+	t_square		*square;
+	t_coord			*pos_map;
+	t_coord			*direction;
+	t_point			*p_line;
+	mlx_image_t		*img;
+	mlx_t			*mlx;
+	t_txt_draw		*txt;
+	int				tam;
+	unsigned int	color;
+	float			dir_x;
+	float			dir_y;
+	int				len_dir;
+	int				screen_x;
+	int				screen_y;
+	int				fov;
+	int				angle;
+	float			vel_move;
+}t_player;
 
 typedef struct s_game
 {

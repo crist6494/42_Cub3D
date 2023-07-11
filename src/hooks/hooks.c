@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/07 20:15:50 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:57:29 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void escape_hook(mlx_key_data_t keydata, void *param)
 void hook_screen(int32_t width, int32_t height, void *param)
 {
 	t_game *game;
-	game =(t_game *) param;
+	game = (t_game *)param;
 	(void)height;
 	(void)width;
 
