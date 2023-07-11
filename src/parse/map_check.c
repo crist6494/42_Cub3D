@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:47:02 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/10 15:32:17 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:50:55 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ static void	ft_map_loader(t_comp *comp, int i)
 	}
 	comp->map = ft_get_map(comp, i);
 	ft_remove_new_lines(comp->map);
+	ft_fill_to_max_len(comp->map, ft_get_len_x(comp->map));
 }
 
 //checks that all other components are before the map

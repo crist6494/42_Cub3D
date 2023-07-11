@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/10 15:31:32 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:46:44 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ void	ft_free_char_matrix(char **arr);
 void	ft_print_char_matrix(char **matrix);
 void	ft_init_comp(t_game *game);
 int		ft_map_tiles(char **map, char *tiles);
+void	ft_fill_to_max_len(char **map, int max_len);
 
 /*----walls----*/
 int		ft_count_char(char **map, char c);
