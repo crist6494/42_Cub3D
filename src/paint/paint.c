@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:30:05 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/07 20:48:27 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:11:49 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ void paint_ceil_floor(t_player *player)
     insert_paint_p(&ceil.p1, player->screen_x , 1);
     insert_paint_p(&ceil.p2, player->screen_x - 1 , half_screen_y);
     insert_paint_p(&ceil.p3, 1 , half_screen_y);
-    draw_background(&ceil, player->img, BLUE);
+    draw_background(&ceil, player->img, ft_get_hex_color("22, 38, 219"));
 
     // Pinta la mitad inferior de la pantalla de otro color
     insert_paint_p(&floor.p0, 1, half_screen_y);
     insert_paint_p(&floor.p1, player->screen_x - 1, half_screen_y);
     insert_paint_p(&floor.p2, player->screen_x - 1, player->screen_y - 1);
     insert_paint_p(&floor.p3, 1, player->screen_y - 1);
-    draw_background(&floor, player->img, GREEN);
+    draw_background(&floor, player->img, ft_get_hex_color("219, 38, 22"));
 }
 
 static void draw_background(t_4square *background, mlx_image_t *img, int color)

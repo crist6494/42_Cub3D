@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/11 11:46:44 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:10:35 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,11 @@ int		ft_atoi_base(char *str, int base);
 /*----clean-up----*/
 void	ft_exit_parse_error(t_comp *comp);
 
-
+/*----------------------------*
+   ---------COLOR-------------
+*------------------------------*/
+/*-------color-------*/
+int		ft_get_hex_color(char *rgb);
 
 /* ------------------------------*
 	-----------MAP-----------
@@ -244,7 +248,6 @@ void	player_lateral(t_game *game, t_player *player, int direction);
 void	square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img);
 void	paint_line(t_point *p, mlx_image_t *img, uint32_t color);
 void	paint_ceil_floor(t_player *player);
-
 /*------Coord_paint_p---------*/
 void	insert_coord(t_coord *c, float x, float y);
 void	init_points(t_point *p, t_coord *c, t_coord *c1);

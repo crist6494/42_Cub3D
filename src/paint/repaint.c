@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   repaint.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:31:26 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/07 20:36:09 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:10:46 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
