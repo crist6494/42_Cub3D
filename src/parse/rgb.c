@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:11:23 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/10 15:43:52 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/11 17:22:20 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ char	*ft_is_long(char *tmp)
 	return (tmp);
 }
 
-//converts a string in rgb format to a hex value like "0xFFFFFF"
+//converts a string in rgb format like "250,250,250" 
+//to an int hex value like 0xFFFFFF
 unsigned int	ft_rgb_to_hex(char *str)
 {
 	int		i;

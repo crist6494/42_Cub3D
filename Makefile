@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
+#    By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
 #    Updated: 2023/07/11 23:51:41 by cmorales         ###   ########.fr        #
@@ -52,6 +52,7 @@ PAINT = paint line repaint coord_paint_p
 COLLISIONS = collisions collision_utils collision_sides
 RAYCASTING = raycast raycast_horizontal raycast_vertical cast
 PARSE = argv_check get_comp parse_utils parse rgb atoi_base itoa_base map_check walls clean_up
+COLOR = color
 
 SRCS = 	$(addsuffix .c, $(addprefix map/, $(MAP))) \
 		$(addsuffix .c, $(addprefix hooks/, $(HOOKS))) \
@@ -60,6 +61,7 @@ SRCS = 	$(addsuffix .c, $(addprefix map/, $(MAP))) \
 		$(addsuffix .c, $(addprefix collisions/, $(COLLISIONS))) \
 		$(addsuffix .c, $(addprefix raycasting/, $(RAYCASTING))) \
 		$(addsuffix .c, $(addprefix parse/, $(PARSE))) \
+		$(addsuffix .c, $(addprefix color/, $(COLOR))) \
 		utils.c \
 		main.c \
 
@@ -105,6 +107,7 @@ obj:
 	@mkdir -p $(OBJ_DIR)/collisions
 	@mkdir -p $(OBJ_DIR)/raycasting
 	@mkdir -p $(OBJ_DIR)/parse
+	@mkdir -p $(OBJ_DIR)/color
 
 lib:
 	@make -C ./libft

@@ -206,7 +206,11 @@ int		ft_atoi_base(char *str, int base);
 /*----clean-up----*/
 void	ft_exit_parse_error(t_comp *comp);
 
-
+/*----------------------------*
+   ---------COLOR-------------
+*------------------------------*/
+/*-------color-------*/
+int		ft_get_hex_color(char *rgb);
 
 /* ------------------------------*
 	-----------MAP-----------
