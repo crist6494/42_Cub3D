@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/12 00:17:40 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/12 20:39:32 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void init_player(t_player *player, t_game *game, t_square *square)
     player->img = game->img;
     player->color = WHITE;
     player->tam = 4;
-    player->vel_move = 2;
+    player->vel_move = 2.5;
     player->fov = FOV;
     player->screen_x = WIDTH;
     player->screen_y = HEIGHT;
@@ -57,6 +57,7 @@ void init_player(t_player *player, t_game *game, t_square *square)
     player->p_line = malloc(sizeof(t_point));
     init_square(game, square, player);
     init_direction(player);
+    player->distance_proyection = (float)(player->screen_x / 2) / tan(grades_to_rad(player->fov / 2));
     player->txt = malloc(sizeof(t_txt_draw));
     player->txt->WallHit = malloc(sizeof(t_coord));
 }

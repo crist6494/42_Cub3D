@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/11 19:28:10 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/12 20:51:19 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ typedef struct s_player
 	int				fov;
 	int				angle;
 	float			vel_move;
+	float			distance_proyection;
 }t_player;
 
 typedef struct s_game
@@ -256,6 +257,8 @@ void	player_lateral(t_game *game, t_player *player, int direction);
 void	square_paint(t_coord *coord, float lim, uint32_t color, mlx_image_t *img);
 void	paint_line(t_point *p, mlx_image_t *img, uint32_t color);
 void	paint_ceil_floor(t_player *player);
+int		get_rgba(int r, int g, int b, int a);
+uint32_t reversecolor(unsigned int color);
 
 /*------Coord_paint_p---------*/
 void	insert_coord(t_coord *c, float x, float y);
