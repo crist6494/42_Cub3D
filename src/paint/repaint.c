@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   repaint.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:31:26 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/07 20:36:09 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:43:03 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void repaint(t_game *game, t_player *player)
 {
 	clear_map(game->map);
-	paint_ceil_floor(player);
+	paint_ceil_floor(player, game->comp);
 	paint_minimap(game, game->minimap);
 	cast(game, player, game->ray);
 	create_map(game, game->map, 0, 0);

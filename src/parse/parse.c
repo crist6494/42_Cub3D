@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:17:43 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/10 15:32:59 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:38:11 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static void	ft_get_comps(t_comp *comp)
 	}
 	if (!ft_rgb_check(comp->f_rgb) || !ft_rgb_check(comp->c_rgb))
 		ft_exit_parse_error(comp);
-	comp->f_hex = ft_rgb_to_hex(comp->f_rgb);
-	comp->c_hex = ft_rgb_to_hex(comp->c_rgb);
+	comp->f_hex = ft_get_hex_color(comp->f_rgb);
+	comp->c_hex = ft_get_hex_color(comp->c_rgb);
 	if (!ft_map_check(comp))
 		ft_exit_parse_error(comp);
 	if (comp->map == NULL)
