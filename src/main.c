@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/07 20:19:47 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/12 20:50:24 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void init_window(t_game *game, char *path)
 {
+	//mlx_image_t * im;
 	game->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!game->mlx)
         error();
@@ -28,10 +29,12 @@ void init_window(t_game *game, char *path)
 	init_player(game->player, game, game->player->square);
 	init_minimap(game,game->minimap, WIDTH, 30);
 	repaint(game, game->player);
+	//im = mlx_texture_to_image(game->mlx, game->comp->no);
+	//mlx_image_to_window(game->mlx, im, 0, 0);
 	mlx_key_hook(game->mlx, &escape_hook, (void *)(game));
 	mlx_loop_hook(game->mlx, &move_hook, (void *)(game));
 	mlx_cursor_hook(game->mlx, &cursor_hook, (void *)(game));
-	//mlx_resize_hook(game->mlx, &hook_screen, (void *)(game));
+	mlx_resize_hook(game->mlx, &hook_screen, (void *)(game));
 	mlx_loop(game->mlx);
 	//mlx_delete_image(game->mlx, game->img);
 	free_map(game->map);

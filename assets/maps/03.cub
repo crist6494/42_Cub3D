@@ -1,9 +1,9 @@
-NO /home/ganeos/repos/42/4/cub3d/assets/textures/Brick_Texture.png
-SO /home/ganeos/repos/42/4/cub3d/assets/textures/Brick_Texture.png
-WE /home/ganeos/repos/42/4/cub3d/assets/textures/Brick_Texture.png
-EA /home/ganeos/repos/42/4/cub3d/assets/textures/Brick_Texture.png
-F 0,0,255
-C 0,0,0
+NO /Users/cmorales/42/Cub3D/assets/textures/bluestone.png
+SO /Users/cmorales/42/Cub3D/assets/textures/Brickwall3_Texture.png
+WE /Users/cmorales/42/Cub3D/assets/textures/redbrick.png
+EA /Users/cmorales/42/Cub3D/assets/textures/colorstone.png
+F 220,100,0
+C 225,30,0
 
 
 1111111111111111111111111

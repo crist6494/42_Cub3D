@@ -6,39 +6,49 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:56:15 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/07 18:53:29 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/12 20:50:43 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void render_wall(t_player *player, float distance, unsigned int x)
+static void	set_variables_render_wall(t_player *player, t_txt_draw *txt, float distance)
 {
-	float	distance_proyection;
 	int		proyected_height;
 	float	height_wall;
-
-	proyected_height = 500;
-	distance_proyection = (float)(player->screen_x / 2) / (player->fov / 2);
-	height_wall = ((float)proyected_height / distance) * distance_proyection;
+	int half_screen;
 	
-	int y0;
-	int y1;
-	int x0;
-	
-	y0 = (player->screen_y / 2) - (height_wall / 2);
-	if(y0 < 0)
-		y0  = 0;
-	y1 = y0 + height_wall;
-	x0 = x;
-
-	while(y0 < y1)
+	proyected_height = 25;
+	height_wall = ((float)proyected_height / distance) * player->distance_proyection;
+	half_screen = player->screen_y / 2;
+	txt->acc = 0;
+	txt->step = (float)txt->texture->height / height_wall;
+	txt->y0 = half_screen - (int)(height_wall / 2);
+	if (txt->y0 < 0)
 	{
-		if(y0 > 0 && y0 < player->screen_y - 1)
-			mlx_put_pixel(player->img, x0, y0, BLACK);
-		y0++;
+		txt->acc = (-(txt->y0) + 1) * txt->step;
+		txt->y0 = 0;
+	}
+	txt->y1 = txt->y0 + height_wall;
+	if (txt->y1 > (int)(player->screen_y - 1))
+		txt->y1 = player->screen_y - 1;
+}
+static void render_wall(t_player *player, t_txt_draw *txt,float distance, unsigned int x)
+{
+	int color;
+	
+	set_variables_render_wall(player, txt, distance);
+	while (txt->y0 < txt->y1)
+	{
+		color = ((unsigned int *)txt->texture->pixels)[(txt->coord_x_txt + (int)txt->acc * txt->texture->width)];
+		if (txt->y0 > 0 && txt->y0 <= (int)(player->screen_y - 1))
+			mlx_put_pixel(player->img, x, txt->y0, reversecolor(color));
+		if ((float)(txt->acc + txt->step) < (float)txt->texture->height)
+			txt->acc += txt->step;
+		txt->y0++;
 	}
 }
+
 void cast(t_game *game, t_player *player, t_ray *ray)
 {
 	float init_angle;
@@ -46,7 +56,7 @@ void cast(t_game *game, t_player *player, t_ray *ray)
 	unsigned int i;
 	float distance;
 	float aux;
-
+	
 	i = 0;
 	increment_angle = (float)player->fov / WIDTH;//Saber distancia entre cada grado
 	init_angle = player->angle - (float)(player->fov / 2);
@@ -57,7 +67,7 @@ void cast(t_game *game, t_player *player, t_ray *ray)
 		aux = normalize_angle(aux);
 		aux = grades_to_rad(aux);
 		distance = cos(aux) * raycast(game,player, ray, init_angle);
-		render_wall(player, distance, i);
+		render_wall(player,game->player->txt, distance, i);
 		init_angle += increment_angle;
 		init_angle = normalize_angle(init_angle);
 		i++;

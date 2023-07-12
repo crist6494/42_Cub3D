@@ -6,7 +6,7 @@
 #    By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/07/11 17:51:38 by manujime         ###   ########.fr        #
+#    Updated: 2023/07/11 23:51:41 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,7 @@ MLX42 = ./MLX42/
 
 DEPENDENCIES_MAC = $(MLX42_LIB) -framework Cocoa -framework OpenGL -framework IOKit
 
-DEPENDENCIES_LINUX = /home/ganeos/repos/42/4/cub3d/MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
+DEPENDENCIES_LINUX = /home/cristian/42/42_Cub3D/MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 
 INC_MLX = $(MLX42)/include
 
@@ -129,7 +129,7 @@ $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(MLX42_LIB)
 
 $(NAME): $(OBJS) $(MLX42_LIB) $(MEMORY_LEAKS)
 	@echo "$(INFO) Building $(NAME)...$(NOC)"
-	@$(CC) $(CFLAGS) $(MEMORY_LEAKS) $(OBJS) /home/ganeos/repos/42/4/cub3d/MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm $(LIBFT)  -o $(NAME)
+	@$(CC) $(CFLAGS) $(MEMORY_LEAKS) $(OBJS) $(DEPENDENCIES_LINUX) $(LIBFT) -o $(NAME)
 	@echo "$(SUCCESS)$(NAME) built successfully!$(NOC)"
 
 

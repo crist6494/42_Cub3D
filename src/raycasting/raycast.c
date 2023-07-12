@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:42:38 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/06 19:36:04 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/12 20:44:16 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,38 @@ static float distance(float px0, float py0, float px1, float py1)
 	return (distance);
 }
 
+
+void	set_horizontal_texture(t_txt_draw * txt, t_ray *ray, t_game *game)
+{
+	if(ray->down == 1)
+	{
+		txt->texture = game->comp->no;
+		txt->coord_x_txt = (((int)txt->WallHit->x % ((int)game->map->lim)) / game->map->lim) * (txt->texture->width);
+	}
+	else
+	{
+		txt->texture = game->comp->so;
+		txt->coord_x_txt = (((int)txt->WallHit->x % ((int)game->map->lim)) / game->map->lim) * (txt->texture->width);
+	}
+	/* if (txt->coord_x_txt >= (int)game->comp->we->width)
+		(txt->coord_x_txt)--; */
+}
+
+void	set_vertical_texture(t_txt_draw * txt, t_ray *ray, t_game *game)
+{
+	if(ray->left == 1)
+	{
+		txt->texture = game->comp->ea;
+		txt->coord_x_txt = (((int)txt->WallHit->y % ((int)game->map->lim)) / game->map->lim) * (txt->texture->height);
+	}
+	else
+	{
+		txt->texture = game->comp->we;
+		txt->coord_x_txt = (((int)txt->WallHit->y % ((int)game->map->lim)) / game->map->lim) * (txt->texture->height);
+	}
+/* 	if (txt->coord_x_txt >= (int)game->comp->we->width)
+		(txt->coord_x_txt)--; */
+}
 float	raycast(t_game *game, t_player *player, t_ray *ray, float angle)
 {
 	t_coord wallHitHorizontal;
@@ -52,16 +84,18 @@ float	raycast(t_game *game, t_player *player, t_ray *ray, float angle)
 	distance_vertical = distance(player->square->p_center->x, player->square->p_center->y, wallHitVertical.x, wallHitVertical.y);
 	if(distance_horizontal <= distance_vertical)
 	{
-		//insert_coord(ray->coordHitHorizontal, wallHitHorizontal.x, wallHitHorizontal.y);
-		init_points(player->p_line, player->square->p_center, &wallHitHorizontal);//Iniciar linea
-		paint_line(player->p_line, game->img, RED);
+		insert_coord(player->txt->WallHit, wallHitHorizontal.x, wallHitHorizontal.y);
+		//init_points(player->p_line, player->square->p_center, &wallHitHorizontal);//Iniciar linea
+		//paint_line(player->p_line, game->img, RED);
+		set_horizontal_texture(player->txt, ray, game);
 		return (distance_horizontal);
 	}
 	else
 	{
-		//insert_coord(ray->coordHitVertical, wallHitVertical.x, wallHitVertical.y);
-		init_points(player->p_line, player->square->p_center, &wallHitVertical);//Iniciar linea
-		paint_line(player->p_line, game->img, RED);
+		insert_coord(player->txt->WallHit, wallHitVertical.x, wallHitVertical.y);
+		//init_points(player->p_line, player->square->p_center, &wallHitVertical);//Iniciar linea
+		//paint_line(player->p_line, game->img, RED);
+		set_vertical_texture(player->txt, ray, game);
 		return (distance_vertical);
 	}
 }
