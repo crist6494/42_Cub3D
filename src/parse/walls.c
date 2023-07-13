@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:36:39 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/13 19:44:07 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:55:42 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,6 @@ int	ft_walls(char **map)
 	int			x;
 	char		**aux;
 
-	if ((ft_count_char(map, 'E') + ft_count_char(map, 'W')
-			+ ft_count_char(map, 'N') + ft_count_char(map, 'S') != 1)
-		|| !ft_map_tiles(map, " 01NSEW\n"))
-		return (2);
 	ft_space_map(map);
 	aux = ft_copy_char_matrix(map);
 	ft_free_char_matrix(map);
@@ -121,6 +117,10 @@ int	ft_walls(char **map)
 	if (valid != ft_count_char(map, ' ') || !ft_str_charset(map[1], "1 \n")
 		|| !ft_str_charset(map[ft_get_len_y(map) - 2], "1 \n")
 		|| ft_count_char(map, '0'))
-		return (0);
+	{
+		ft_free_char_matrix(map);
+		return (2);
+	}
+	ft_free_char_matrix(map);
 	return (1);
 }

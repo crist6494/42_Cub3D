@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/11 16:57:29 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/13 21:12:51 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,14 @@ void escape_hook(mlx_key_data_t keydata, void *param)
 	game = (t_game *)param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
+		free(game->player->txt);
+		free(game->player->txt->WallHit);
+		free(game->map->mid_map);
+		free(game->map->m_coord);
+		ft_free_char_matrix(game->comp->map);
+		free_player(game->player);
 		mlx_close_window(game->mlx);
+		ft_exit_parse_error(game->comp);
 		exit(1);
 	}
 }

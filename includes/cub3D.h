@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/13 18:56:52 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/13 20:28:25 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include "libft.h"
 #include "MLX42/MLX42.h"
 #include "macros.h"
-//#include "../memory-leaks/include/memory_leaks.h"
+#include "../memory-leaks/include/memory_leaks.h"
 
 /* ---------------------------------------------------------------------------*
 	-------------------------------STRUCTURES---------------------------------
