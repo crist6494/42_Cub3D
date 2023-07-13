@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:25:01 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/20 18:58:45 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/13 21:19:39 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,7 @@ void free_map(t_map *map)
 {
 	unsigned int y;
 	y = 0;
-	while(y < map->len_y)
-	{
-		free(map->tour[y]);
-		y++;
-	}
-	free(map->tour);
+
 	free(map->m_coord);
 	free(map->mid_map);
 }

@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:17:43 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/12 13:38:11 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/13 20:04:08 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,15 @@ static void	ft_get_comps(t_comp *comp)
 	}
 }
 
+int	ft_map_count(char **map)
+{
+	if ((ft_count_char(map, 'E') + ft_count_char(map, 'W')
+			+ ft_count_char(map, 'N') + ft_count_char(map, 'S') != 1)
+		|| !ft_map_tiles(map, " 01NSEW\n"))
+		return (0);
+	return (1);
+}
+
 //stores the file in the comp struct, and processes the contents
 void	ft_parse(t_game *game, char *av)
 {
@@ -81,6 +90,12 @@ void	ft_parse(t_game *game, char *av)
 	}
 	ft_get_comps(game->comp);
 	ft_get_textures(game);
+	if (!ft_map_count(game->comp->map))
+	{
+		ft_putstr_fd("Error\nBad map\n", 2);
+		ft_free_char_matrix(game->comp->map);
+		ft_exit_parse_error(game->comp);
+	}
 }
 
 void	ft_remove_new_lines(char **map)

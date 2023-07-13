@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:59:59 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/06 19:34:24 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/13 20:45:36 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_exit_parse_error(t_comp *comp)
 {
+	printf("Error\n");
 	ft_free_char_matrix(comp->file);
 	free(comp->no_path);
 	free(comp->so_path);
@@ -30,5 +31,5 @@ void	ft_exit_parse_error(t_comp *comp)
 	if (comp->ea != NULL)
 		mlx_delete_texture(comp->ea);
 	free(comp);
-	exit(0);
+	exit(1);
 }

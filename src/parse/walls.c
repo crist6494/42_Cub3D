@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:36:39 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/10 15:32:38 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:55:42 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,26 +80,47 @@ void	ft_space_map(char **map)
 	}
 }
 
+char	**ft_copy_char_matrix(char **map)
+{
+	char	**copy;
+	int		i;
+
+	i = 0;
+	copy = malloc(sizeof(char *) * (ft_get_len_y(map) + 1));
+	while (map[i])
+	{
+		copy[i] = ft_strdup(map[i]);
+		i++;
+	}
+	copy[i] = NULL;
+	return (copy);
+}
+
 int	ft_walls(char **map)
 {
-	t_coord	begin;
+	t_coord		begin;
 	int			valid;
 	int			y;
 	int			x;
+	char		**aux;
 
-	if ((ft_count_char(map, 'E') + ft_count_char(map, 'W')
-			+ ft_count_char(map, 'N') + ft_count_char(map, 'S') != 1)
-		|| !ft_map_tiles(map, " 01NSEW\n"))
-		return (0);
 	ft_space_map(map);
+	aux = ft_copy_char_matrix(map);
+	ft_free_char_matrix(map);
+	map = ft_first_last_line(aux);
+	ft_free_char_matrix(aux);
 	valid = ft_count_char(map, ' ');
 	begin = ft_get_player_pos(map);
 	y = begin.y;
 	x = begin.x;
 	ft_flood_fill(map, y, x);
-	if (valid != ft_count_char(map, ' ') || !ft_str_charset(map[0], "1 \n")
-		|| !ft_str_charset(map[ft_get_len_y(map) - 1], "1 \n")
+	if (valid != ft_count_char(map, ' ') || !ft_str_charset(map[1], "1 \n")
+		|| !ft_str_charset(map[ft_get_len_y(map) - 2], "1 \n")
 		|| ft_count_char(map, '0'))
-		return (0);
+	{
+		ft_free_char_matrix(map);
+		return (2);
+	}
+	ft_free_char_matrix(map);
 	return (1);
 }

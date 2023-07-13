@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:40:43 by cmorales          #+#    #+#             */
 /*   Updated: 2023/07/13 19:19:02 by cmorales         ###   ########.fr       */
@@ -13,7 +13,8 @@
 #ifndef MACROS_H
 # define MACROS_H
 
-#include "cub3D.h"
+# include "cub3D.h"
+# include "../memory-leaks/include/memory_leaks.h"
 
 /* ---------------------------------------------------------------------------*
 	--------------------------------ERRORS---------------------------------
@@ -26,16 +27,16 @@
 	-------------------------------MEASURES---------------------------------
 *--------------------------------------------------------------------------- */
 
-#define WIDTH 2500
-#define HEIGHT 1200
+# define WIDTH 2500
+# define HEIGHT 1200
 
-#define LINUX_WIDTH 900
-#define LINUX_HEIGHT 900
+# define LINUX_WIDTH 900
+# define LINUX_HEIGHT 900
 
-#define COL 10
-#define ROW 10
+# define COL 10
+# define ROW 10
 
-#define N 270
+# define N 270
 #define S 90
 #define W 180
 #define E 0

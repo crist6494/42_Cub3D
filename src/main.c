@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
 /*   Updated: 2023/07/13 21:03:53 by cmorales         ###   ########.fr       */
@@ -11,6 +11,16 @@
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	ft_clean(t_game *game)
+{
+	free(game->player->txt);
+	free(game->player->txt->WallHit);
+	ft_free_char_matrix(game->comp->map);
+	mlx_close_window(game->mlx);
+	ft_exit_parse_error(game->comp);
+	exit(1);
+}
 
 void init_game(t_game *game, char *path)
 {
@@ -45,13 +55,14 @@ void init_window(t_game *game, char *path)
 	//mlx_delete_image(game->mlx, game->img);
 	free_map(game->map);
 	free_player(game->player);
+	ft_clean(game);
 	mlx_terminate(game->mlx);
 }
 
 
 int	main(int ac, char **av)
 {
-	//atexit(ft_void);
+	atexit(ft_void);
 	t_map map;
 	t_player player;
 	t_game game;
