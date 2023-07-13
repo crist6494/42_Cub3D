@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 11:24:20 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/12 20:46:27 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/13 21:02:26 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ static void loop_paint_minimap(t_game *game, t_minimap *mp, t_coord *p, int lim)
 
 void init_minimap(t_game *game, t_minimap *minimap, int width, int height)
 {
-	(void)game;
+	(void)width;
+	(void)height;
 	minimap->img = mlx_new_image(game->mlx, 331, 331);
 	if(!minimap->img)
 		error();
-	if (mlx_image_to_window(game->mlx, minimap->img, (width - 360), height) < 0)
+	if (mlx_image_to_window(game->mlx, minimap->img, 40, 40))
     	error();
 } 
 

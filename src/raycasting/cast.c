@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:56:15 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/12 20:50:43 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/13 20:21:32 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ static void render_wall(t_player *player, t_txt_draw *txt,float distance, unsign
 	{
 		color = ((unsigned int *)txt->texture->pixels)[(txt->coord_x_txt + (int)txt->acc * txt->texture->width)];
 		if (txt->y0 > 0 && txt->y0 <= (int)(player->screen_y - 1))
-			mlx_put_pixel(player->img, x, txt->y0, reversecolor(color));
+		{
+			if(BONUS == 1)
+				mlx_put_pixel(player->img, x, txt->y0, reversecolor(color));
+			else
+				mlx_put_pixel(player->img, x, txt->y0, BLACK);
+		}
 		if ((float)(txt->acc + txt->step) < (float)txt->texture->height)
 			txt->acc += txt->step;
 		txt->y0++;

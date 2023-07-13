@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:30:05 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/12 20:50:57 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:11:42 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,3 @@ static void draw_background(t_4square *background, mlx_image_t *img, int color)
     }
 }
 
-int	get_rgba(int r, int g, int b, int a)
-{
-	return (r << 24 | g << 16 | b << 8 | a);
-}
-
-uint32_t reversecolor(unsigned int color)
-{
-	int	red;
-	int	green;
-	int	blue;
-	int	alpha;
-
-	red = color >> 24;
-	green = color << 8 >> 24;
-	blue = color << 16 >> 24;
-	alpha = color << 24 >> 24;
-	return (get_rgba(alpha, blue, green, red));
-}

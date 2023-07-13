@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:59:10 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/28 19:39:32 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:11:06 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ static void check_collision_vertical(t_map *map, t_player *player, float advance
 static void check_collision_horizontal(t_map *map, t_player *player, float advance_x, float advance_y);
 static void check_collision_diagonal(t_map *map, t_player *player, float advance_x, float advance_y);
 
+// Tolerancia pequeña para saber que de cerca esta del 0 y lo comparamos con el valor absoluto
 void check_collision(t_map *map, t_player *player, float advance_x, float advance_y)
 {	
-	float tolerance = 0.0001;  // Tolerancia pequeña para saber que de cerca esta del 0 y lo comparamos con el valor absoluto
 	
+	float tolerance = 0.0001;  
 	if (fabs(advance_x) > tolerance && fabs(advance_y) > tolerance)
 		check_collision_diagonal(map, player, advance_x, advance_y);
 	else if (fabs(advance_x) <= tolerance && fabs(advance_y) > tolerance)
@@ -27,19 +28,6 @@ void check_collision(t_map *map, t_player *player, float advance_x, float advanc
 	else if (fabs(advance_x) > tolerance && fabs(advance_y) <= tolerance)
 		check_collision_horizontal(map, player, advance_x, advance_y);
 }
-
-/* 	printf("\n");
-	printf("Avanza_x: %f\n", advance_x);
-	printf("Avanza_y: %f\n", advance_y);
-	printf("Ancho: %d\n", (int)map->width);
-	printf("Alto: %d\n", (int)map->height);
-	printf("P_center_x: %d\n", (int)player->square->p_center->x);
-	printf("P_center_y: %d\n", (int)player->square->p_center->y); */
-	/* printf("aux_x:%d\n", (int)aux_x);
-	printf("aux_y:%d\n", (int)aux_y);
-	printf("Pos:%d\n", (int)aux_x / (int)map->lim);
-	printf("Pos:%d\n", (int)aux_y / (int)map->lim); */
-
 
 static void check_collision_vertical(t_map *map, t_player *player, float advance_x, float advance_y)
 {

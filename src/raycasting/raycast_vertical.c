@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:39:45 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/28 19:40:17 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:15:32 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,3 @@ static void	vertical_raycast_loop(t_map *map, t_coord *wallHitVertical, t_coord 
 		}
 	}
 }
-
-	/* printf("\n");
-	printf("P_x: %f\n", player->square->p_center->x);
-	printf("P_y: %f\n", player->square->p_center->y);
-	printf("Tangente: %f\n", (float)tan(ray->rads_angle));
-	printf("Diferencia: %f\n", (float)(x_intercept - player->square->p_center->x));
-	printf("y_intercept: %f\n", y_intercept);
-	printf("x_intercept: %f\n", x_intercept);
-	printf("step_x: %f\n", step.x);
-	printf("step_y: %f\n", step.y); */
