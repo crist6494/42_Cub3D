@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 11:39:52 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/11 11:49:52 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:32:31 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	ft_init_comp(t_game *game)
 	game->comp->ea = NULL;
 	game->comp->map = NULL;
 }
-
 
 //checks that all chars in the map matrix are in the tiles string
 int	ft_map_tiles(char **map, char *tiles)

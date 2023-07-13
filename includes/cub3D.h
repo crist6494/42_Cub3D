@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/13 16:26:34 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:56:52 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,7 @@ int		ft_walls(char **map);
 
 /*-----itoa_base-----*/
 char	*ft_itoa_base(int n, int base);
+char	**ft_first_last_line(char **map);
 
 /*-----atoi_base-----*/
 int		ft_atoi_base(char *str, int base);
