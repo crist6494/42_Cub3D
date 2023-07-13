@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+         #
+#    By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 20:40:36 by anmarque          #+#    #+#              #
-#    Updated: 2023/07/11 23:51:41 by cmorales         ###   ########.fr        #
+#    Updated: 2023/07/13 20:12:49 by cmorales         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,8 @@ TRASH = $(RED) 🗑
 
 #/-----------Files and Flags--------------------/
 NAME = Cub3D
+
+BONUS = 0
 
 CC = gcc
 
@@ -124,24 +126,24 @@ $(MEMORY_LEAKS):
 ifeq ($(shell uname -s), $(LINUX))
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(MLX42_LIB)
-	@$(CC) $(CFLAGS) -I $(INC) -I $(LIBFT_INC) -I $(INC_MLX) -I $(MEMORY_LEAKS_INC) -o $@ -c $<
+	@$(CC) $(CFLAGS) -DBONUS=$(BONUS) -I $(INC) -I $(LIBFT_INC) -I $(INC_MLX) -I $(MEMORY_LEAKS_INC) -o $@ -c $<
 -include $(OBJ_DIR)*.d
 
 $(NAME): $(OBJS) $(MLX42_LIB) $(MEMORY_LEAKS)
 	@echo "$(INFO) Building $(NAME)...$(NOC)"
-	@$(CC) $(CFLAGS) $(MEMORY_LEAKS) $(OBJS) $(DEPENDENCIES_LINUX) $(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) -DBONUS=$(BONUS) $(MEMORY_LEAKS) $(OBJS) $(DEPENDENCIES_LINUX) $(LIBFT) -o $(NAME)
 	@echo "$(SUCCESS)$(NAME) built successfully!$(NOC)"
 
 
 else ifeq ($(shell uname -s), $(MAC))
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(MLX42_LIB)
-	@$(CC) $(CFLAGS) -I $(INC) -I $(LIBFT_INC) -I $(INC_MLX) -I $(MEMORY_LEAKS_INC) -o $@ -c $<
+	@$(CC) $(CFLAGS) -DBONUS=$(BONUS) -I $(INC) -I $(LIBFT_INC) -I $(INC_MLX) -I $(MEMORY_LEAKS_INC) -o $@ -c $<
 -include $(OBJ_DIR)*.d
 
 $(NAME): $(OBJS) $(MLX42_LIB) $(MEMORY_LEAKS)
 	@echo "$(INFO) Building $(NAME)...$(NOC)"
-	@$(CC) $(CFLAGS) $(MEMORY_LEAKS) $(OBJS) $(LIBFT) $(DEPENDENCIES_MAC) $(GLFW) -o $(NAME)
+	@$(CC) $(CFLAGS) -DBONUS=$(BONUS) $(MEMORY_LEAKS) $(OBJS) $(LIBFT) $(DEPENDENCIES_MAC) $(GLFW) -o $(NAME)
 	@echo "$(SUCCESS)$(NAME) built successfully!$(NOC)"
 
 endif
@@ -174,4 +176,9 @@ val: all
 	valgrind --leak-check=full ./$(NAME)
 	rm -rf $(NAME).dSYM
 
+bonus:
+	@echo "$(INFO) Building $(NAME) with bonus...$(NOC)"
+	@make re BONUS=1
+	@echo "$(SUCCESS) $(NAME) built successfully with bonus!$(NOC)"
+	
 .PHONY:	all clean fclean re val

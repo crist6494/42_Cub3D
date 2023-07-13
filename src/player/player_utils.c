@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 19:50:11 by cmorales          #+#    #+#             */
-/*   Updated: 2023/06/28 19:37:58 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/13 21:05:22 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,12 @@ void pos_player_map(t_map *map, t_player *player, t_square *square)
     float square_y;
     float px;
     float py;
-    //square_x = player->pos_map->x * map->lim + map->p_map->x;
-    //square_y = player->pos_map->y * map->lim + map->p_map->y;
+
     square_x = player->pos_map->x * map->lim;
     square_y = player->pos_map->y * map->lim;
     px = square_x + (map->lim / 2);
     py = square_y + (map->lim / 2);
     insert_coord(square->p_center, px, py);    
-    //insert_coord(player->pos_map, px, py);
-    //square_paint(player->p_center, 1, RED, player->img);
 }
 
 void get_square_corner(t_player *player, t_square *square)

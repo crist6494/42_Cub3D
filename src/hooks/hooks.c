@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/13 21:12:51 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/13 21:02:56 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,17 @@ void escape_hook(mlx_key_data_t keydata, void *param)
 void hook_screen(int32_t width, int32_t height, void *param)
 {
 	t_game *game;
+	
 	game = (t_game *)param;
-	(void)height;
-	(void)width;
-
-	printf("width: %d\n", width);
-	printf("width: %d\n", width);
-	printf("height: %d\n", height);
+	if(width < 1800 || height < 1100)
+		mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	mlx_delete_image(game->mlx, game->minimap->img);
 	game->minimap->img = mlx_new_image(game->mlx, 331, 331);
 	if(!game->minimap->img)
 		error();
-	if (mlx_image_to_window(game->mlx, game->minimap->img, (width - 360),  30) < 0)
+	if (mlx_image_to_window(game->mlx, game->minimap->img, 30,  30) < 0)
     	error();
-	paint_minimap(game, game->minimap);
+	repaint(game, game->player);
 }
 
 void cursor_hook(double xpos, double ypos, void *param)

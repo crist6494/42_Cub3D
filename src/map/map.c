@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/13 21:05:28 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/13 20:04:50 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void init_map(t_game *game, t_map *map, char *path_map)
 	map->lim = 30;
 	map->width = map->len_x * map->lim;
 	map->height = map->len_y * map->lim;
-	map->mid_map = malloc(sizeof(t_coord));
-	map->mid_map->x = (WIDTH - map->width) / 2;
+	map->mid_map = malloc(sizeof(t_coord));//quitar
+	map->mid_map->x = WIDTH;
 	map->mid_map->y = (HEIGHT - map->height) / 2;
 	map->m_coord = malloc(sizeof(t_coord));
 }

@@ -6,17 +6,15 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:42:38 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/12 20:44:16 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/13 20:06:24 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+//Sacamos direccion que se mueve el rayo
 void init_ray(t_ray *data, float angle)
 {
-/* 	data->coordHitHorizontal = malloc(sizeof(t_coord));
-	data->coordHitVertical = malloc(sizeof(t_coord)); */
-	//Sacamos direccion que se mueve el rayo
 	data->down = 0;
 	data->left = 0;
 	data->rads_angle = grades_to_rad(angle);
@@ -51,8 +49,6 @@ void	set_horizontal_texture(t_txt_draw * txt, t_ray *ray, t_game *game)
 		txt->texture = game->comp->so;
 		txt->coord_x_txt = (((int)txt->WallHit->x % ((int)game->map->lim)) / game->map->lim) * (txt->texture->width);
 	}
-	/* if (txt->coord_x_txt >= (int)game->comp->we->width)
-		(txt->coord_x_txt)--; */
 }
 
 void	set_vertical_texture(t_txt_draw * txt, t_ray *ray, t_game *game)
@@ -67,8 +63,6 @@ void	set_vertical_texture(t_txt_draw * txt, t_ray *ray, t_game *game)
 		txt->texture = game->comp->we;
 		txt->coord_x_txt = (((int)txt->WallHit->y % ((int)game->map->lim)) / game->map->lim) * (txt->texture->height);
 	}
-/* 	if (txt->coord_x_txt >= (int)game->comp->we->width)
-		(txt->coord_x_txt)--; */
 }
 float	raycast(t_game *game, t_player *player, t_ray *ray, float angle)
 {
