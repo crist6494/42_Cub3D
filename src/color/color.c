@@ -6,26 +6,11 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 17:30:25 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/12 15:50:37 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:48:52 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-int	ft_getr(int color)
-{
-	return ((color >> 16) & 0xFF);
-}
-
-int	ft_getg(int color)
-{
-	return ((color >> 8) & 0xFF);
-}
-
-int	ft_getb(int color)
-{
-	return (color & 0xFF);
-}
 
 //slits the rgb string into individual components
 //converts each component to an int and returns the color
