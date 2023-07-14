@@ -104,6 +104,7 @@ void	ft_get_textures(t_game *game)
 	{
 		ft_putstr_fd("Error\n", 1);
 		ft_putstr_fd("bad texture file\n", 1);
+		ft_free_char_matrix(game->comp->map);
 		ft_exit_parse_error(game->comp);
 	}
 }
