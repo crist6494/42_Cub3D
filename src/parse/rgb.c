@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:11:23 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/14 12:09:40 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:38:24 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	ft_rgb_check(char *str)
 		aux = ft_atol(rgb[i]);
 		if (aux < 0 || aux > 255)
 		{
+			ft_free_char_matrix(rgb);
 			ft_putstr_fd("Invalid RGB value\n", 2);
 			return (0);
 		}
@@ -59,6 +60,7 @@ int	ft_rgb_check(char *str)
 	}
 	if (i != 3)
 	{
+		ft_free_char_matrix(rgb);
 		ft_putstr_fd("Invalid RGB value\n", 2);
 		return (0);
 	}
