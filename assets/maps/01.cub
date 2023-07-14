@@ -1,19 +1,19 @@
-NO /Users/manujime/repos/cursus/4/cub3d/assets/textures/bluestone.png
-SO /Users/manujime/repos/cursus/4/cub3d/assets/textures/Brickwall3_Texture.png
+NO /Users/cmorales/42/Cub3D/assets/textures/bluestone.png
+SO /Users/cmorales/42/Cub3D/assets/textures/redbrick.png
 
-WE         /Users/manujime/repos/cursus/4/cub3d/assets/textures/redbrick.png
-
-
-
-EA /Users/manujime/repos/cursus/4/cub3d/assets/textures/colorstone.png
+WE         /Users/cmorales/42/Cub3D/assets/textures/colorstone.png
 
 
 
-F 220,180,0
+EA /Users/cmorales/42/Cub3D/assets/textures/mossy.png
 
 
 
-C  200,100,0
+F 100,20,190
+
+
+
+C  64,64,64
 
 
 

@@ -6,14 +6,14 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 19:05:20 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:06:19 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../memory-leaks/include/memory_leaks.h"
+//# include "../memory-leaks/include/memory_leaks.h"
 # include "MLX42/MLX42.h"
 # include "libft.h"
 # include "macros.h"

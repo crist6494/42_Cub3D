@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:50:23 by anmarque          #+#    #+#             */
-/*   Updated: 2023/07/13 20:34:04 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:07:06 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "get_next_line.h"
-# include "../memory-leaks/include/memory_leaks.h"
+//# include "../memory-leaks/include/memory_leaks.h"
 
 void				ft_bzero(void *s, size_t n);
 

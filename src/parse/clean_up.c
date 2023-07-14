@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:59:59 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/14 18:28:44 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:53:51 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	ft_free_textures(t_comp *comp)
 
 void	ft_exit_parse_error(t_comp *comp)
 {
-	printf("Error\n");
 	ft_free_char_matrix(comp->file);
 	ft_free_paths(comp);
 	ft_free_textures(comp);

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 19:04:38 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:06:31 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	init_window(t_game *game, char *path)
 	mlx_terminate(game->mlx);
 }
 
+//atexit(ft_void);
 int	main(int ac, char **av)
 {
 	t_map		map;
@@ -66,7 +67,6 @@ int	main(int ac, char **av)
 	t_square	square;
 	t_ray		ray;
 
-	atexit(ft_void);
 	game.player = &player;
 	game.map = &map;
 	game.player->square = &square;

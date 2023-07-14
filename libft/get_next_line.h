@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:45:20 by anmarque          #+#    #+#             */
-/*   Updated: 2023/07/13 20:34:16 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:07:17 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft.h"
-# include "../memory-leaks/include/memory_leaks.h"
+//# include "../memory-leaks/include/memory_leaks.h"
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);

@@ -1,9 +1,9 @@
-NO /Users/manujime/repos/cursus/4/cub3d/assets/textures/bluestone.png
-SO /Users/manujime/repos/cursus/4/cub3d/assets/textures/Brickwall3_Texture.png
-WE /Users/manujime/repos/cursus/4/cub3d/assets/textures/redbrick.png
-EA /Users/manujime/repos/cursus/4/cub3d/assets/textures/colorstone.png
+NO /Users/cmorales/42/Cub3D/assets/textures/Rocky_Road_64x64.png
+SO /Users/cmorales/42/Cub3D/assets/textures/Brick_Wall_Cracked_64x64.png
+WE /Users/cmorales/42/Cub3D/assets/textures/colorstone.png
+EA /Users/cmorales/42/Cub3D/assets/textures/mossy.png
 F 220,100,0
-C 225,30,0
+C 0,10,0
 
 
 11111111111111111111111111111111111111111111
