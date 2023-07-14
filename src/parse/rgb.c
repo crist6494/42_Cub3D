@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:11:23 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/11 17:22:20 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:09:40 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	*ft_is_long(char *tmp)
 	return (tmp);
 }
 
-//converts a string in rgb format like "250,250,250" 
+//converts a string in rgb format like "250,250,250"
 //to an int hex value like 0xFFFFFF
 unsigned int	ft_rgb_to_hex(char *str)
 {

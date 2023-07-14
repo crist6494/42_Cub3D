@@ -6,83 +6,82 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:58:10 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/07 20:47:55 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:09:06 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void    paint_loop(t_point *p, mlx_image_t *img, int isSwaped, uint32_t color);
+static void	paint_loop(t_point *p, mlx_image_t *img, int isSwaped,
+				uint32_t color);
 
-static int sign(int d)
+static int	sign(int d)
 {
-    int s;
-    
-    if(d >= 0)
-        s = 1;
-    else
-        s = -1;
-    return (s);    
+	int	s;
+
+	if (d >= 0)
+		s = 1;
+	else
+		s = -1;
+	return (s);
 }
 
-static void swap(float *dx, float *dy)
+static void	swap(float *dx, float *dy)
 {
-    float aux;
+	float	aux;
 
-    aux = *dx;
-    *dx = *dy;
-    *dy = aux;
+	aux = *dx;
+	*dx = *dy;
+	*dy = aux;
 }
 
-void paint_line(t_point *p, mlx_image_t *img, uint32_t color)
+void	paint_line(t_point *p, mlx_image_t *img, uint32_t color)
 {
-    int isSwaped;
-    
-    p->dx = p->x1-p->x;
-    p->dy = p->y1-p->y;
-    
-    p->sx = sign(p->dx);
-    p->sy = sign(p->dy);
+	int	isSwaped;
 
-    isSwaped = 0;
-
-    if(fabs(p->dy) > fabs(p->dx))
-    {
-        swap(&p->dx, &p->dy);
-        isSwaped = 1;
-    }
-    mlx_put_pixel(img, p->x, p->y, color);
-    paint_loop(p, img, isSwaped, color);
-} 
-
-static void paint_loop(t_point *p, mlx_image_t *img, int isSwaped, uint32_t color)
-{
-    int i;
-    float err;
-    err = 2*(fabs(p->dy)) - fabs(p->dx);
-    i = 0;
-    while(i<= fabs(p->dx))
-    {
-        if(err < 0)
-        {
-            if(isSwaped == 0)
-                p->x += p->sx;
-            else
-                p->y += p->sy;
-            mlx_put_pixel(img, p->x, p->y, color);
-            err +=  2 * fabs(p->dy);
-        }
-        else
-        {
-            p->x += p->sx;
-            p->y += p->sy;
-            mlx_put_pixel(img, p->x, p->y, color);
-            err += 2 * fabs(p->dy) - 2 * fabs(p->dx);
-        }
-        i++;
-    }
+	p->dx = p->x1 - p->x;
+	p->dy = p->y1 - p->y;
+	p->sx = sign(p->dx);
+	p->sy = sign(p->dy);
+	isSwaped = 0;
+	if (fabs(p->dy) > fabs(p->dx))
+	{
+		swap(&p->dx, &p->dy);
+		isSwaped = 1;
+	}
+	mlx_put_pixel(img, p->x, p->y, color);
+	paint_loop(p, img, isSwaped, color);
 }
 
+static void	paint_loop(t_point *p, mlx_image_t *img, int isSwaped,
+		uint32_t color)
+{
+	int		i;
+	float	err;
+
+	err = 2 * (fabs(p->dy)) - fabs(p->dx);
+	i = 0;
+	while (i <= fabs(p->dx))
+	{
+		if (err < 0)
+		{
+			if (isSwaped == 0)
+				p->x += p->sx;
+			else
+				p->y += p->sy;
+			mlx_put_pixel(img, p->x, p->y, color);
+			err += 2 * fabs(p->dy);
+		}
+		else
+		{
+			p->x += p->sx;
+			p->y += p->sy;
+			mlx_put_pixel(img, p->x, p->y, color);
+			err += 2 * fabs(p->dy) - 2 * fabs(p->dx);
+		}
+		i++;
+	}
+}
 
 /*void bresenham(float x1, float y1, float x2, float y2, mlx_image_t img)
 {

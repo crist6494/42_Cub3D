@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:17:43 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/13 20:04:08 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:09:38 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 //checks if there is more than one instance of the name string in the file
 static int	ft_check_n_str(char **file, char *name)
 {
-	int		instances;
-	int		i;
+	int	instances;
+	int	i;
 
 	instances = 0;
 	i = 0;
@@ -66,9 +66,9 @@ static void	ft_get_comps(t_comp *comp)
 
 int	ft_map_count(char **map)
 {
-	if ((ft_count_char(map, 'E') + ft_count_char(map, 'W')
-			+ ft_count_char(map, 'N') + ft_count_char(map, 'S') != 1)
-		|| !ft_map_tiles(map, " 01NSEW\n"))
+	if ((ft_count_char(map, 'E') + ft_count_char(map, 'W') + ft_count_char(map,
+				'N') + ft_count_char(map, 'S') != 1) || !ft_map_tiles(map,
+			" 01NSEW\n"))
 		return (0);
 	return (1);
 }

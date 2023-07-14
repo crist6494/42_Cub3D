@@ -6,30 +6,30 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:25:46 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/07 18:29:28 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:08:48 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int ft_get_player_angle(char **map)
+int	ft_get_player_angle(char **map)
 {
-	int			y;
-	int			x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (map[y])
 	{
 		x = 0;
 		while (map[y][x])
-		{	
-			if(map[y][x] == 'N')
+		{
+			if (map[y][x] == 'N')
 				return (270);
-			if(map[y][x] == 'S')
+			if (map[y][x] == 'S')
 				return (90);
-			if(map[y][x] == 'W')
+			if (map[y][x] == 'W')
 				return (180);
-			if(map[y][x] == 'E')
+			if (map[y][x] == 'E')
 				return (0);
 			x++;
 		}
@@ -66,9 +66,9 @@ int	ft_get_len_y(char **map)
 
 t_coord	ft_get_player_pos(char **map)
 {
-	t_coord	begin;
-	int			y;
-	int			x;
+	t_coord begin;
+	int y;
+	int x;
 
 	y = 0;
 	while (map[y])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:36:39 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/13 19:55:42 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:09:44 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_flood_fill(char **map, int begin_y, int begin_x)
 	if (map[begin_y][begin_x] == '1' || map[begin_y][begin_x] == 'F'
 		|| map[begin_y][begin_x] == '\0')
 		return ;
-	if (begin_y <= 0 || begin_x < 0 || begin_y >= ft_get_len_y(map) -1
+	if (begin_y <= 0 || begin_x < 0 || begin_y >= ft_get_len_y(map) - 1
 		|| (unsigned int)begin_x > ft_strlen(map[begin_y]))
 		return ;
 	map[begin_y][begin_x] = 'F';
@@ -98,11 +98,11 @@ char	**ft_copy_char_matrix(char **map)
 
 int	ft_walls(char **map)
 {
-	t_coord		begin;
-	int			valid;
-	int			y;
-	int			x;
-	char		**aux;
+	t_coord	begin;
+	int		valid;
+	int		y;
+	int		x;
+	char	**aux;
 
 	ft_space_map(map);
 	aux = ft_copy_char_matrix(map);

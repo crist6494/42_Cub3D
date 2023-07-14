@@ -6,20 +6,22 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:56:15 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/13 20:21:32 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:10:02 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	set_variables_render_wall(t_player *player, t_txt_draw *txt, float distance)
+static void	set_variables_render_wall(t_player *player, t_txt_draw *txt,
+		float distance)
 {
 	int		proyected_height;
 	float	height_wall;
-	int half_screen;
-	
+	int		half_screen;
+
 	proyected_height = 25;
-	height_wall = ((float)proyected_height / distance) * player->distance_proyection;
+	height_wall = ((float)proyected_height / distance)
+		* player->distance_proyection;
 	half_screen = player->screen_y / 2;
 	txt->acc = 0;
 	txt->step = (float)txt->texture->height / height_wall;
@@ -33,17 +35,19 @@ static void	set_variables_render_wall(t_player *player, t_txt_draw *txt, float d
 	if (txt->y1 > (int)(player->screen_y - 1))
 		txt->y1 = player->screen_y - 1;
 }
-static void render_wall(t_player *player, t_txt_draw *txt,float distance, unsigned int x)
+static void	render_wall(t_player *player, t_txt_draw *txt, float distance,
+		unsigned int x)
 {
-	int color;
-	
+	int	color;
+
 	set_variables_render_wall(player, txt, distance);
 	while (txt->y0 < txt->y1)
 	{
-		color = ((unsigned int *)txt->texture->pixels)[(txt->coord_x_txt + (int)txt->acc * txt->texture->width)];
+		color = ((unsigned int *)txt->texture->pixels)[(txt->coord_x_txt
+				+ (int)txt->acc * txt->texture->width)];
 		if (txt->y0 > 0 && txt->y0 <= (int)(player->screen_y - 1))
 		{
-			if(BONUS == 1)
+			if (BONUS == 1)
 				mlx_put_pixel(player->img, x, txt->y0, reversecolor(color));
 			else
 				mlx_put_pixel(player->img, x, txt->y0, BLACK);
@@ -54,25 +58,26 @@ static void render_wall(t_player *player, t_txt_draw *txt,float distance, unsign
 	}
 }
 
-void cast(t_game *game, t_player *player, t_ray *ray)
+void	cast(t_game *game, t_player *player, t_ray *ray)
 {
-	float init_angle;
-	float increment_angle;
-	unsigned int i;
-	float distance;
-	float aux;
-	
+	float			init_angle;
+	float			increment_angle;
+	unsigned int	i;
+	float			distance;
+	float			aux;
+
 	i = 0;
-	increment_angle = (float)player->fov / WIDTH;//Saber distancia entre cada grado
+	increment_angle = (float)player->fov / WIDTH;
+	//Saber distancia entre cada grado
 	init_angle = player->angle - (float)(player->fov / 2);
 	init_angle = normalize_angle(init_angle);
-	while(i < WIDTH)
+	while (i < WIDTH)
 	{
 		aux = game->player->angle - init_angle;
 		aux = normalize_angle(aux);
 		aux = grades_to_rad(aux);
-		distance = cos(aux) * raycast(game,player, ray, init_angle);
-		render_wall(player,game->player->txt, distance, i);
+		distance = cos(aux) * raycast(game, player, ray, init_angle);
+		render_wall(player, game->player->txt, distance, i);
 		init_angle += increment_angle;
 		init_angle = normalize_angle(init_angle);
 		i++;

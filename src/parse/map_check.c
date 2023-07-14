@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:47:02 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/13 19:54:39 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:09:33 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int	ft_map_check(t_comp *comp)
 			|| ft_strnstr(comp->file[i], "EA ", ft_strlen(comp->file[i]))
 			|| ft_strnstr(comp->file[i], "F ", ft_strlen(comp->file[i]))
 			|| ft_strnstr(comp->file[i], "C ", ft_strlen(comp->file[i])))
-				count++;
+			count++;
 		if (ft_strnstr(comp->file[i], "111", ft_strlen(comp->file[i])))
 			break ;
 		i++;

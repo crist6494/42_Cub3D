@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 17:30:25 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/13 18:11:45 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:12:01 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //slits the rgb string into individual components
 //converts each component to an int and returns the color
 int	ft_get_hex_color(char *rgb)
-{	
+{
 	char	**rgb_split;
 	int		r;
 	int		g;
@@ -30,12 +30,13 @@ int	ft_get_hex_color(char *rgb)
 	ft_free_char_matrix(rgb_split);
 	return (r << 24 | g << 16 | b << 8 | a);
 }
+
 int	get_rgba(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-uint32_t reversecolor(unsigned int color)
+uint32_t	reversecolor(unsigned int color)
 {
 	int	red;
 	int	green;

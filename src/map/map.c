@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/13 20:04:50 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:08:55 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void init_map(t_game *game, t_map *map, char *path_map)
+void	init_map(t_game *game, t_map *map, char *path_map)
 {
 	(void)path_map;
 	map->tour = game->comp->map;
@@ -21,36 +21,37 @@ void init_map(t_game *game, t_map *map, char *path_map)
 	map->lim = 30;
 	map->width = map->len_x * map->lim;
 	map->height = map->len_y * map->lim;
-	map->mid_map = malloc(sizeof(t_coord));//quitar
+	map->mid_map = malloc(sizeof(t_coord)); //quitar
 	map->mid_map->x = WIDTH;
 	map->mid_map->y = (HEIGHT - map->height) / 2;
 	map->m_coord = malloc(sizeof(t_coord));
 }
 
-void create_map(t_game *game, t_map *map, float c_x, float c_y)
+void	create_map(t_game *game, t_map *map, float c_x, float c_y)
 {
-	unsigned int y;
-	unsigned int x;
-	float aux_x;
-	
+	unsigned int	y;
+	unsigned int	x;
+	float			aux_x;
+
 	insert_coord(map->m_coord, c_x, c_y);
 	aux_x = c_x;
 	y = 0;
-	while(y < map->len_y)
+	while (y < map->len_y)
 	{
 		x = 0;
 		map->m_coord->x = aux_x;
-		while(x < map->len_x)
+		while (x < map->len_x)
 		{
-			if(map->tour[y][x] == '1')
+			if (map->tour[y][x] == '1')
 				square_paint(map->m_coord, map->lim, BLACK, game->img);
-			else if(map->tour[y][x] == '0')
+			else if (map->tour[y][x] == '0')
 				square_paint(map->m_coord, map->lim, GREY, game->img);
-			else if(map->tour[y][x] == 'N' || map->tour[y][x] == 'S' || map->tour[y][x] == 'W' || map->tour[y][x] == 'E')
+			else if (map->tour[y][x] == 'N' || map->tour[y][x] == 'S'
+					|| map->tour[y][x] == 'W' || map->tour[y][x] == 'E')
 				square_paint(map->m_coord, map->lim, GREY, game->img);
 			map->m_coord->x += map->lim;
 			x++;
-		} 
+		}
 		map->m_coord->y += map->lim;
 		y++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/13 21:03:53 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:10:14 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	ft_clean(t_game *game)
 	exit(1);
 }
 
-void init_game(t_game *game, char *path)
+void	init_game(t_game *game, char *path)
 {
 	init_map(game, game->map, path);
 	init_player(game->player, game, game->player->square);
-	if(BONUS == 1)
-		init_minimap(game,game->minimap, WIDTH, 30);
+	if (BONUS == 1)
+		init_minimap(game, game->minimap, WIDTH, 30);
 	repaint(game, game->player);
 	mlx_key_hook(game->mlx, &escape_hook, (void *)(game));
 	mlx_loop_hook(game->mlx, &move_hook, (void *)(game));
-	if(BONUS == 1)
+	if (BONUS == 1)
 	{
 		mlx_cursor_hook(game->mlx, &cursor_hook, (void *)(game));
 		mlx_resize_hook(game->mlx, &hook_screen, (void *)(game));
@@ -39,19 +39,19 @@ void init_game(t_game *game, char *path)
 	mlx_loop(game->mlx);
 }
 
-void init_window(t_game *game, char *path)
+void	init_window(t_game *game, char *path)
 {
 	game->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!game->mlx)
-        error();
+		error();
 	mlx_set_window_limit(game->mlx, 700, 700, WIDTH, HEIGHT);
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->map->img = game->img;
 	if (!game->img)
 		error();
 	if (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0)
-        error();
-	init_game(game,path);
+		error();
+	init_game(game, path);
 	//mlx_delete_image(game->mlx, game->img);
 	free_map(game->map);
 	free_player(game->player);
@@ -59,17 +59,16 @@ void init_window(t_game *game, char *path)
 	mlx_terminate(game->mlx);
 }
 
-
 int	main(int ac, char **av)
 {
-	atexit(ft_void);
-	t_map map;
-	t_player player;
-	t_game game;
-	t_square square;
-	t_ray ray;
-	t_minimap minimap;
+	t_map		map;
+	t_player	player;
+	t_game		game;
+	t_square	square;
+	t_ray		ray;
+	t_minimap	minimap;
 
+	atexit(ft_void);
 	game.player = &player;
 	game.map = &map;
 	game.player->square = &square;

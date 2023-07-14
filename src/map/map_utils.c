@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:25:01 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/13 21:19:39 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:08:52 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void map_print(t_map *map)
+void	map_print(t_map *map)
 {
-	unsigned int y;
+	unsigned int	y;
+
 	y = 0;
-	while(y < map->len_y)
+	while (y < map->len_y)
 	{
 		printf("%s\n", map->tour[y]);
 		y++;
@@ -25,13 +26,14 @@ void map_print(t_map *map)
 
 void	clear_map(t_map *map)
 {
-	unsigned int y;
-	unsigned int x;
+	unsigned int	y;
+	unsigned int	x;
+
 	y = 0;
-	while(y < HEIGHT)
+	while (y < HEIGHT)
 	{
 		x = 0;
-		while(x < WIDTH)
+		while (x < WIDTH)
 		{
 			mlx_put_pixel(map->img, x, y, 0x4a4747FF);
 			x++;
@@ -40,7 +42,7 @@ void	clear_map(t_map *map)
 	}
 }
 
-void free_map(t_map *map)
+void	free_map(t_map *map)
 {
 	unsigned int y;
 	y = 0;
