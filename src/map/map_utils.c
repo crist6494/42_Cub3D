@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:25:01 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 12:08:52 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:07:18 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,4 @@ void	clear_map(t_map *map)
 		}
 		y++;
 	}
-}
-
-void	free_map(t_map *map)
-{
-	unsigned int y;
-	y = 0;
-
-	free(map->m_coord);
-	free(map->mid_map);
 }

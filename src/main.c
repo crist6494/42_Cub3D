@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 12:10:14 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:04:38 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	ft_clean(t_game *game)
 {
-	free(game->player->txt);
-	free(game->player->txt->WallHit);
+	free_player(game->player);
 	ft_free_char_matrix(game->comp->map);
 	mlx_close_window(game->mlx);
 	ft_exit_parse_error(game->comp);
@@ -24,6 +23,9 @@ void	ft_clean(t_game *game)
 
 void	init_game(t_game *game, char *path)
 {
+	t_minimap	minimap;
+
+	game->minimap = &minimap;
 	init_map(game, game->map, path);
 	init_player(game->player, game, game->player->square);
 	if (BONUS == 1)
@@ -52,9 +54,6 @@ void	init_window(t_game *game, char *path)
 	if (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0)
 		error();
 	init_game(game, path);
-	//mlx_delete_image(game->mlx, game->img);
-	free_map(game->map);
-	free_player(game->player);
 	ft_clean(game);
 	mlx_terminate(game->mlx);
 }
@@ -66,14 +65,12 @@ int	main(int ac, char **av)
 	t_game		game;
 	t_square	square;
 	t_ray		ray;
-	t_minimap	minimap;
 
 	atexit(ft_void);
 	game.player = &player;
 	game.map = &map;
 	game.player->square = &square;
 	game.ray = &ray;
-	game.minimap = &minimap;
 	if (ac != 2 || !ft_file_check(av[1]))
 		return (print_error(USAGE_MSG));
 	ft_parse(&game, av[1]);

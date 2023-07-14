@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 19:50:11 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 12:09:54 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:02:48 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ void	get_square_corner(t_player *player, t_square *square)
 	square->p_left_up->y = square->p_center->y - player->tam / 2;
 	square->p_right_up->x = square->p_center->x + player->tam / 2;
 	square->p_right_up->y = square->p_center->y - player->tam / 2;
-	/* 	square_paint(player->square->p_left_down, 0.1, CYAN, player->img);
+}
+/* 	square_paint(player->square->p_left_down, 0.1, CYAN, player->img);
 	square_paint(player->square->p_right_down, 0.1, CYAN, player->img);
 	square_paint(player->square->p_left_up, 0.1, CYAN, player->img);
 	square_paint(player->square->p_right_up, 0.1, CYAN, player->img); */
-}
+
 void	pos_line(t_player *player)
 {
 	if (player->angle == N)
@@ -77,4 +78,6 @@ void	free_player(t_player *player)
 	free(player->square->p_right_down);
 	free(player->square->p_left_up);
 	free(player->square->p_right_up);
+	free(player->txt);
+	free(player->txt->wall_hit);
 }

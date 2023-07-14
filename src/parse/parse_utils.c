@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 11:39:52 by manujime          #+#    #+#             */
-/*   Updated: 2023/07/13 18:32:31 by manujime         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:00:35 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

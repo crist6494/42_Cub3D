@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:03:44 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 12:09:52 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:40:07 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ void	rotate(t_game *game, t_player *player, int clockwise)
 	{
 		player->dir_x = (float)player->len_dir * cos(angle);
 		player->dir_y = (float)player->len_dir * sin(angle);
-		update_direction(player); //Actualizamos la linea
+		update_direction(player);
 	}
 }

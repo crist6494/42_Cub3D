@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:56:15 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 12:10:02 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:43:21 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	set_variables_render_wall(t_player *player, t_txt_draw *txt,
 	if (txt->y1 > (int)(player->screen_y - 1))
 		txt->y1 = player->screen_y - 1;
 }
+
 static void	render_wall(t_player *player, t_txt_draw *txt, float distance,
 		unsigned int x)
 {
@@ -46,12 +47,7 @@ static void	render_wall(t_player *player, t_txt_draw *txt, float distance,
 		color = ((unsigned int *)txt->texture->pixels)[(txt->coord_x_txt
 				+ (int)txt->acc * txt->texture->width)];
 		if (txt->y0 > 0 && txt->y0 <= (int)(player->screen_y - 1))
-		{
-			if (BONUS == 1)
-				mlx_put_pixel(player->img, x, txt->y0, reversecolor(color));
-			else
-				mlx_put_pixel(player->img, x, txt->y0, BLACK);
-		}
+			mlx_put_pixel(player->img, x, txt->y0, reversecolor(color));
 		if ((float)(txt->acc + txt->step) < (float)txt->texture->height)
 			txt->acc += txt->step;
 		txt->y0++;
@@ -68,7 +64,6 @@ void	cast(t_game *game, t_player *player, t_ray *ray)
 
 	i = 0;
 	increment_angle = (float)player->fov / WIDTH;
-	//Saber distancia entre cada grado
 	init_angle = player->angle - (float)(player->fov / 2);
 	init_angle = normalize_angle(init_angle);
 	while (i < WIDTH)

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:05:45 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 12:10:17 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:54:51 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	error(void)
 	printf("%s", mlx_strerror(mlx_errno));
 	exit(EXIT_FAILURE);
 }
+
 float	grades_to_rad(float angle)
 {
 	float	res;

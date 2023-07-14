@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:39:45 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 12:10:08 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:54:27 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ static void	vertical_raycast_loop(t_map *map, t_coord *wallHitVertical,
 		&& wallHitVertical->y < (float)(map->height))
 	{
 		if (map->tour[(int)wallHitVertical->y
-			/ (int)map->lim][(int)wallHitVertical->x / (int)map->lim] == '1'
+				/ (int)map->lim][(int)wallHitVertical->x
+			/ (int)map->lim] == '1'
 			|| (data->left == 1 && map->tour[((int)wallHitVertical->y)
 				/ (int)map->lim][(int)(wallHitVertical->x - 1)
 				/ (int)map->lim] == '1'))

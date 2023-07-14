@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 20:36:54 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 12:09:02 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:37:12 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	insert_coord(t_coord *c, float x, float y)
 	c->x = x;
 	c->y = y;
 }
+
 void	init_points(t_point *p, t_coord *c, t_coord *c1)
 {
 	p->x = c->x;

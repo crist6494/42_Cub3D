@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 11:24:20 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 12:08:59 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:36:15 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static void	loop_paint_minimap(t_game *game, t_minimap *mp, t_coord *p, int lim)
 				square_paint(p, lim, WHITE, mp->img);
 			else
 				square_paint(p, lim, ft_get_map_color(game->map, mp->cas_x,
-							mp->cas_y), mp->img);
+						mp->cas_y), mp->img);
 			p->x += lim;
 			mp->cas_x++;
 		}

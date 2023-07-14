@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 12:08:35 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:04:58 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ void	escape_hook(mlx_key_data_t keydata, void *param)
 	game = (t_game *)param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
-		free(game->player->txt);
-		free(game->player->txt->WallHit);
-		free(game->map->mid_map);
-		free(game->map->m_coord);
 		ft_free_char_matrix(game->comp->map);
 		free_player(game->player);
 		mlx_close_window(game->mlx);

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:58:10 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 12:09:06 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:37:59 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,20 @@ static void	swap(float *dx, float *dy)
 
 void	paint_line(t_point *p, mlx_image_t *img, uint32_t color)
 {
-	int	isSwaped;
+	int	is_swaped;
 
 	p->dx = p->x1 - p->x;
 	p->dy = p->y1 - p->y;
 	p->sx = sign(p->dx);
 	p->sy = sign(p->dy);
-	isSwaped = 0;
+	is_swaped = 0;
 	if (fabs(p->dy) > fabs(p->dx))
 	{
 		swap(&p->dx, &p->dy);
-		isSwaped = 1;
+		is_swaped = 1;
 	}
 	mlx_put_pixel(img, p->x, p->y, color);
-	paint_loop(p, img, isSwaped, color);
+	paint_loop(p, img, is_swaped, color);
 }
 
 static void	paint_loop(t_point *p, mlx_image_t *img, int isSwaped,

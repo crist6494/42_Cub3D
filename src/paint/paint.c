@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:30:05 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 12:09:09 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:38:45 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,12 @@ void	paint_ceil_floor(t_player *player, t_comp *comp)
 	t_4square	ceil;
 	int			half_screen_y;
 
-	// Calcula la mitad de la pantalla en el eje y
 	half_screen_y = player->screen_y / 2;
-	// Pinta la mitad superior de la pantalla de un color
 	insert_paint_p(&ceil.p0, 0, 0);
 	insert_paint_p(&ceil.p1, player->screen_x, 1);
 	insert_paint_p(&ceil.p2, player->screen_x - 1, half_screen_y);
 	insert_paint_p(&ceil.p3, 1, half_screen_y);
 	draw_background(&ceil, player->img, comp->f_hex);
-	// Pinta la mitad inferior de la pantalla de otro color
 	insert_paint_p(&floor.p0, 1, half_screen_y);
 	insert_paint_p(&floor.p1, player->screen_x - 1, half_screen_y);
 	insert_paint_p(&floor.p2, player->screen_x - 1, player->screen_y - 1);

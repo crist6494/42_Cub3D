@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 12:10:22 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:05:20 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ typedef struct s_square
 typedef struct s_map
 {
 	mlx_image_t		*img;
-	t_coord			*m_coord;
-	t_coord			*mid_map;
 	unsigned int	len_x;
 	unsigned int	len_y;
 	unsigned int	width;
@@ -112,7 +110,7 @@ typedef struct s_txt_draw
 {
 	mlx_texture_t	*texture;
 	int				coord_x_txt;
-	t_coord			*WallHit;
+	t_coord			*wall_hit;
 	int				y0;
 	int				y1;
 	float			acc;
@@ -304,13 +302,13 @@ int					check_right_up_p(t_player *player, t_map *map,
 						float advance_x, float advance_y);
 
 /*---------Collisions_utils-------------*/
-float				check_up_collision(t_player *player, t_map *map,
+float				check_up_colli(t_player *player, t_map *map,
 						float advance_x, float advance_y);
-float				check_down_collision(t_player *player, t_map *map,
+float				check_down_colli(t_player *player, t_map *map,
 						float advance_x, float advance_y);
-float				check_left_collision(t_player *player, t_map *map,
+float				check_left_colli(t_player *player, t_map *map,
 						float advance_x, float advance_y);
-float				check_right_collision(t_player *player, t_map *map,
+float				check_right_colli(t_player *player, t_map *map,
 						float advance_x, float advance_y);
 
 /* ------------------------------*
