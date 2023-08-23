@@ -6,12 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 19:50:11 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 19:02:48 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/23 18:52:14 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+//Fuction to know the middle point of the square character
 void	pos_player_map(t_map *map, t_player *player, t_square *square)
 {
 	float	square_x;
@@ -26,6 +27,7 @@ void	pos_player_map(t_map *map, t_player *player, t_square *square)
 	insert_coord(square->p_center, px, py);
 }
 
+//Fuction for obtein all corners of the square character
 void	get_square_corner(t_player *player, t_square *square)
 {
 	square->p_left_down->x = square->p_center->x - player->tam / 2;
@@ -42,6 +44,7 @@ void	get_square_corner(t_player *player, t_square *square)
 	square_paint(player->square->p_left_up, 0.1, CYAN, player->img);
 	square_paint(player->square->p_right_up, 0.1, CYAN, player->img); */
 
+//Fuction for know how direction paint the line
 void	pos_line(t_player *player)
 {
 	if (player->angle == N)
@@ -67,6 +70,7 @@ void	pos_line(t_player *player)
 	update_direction(player);
 }
 
+//Free all variables
 void	free_player(t_player *player)
 {
 	free(player->direction);

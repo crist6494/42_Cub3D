@@ -6,12 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:25:01 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 19:07:18 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:54:25 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+//Fuction to paint the map .cub in the fdout
 void	map_print(t_map *map)
 {
 	unsigned int	y;
@@ -24,6 +25,7 @@ void	map_print(t_map *map)
 	}
 }
 
+//Fuction to paint the windows grey
 void	clear_map(t_map *map)
 {
 	unsigned int	y;

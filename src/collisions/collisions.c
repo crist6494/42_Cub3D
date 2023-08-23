@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:59:10 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 18:28:50 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:10:47 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ static void	check_collision_diagonal(t_map *map, t_player *player,
 				float advance_x, float advance_y);
 
 // Tolerancia pequeña para saber que de cerca esta del 0 
-//y lo comparamos con el valor absoluto
+//y lo comparamos con el valor absoluto por los floats
 
+//Principal fuction to check collision
 void	check_collision(t_map *map, t_player *player, float advance_x,
 		float advance_y)
 {
@@ -36,6 +37,10 @@ void	check_collision(t_map *map, t_player *player, float advance_x,
 		check_collision_horizontal(map, player, advance_x, advance_y);
 }
 
+/*If the are collision player square center will be the same, 
+if not this variable change and add the advance corresponding*/
+
+//Checkk vertical collision and advance coord y of the player
 static void	check_collision_vertical(t_map *map, t_player *player,
 		float advance_x, float advance_y)
 {
@@ -49,6 +54,7 @@ static void	check_collision_vertical(t_map *map, t_player *player,
 	player->square->p_center->y = py;
 }
 
+//Checkk vertical collision and advance coord x of the player
 static void	check_collision_horizontal(t_map *map, t_player *player,
 		float advance_x, float advance_y)
 {
@@ -62,6 +68,7 @@ static void	check_collision_horizontal(t_map *map, t_player *player,
 	player->square->p_center->x = px;
 }
 
+//Checkk diagonal collision and advance coord x and y of the player
 static void	check_collision_diagonal(t_map *map, t_player *player,
 		float a_x, float a_y)
 {

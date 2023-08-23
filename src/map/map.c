@@ -6,24 +6,27 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:32:16 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 19:04:32 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:55:56 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+//Start the key variables of the map
 void	init_map(t_game *game, t_map *map, char *path_map)
 {
 	(void)path_map;
-	map->tour = game->comp->map;
+	map->tour = game->comp->map;//The ** map
 	map->len_x = ft_get_len_x(game->comp->map);
 	map->len_y = ft_get_len_y(game->comp->map);
-	map->lim = 30;
+	map->lim = 30;//All size of each square of the map
 	map->width = map->len_x * map->lim;
 	map->height = map->len_y * map->lim;
 }
 
-/* void	create_map(t_game *game, t_map *map, float c_x, float c_y)
+/* 
+//Paint a minimap of all the map
+void	create_map(t_game *game, t_map *map, float c_x, float c_y)
 {
 	unsigned int	y;
 	unsigned int	x;

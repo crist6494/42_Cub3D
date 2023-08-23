@@ -6,12 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 19:54:45 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/23 21:22:55 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+//Fuction when press SCAPE for finish the window and free all leaks
 void	escape_hook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
@@ -27,13 +28,14 @@ void	escape_hook(mlx_key_data_t keydata, void *param)
 	}
 }
 
+//Fuction that allow resize the window to other size
 void	hook_screen(int32_t width, int32_t height, void *param)
 {
 	t_game	*game;
 
 	game = (t_game *)param;
 	if (width < 1800 || height < 1100)
-		mlx_set_setting(MLX_STRETCH_IMAGE, true);
+		mlx_set_setting(MLX_STRETCH_IMAGE, true);//This resize when the window is small but play different
 	mlx_delete_image(game->mlx, game->minimap->img);
 	game->minimap->img = mlx_new_image(game->mlx, 331, 331);
 	if (!game->minimap->img)

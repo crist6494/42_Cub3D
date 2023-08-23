@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:20:57 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 20:06:19 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:48:27 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,21 @@
 /* ---------------------------------------------------------------------------*
 	-------------------------------STRUCTURES---------------------------------
 *--------------------------------------------------------------------------- */
+//Principal struct for know the coord of each element
 typedef struct s_coord
 {
 	float			x;
 	float			y;
 }					t_coord;
 
+//Struct for paint with int
 typedef struct s_paint_p
 {
 	int				x;
 	int				y;
 }					t_paint_p;
 
+//Struct for pait the ceil and floor
 typedef struct s_4square
 {
 	t_paint_p		p0;
@@ -46,6 +49,7 @@ typedef struct s_4square
 	t_paint_p		p3;
 }					t_4square;
 
+//Struct for paint a line
 typedef struct s_point
 {
 	float			x;
@@ -58,6 +62,7 @@ typedef struct s_point
 	float			dx;
 }					t_point;
 
+//Struct of each element of the square == our character in the map
 typedef struct s_square
 {
 	t_coord			*p_center;
@@ -68,6 +73,7 @@ typedef struct s_square
 	t_coord			*p_right_up;
 }					t_square;
 
+//Struct of each element of the map
 typedef struct s_map
 {
 	mlx_image_t		*img;
@@ -81,6 +87,7 @@ typedef struct s_map
 	char			**tour;
 }					t_map;
 
+//Struct for the parse the .cub file
 typedef struct s_comp
 {
 	char			**file;
@@ -99,6 +106,7 @@ typedef struct s_comp
 	char			**map;
 }					t_comp;
 
+//Struct for the raycast
 typedef struct s_ray
 {
 	int				down;
@@ -106,6 +114,7 @@ typedef struct s_ray
 	float			rads_angle;
 }					t_ray;
 
+//Struct for the wall texture
 typedef struct s_txt_draw
 {
 	mlx_texture_t	*texture;
@@ -117,6 +126,7 @@ typedef struct s_txt_draw
 	float			step;
 }					t_txt_draw;
 
+//Struct for the minimap
 typedef struct s_minimap
 {
 	mlx_image_t		*img;
@@ -126,6 +136,7 @@ typedef struct s_minimap
 	int				cas_y;
 }					t_minimap;
 
+//Struct of each element of the character
 typedef struct s_player
 {
 	t_square		*square;
@@ -148,6 +159,7 @@ typedef struct s_player
 	float			distance_proyection;
 }					t_player;
 
+//Global struct to have access all elements
 typedef struct s_game
 {
 	mlx_t			*mlx;

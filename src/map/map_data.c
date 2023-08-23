@@ -6,12 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:25:46 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 18:35:03 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:53:08 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+//Function to get the angle character according to the direction
 int	ft_get_player_angle(char **map)
 {
 	int	y;
@@ -38,6 +39,7 @@ int	ft_get_player_angle(char **map)
 	return (-1);
 }
 
+//Fuction to get the nº x of the map
 int	ft_get_len_x(char **map)
 {
 	int	i;
@@ -54,7 +56,7 @@ int	ft_get_len_x(char **map)
 	return (longest);
 }
 
-//gets the number of lines in a char **
+//Fuction to get the nº y of the map
 int	ft_get_len_y(char **map)
 {
 	int	i;
@@ -65,6 +67,7 @@ int	ft_get_len_y(char **map)
 	return (i);
 }
 
+//Fuction to get the coord of the character
 t_coord	ft_get_player_pos(char **map)
 {
 	t_coord	begin;

@@ -6,12 +6,16 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 17:43:10 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 12:08:20 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:08:20 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*split the coord with the advance by the size of the tile and know
+what tile is and if we can advance*/
+
+//Check collision of the left down point
 int	check_left_down_p(t_player *player, t_map *map, float advance_x,
 		float advance_y)
 {
@@ -26,6 +30,7 @@ int	check_left_down_p(t_player *player, t_map *map, float advance_x,
 	return (0);
 }
 
+//Check collision of the right down point
 int	check_right_down_p(t_player *player, t_map *map, float advance_x,
 		float advance_y)
 {
@@ -40,6 +45,7 @@ int	check_right_down_p(t_player *player, t_map *map, float advance_x,
 	return (0);
 }
 
+//Check collision of the lef up point
 int	check_left_up_p(t_player *player, t_map *map, float advance_x,
 		float advance_y)
 {
@@ -54,6 +60,7 @@ int	check_left_up_p(t_player *player, t_map *map, float advance_x,
 	return (0);
 }
 
+//Check collision of the right up point
 int	check_right_up_p(t_player *player, t_map *map, float advance_x,
 		float advance_y)
 {

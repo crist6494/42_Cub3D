@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:03:44 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 18:40:07 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/23 18:47:36 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,23 @@
  y apartir de ese punto una line con el dir
  ----------*  y movemos el punto y en avanzar y la line en rotar*/
 
+//Advance player W S
 void	player_advance(t_game *game, t_player *player, int direction)
 {
 	float	angle;
 	float	advance_x;
 	float	advance_y;
 
-	angle = ((float)player->angle * M_PI) / 180;
+	angle = ((float)player->angle * M_PI) / 180;//Convert to rads for cos and sin
 	if (direction == 1 || direction == -1)
 	{
-		advance_x = (float)direction * cos(angle) * player->vel_move;
-		advance_y = (float)direction * sin(angle) * player->vel_move;
+		advance_x = (float)direction * cos(angle) * player->vel_move;//Cos line horizontal
+		advance_y = (float)direction * sin(angle) * player->vel_move;//Sin line vertical
 		check_collision(game->map, player, advance_x, advance_y);
 	}
 }
 
+//Advance player A D
 void	player_lateral(t_game *game, t_player *player, int direction)
 {
 	float	angle;
@@ -54,6 +56,7 @@ void	player_lateral(t_game *game, t_player *player, int direction)
 //CLockwise = 1  12-3-6-9-12
 //CLockwise = -1  12-9-6-3-12
 
+//Rotate the character line of vision
 void	rotate(t_game *game, t_player *player, int clockwise)
 {
 	float	angle;

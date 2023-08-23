@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 11:24:20 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 18:36:15 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:01:43 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	loop_paint_minimap(t_game *game, t_minimap *mp, t_coord *p,
 				int lim);
 
+//Create a new image in the right left for paint the minimap
 void	init_minimap(t_game *game, t_minimap *minimap, int width, int height)
 {
 	(void)width;
@@ -26,6 +27,7 @@ void	init_minimap(t_game *game, t_minimap *minimap, int width, int height)
 		error();
 }
 
+//Paint all image 1 color
 void	paint_minimap_background(t_game *game)
 {
 	int	x;
@@ -44,6 +46,7 @@ void	paint_minimap_background(t_game *game)
 	}
 }
 
+//Obtain the color of each tile
 static int	ft_get_map_color(t_map *map, int x, int y)
 {
 	int	color;
@@ -67,10 +70,12 @@ void	paint_minimap(t_game *game, t_minimap *mp)
 	insert_coord(&p, 0, 0);
 	insert_coord(&c, 150, 150);
 	lim = 30;
+	//The coord of the character -5 left up tiles for paint a part of the map
 	mp->cas_x = (int)(game->player->square->p_center->x / (int)game->map->lim)
 		- 5;
 	mp->cas_y = (int)(game->player->square->p_center->y / (int)game->map->lim)
 		- 5;
+	//Paint -5 left right + 11 to be in the middle
 	mp->len_x = mp->cas_x + 11;
 	mp->len_y = mp->cas_y + 11;
 	loop_paint_minimap(game, mp, &p, lim);
@@ -89,6 +94,7 @@ static void	loop_paint_minimap(t_game *game, t_minimap *mp, t_coord *p, int lim)
 		p->x = aux;
 		while (mp->cas_x < mp->len_x)
 		{
+			//If pass the map limits paint white
 			if (!(mp->cas_y >= 0 && mp->cas_y <= (int)game->map->len_y - 1)
 				|| !(mp->cas_x >= 0 && mp->cas_x <= (int)game->map->len_x - 1))
 				square_paint(p, lim, WHITE, mp->img);
