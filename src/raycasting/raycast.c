@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:42:38 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 18:51:33 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/24 17:46:46 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 //Sacamos direccion que se mueve el rayo
 void	init_ray(t_ray *data, float angle)
 {
+	//Know if the ray is (left or right) (up or down) 
 	data->down = 0;
 	data->left = 0;
-	data->rads_angle = grades_to_rad(angle);
+	data->rads_angle = grades_to_rad(angle);//Convert rads to compare with PI
 	if (data->rads_angle > (float)0 && data->rads_angle < (float)M_PI)
 		data->down = 1;
 	if (data->rads_angle > (float)M_PI / 2 && data->rads_angle < 3 * (float)M_PI
@@ -25,6 +26,7 @@ void	init_ray(t_ray *data, float angle)
 		data->left = 1;
 }
 
+//Fuction to get the distance between you are and the ray collision
 static float	distance(float px0, float py0, float px1, float py1)
 {
 	float	distance_x;
@@ -37,6 +39,8 @@ static float	distance(float px0, float py0, float px1, float py1)
 	return (distance);
 }
 
+//Fuctions to select what texture have to paint depending where you are looking
+//And what coord x is the col that the ray is colliding
 void	set_horizontal_texture(t_txt_draw *txt, t_ray *ray, t_game *game)
 {
 	if (ray->down == 1)
@@ -69,6 +73,8 @@ void	set_vertical_texture(t_txt_draw *txt, t_ray *ray, t_game *game)
 	}
 }
 
+//Fuction that paint range of rays colliding with the wall 
+//selecting the texture of each wall and the coords of the collision
 float	raycast(t_game *game, t_player *player, t_ray *ray, float angle)
 {
 	t_coord	wall_hit_hori;
@@ -77,12 +83,15 @@ float	raycast(t_game *game, t_player *player, t_ray *ray, float angle)
 	float	distance_vertical;
 
 	init_ray(ray, angle);
+	//Obtaint the variables where collide with the wall horizontal and vertical
 	raycast_horizonal(game->map, player, ray, &wall_hit_hori);
 	raycast_vertical(game->map, player, ray, &wall_hit_verti);
+	//Get the distance between this coord and p_center square character 
 	distance_horizontal = distance(player->square->p_center->x,
 			player->square->p_center->y, wall_hit_hori.x, wall_hit_hori.y);
 	distance_vertical = distance(player->square->p_center->x,
 			player->square->p_center->y, wall_hit_verti.x, wall_hit_verti.y);
+	//Always select the shorter distance for paint the range so compare both distance
 	if (distance_horizontal <= distance_vertical)
 	{
 		insert_coord(player->txt->wall_hit, wall_hit_hori.x, wall_hit_hori.y);

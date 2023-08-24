@@ -6,12 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:30:05 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 18:38:45 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/23 21:40:03 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+//Paint square selecting a size and where start
 void	square_paint(t_coord *coord, float lim, uint32_t color,
 		mlx_image_t *img)
 {
@@ -36,6 +37,7 @@ void	square_paint(t_coord *coord, float lim, uint32_t color,
 }
 static void	draw_background(t_4square *background, mlx_image_t *img, int color);
 
+//Paint half of the screen 1 color and the other of other color
 void	paint_ceil_floor(t_player *player, t_comp *comp)
 {
 	t_4square	floor;
@@ -55,6 +57,7 @@ void	paint_ceil_floor(t_player *player, t_comp *comp)
 	draw_background(&floor, player->img, comp->c_hex);
 }
 
+//Paint half of the screen of the select color
 static void	draw_background(t_4square *background, mlx_image_t *img, int color)
 {
 	t_paint_p	top;

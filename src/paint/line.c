@@ -6,11 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:58:10 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 18:37:59 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/23 21:37:32 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+//Paint a line with 2 t_coord 1 the start and the other the end with Bresenham
 
 static void	paint_loop(t_point *p, mlx_image_t *img, int isSwaped,
 				uint32_t color);

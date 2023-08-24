@@ -6,11 +6,15 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:31:26 by cmorales          #+#    #+#             */
-/*   Updated: 2023/08/23 18:55:36 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/23 21:42:08 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+//The main loop that paint the windows grey 
+//later paint each element with the data selected
+//and so continuosly
 
 void	repaint(t_game *game, t_player *player)
 {

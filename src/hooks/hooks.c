@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:17:36 by cmorales          #+#    #+#             */
-/*   Updated: 2023/08/23 21:22:55 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/23 21:43:24 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	hook_screen(int32_t width, int32_t height, void *param)
 	repaint(game, game->player);
 }
 
+//Fuction to rotate the player with the cursor
 void	cursor_hook(double xpos, double ypos, void *param)
 {
 	t_game	*game;
@@ -64,6 +65,7 @@ void	cursor_hook(double xpos, double ypos, void *param)
 		mlx_set_cursor_mode(game->mlx, MLX_MOUSE_NORMAL);
 }
 
+//The fuction that is in the loop and move and paint the game
 void	move_hook(void *param)
 {
 	t_game	*game;

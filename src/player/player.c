@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:08:03 by cmorales          #+#    #+#             */
-/*   Updated: 2023/08/23 18:56:13 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:07:46 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	init_player(t_player *player, t_game *game, t_square *square)
 	player->p_line = malloc(sizeof(t_point));
 	init_square(game, square, player);
 	init_direction(player);
+	//Get the distance to the screen we have the width/2(y) and the angle
+	// tan(angle) = y / x    x = y / tan(angle)
 	player->distance_proyection = (float)(player->screen_x / 2)
 		/ tan(grades_to_rad(player->fov / 2));
 	player->txt = malloc(sizeof(t_txt_draw));
