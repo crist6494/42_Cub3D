@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:44:06 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 20:06:31 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:29:04 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,9 @@ void	init_game(t_game *game, char *path)
 	repaint(game, game->player);
 	mlx_key_hook(game->mlx, &escape_hook, (void *)(game));
 	mlx_loop_hook(game->mlx, &move_hook, (void *)(game));
+	mlx_resize_hook(game->mlx, &hook_screen, (void *)(game));
 	if (BONUS == 1)
-	{
 		mlx_cursor_hook(game->mlx, &cursor_hook, (void *)(game));
-		mlx_resize_hook(game->mlx, &hook_screen, (void *)(game));
-	}
 	mlx_loop(game->mlx);
 }
 

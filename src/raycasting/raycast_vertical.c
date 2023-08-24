@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:39:45 by cmorales          #+#    #+#             */
-/*   Updated: 2023/07/14 18:54:27 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:29:42 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ void	raycast_vertical(t_map *map, t_player *player, t_ray *ray,
 	step.y = map->lim * tan(ray->rads_angle);
 	wallHitVertical->x = x_intercept;
 	wallHitVertical->y = y_intercept;
-	step.y = -step.y;
 	if (ray->left == 1)
 		step.x = -step.x;
-	if (ray->left == 0)
+	if ((ray->down == 0 && step.y > 0) || (ray->down == 1 && step.y < 0))
 		step.y = -step.y;
 	vertical_raycast_loop(map, wallHitVertical, &step, ray);
 }

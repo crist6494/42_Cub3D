@@ -1,15 +1,15 @@
-NO /Users/cmorales/42/Cub3D/assets/textures/bluestone.png
-SO /Users/cmorales/42/Cub3D/assets/textures/redbrick.png
+NO /home/cristian/42/42_Cub3D/assets/textures/redbrick.png
+SO /home/cristian/42/42_Cub3D/assets/textures/redbrick.png
 
-WE         /Users/cmorales/42/Cub3D/assets/textures/colorstone.png
-
-
-
-EA /Users/cmorales/42/Cub3D/assets/textures/mossy.png
+WE         /home/cristian/42/42_Cub3D/assets/textures/bluestone.png
 
 
 
-F 100,20,190
+EA /home/cristian/42/42_Cub3D/assets/textures/bluestone.png
+
+
+
+F 20,20,190
 
 
 
