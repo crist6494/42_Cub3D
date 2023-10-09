@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:39:18 by cmorales          #+#    #+#             */
-/*   Updated: 2023/08/24 17:53:48 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/10/09 22:54:52 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	raycast_horizonal(t_map *map, t_player *player, t_ray *ray,
 	step.x = map->lim / tan(ray->rads_angle);
 	wallHitHorizontal->x = x_intercept;
 	wallHitHorizontal->y = y_intercept;
-	//If we go up we change the sign
+	//If we go up we change the sign 
 	if(ray->down == 0)
 		step.y = -step.y;
 	//Test if we go left and is positive we change the sign and in the other way
